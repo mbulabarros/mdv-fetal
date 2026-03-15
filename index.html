@@ -2083,10 +2083,24 @@ let currentStep = 1;
 const stepNames = ['Identificação', 'Dados Obstétricos', 'Rastreio 1º Trim.', 'Eco Morfológico', 'Cardiologia Fetal', 'Genética & Finalização'];
 
 function nextStep(to) {
+  // Cardio specialty routing
+  if (currentSpecialty === 'cardio' && to === 3) {
+    if (!validateStep2()) return;
+    animStepCardio(2, 3);
+    return;
+  }
+  // Validation
   if (to === 2 && !validateStep1()) return;
   if (to === 3 && !validateStep2()) return;
   if (to === 5 && !validateStep4()) return;
+  // Confetti
+  const bar = document.getElementById('progressBar');
+  if (bar) {
+    const rect = bar.getBoundingClientRect();
+    burstConfetti(rect.left + rect.width * (currentStep/6), rect.top + rect.height/2);
+  }
   animStep(currentStep, to);
+  saveProgress();
 }
 function prevStep(to) { animStep(currentStep, to); }
 
@@ -2188,10 +2202,23 @@ function toggleCheck(el, e) {
   if(e) { e.preventDefault(); e.stopPropagation(); }
   el.classList.toggle('checked');
   el.querySelector('input').checked = el.classList.contains('checked');
+  // Bounce animation
+  el.classList.remove('just-checked');
+  void el.offsetWidth;
+  el.classList.add('just-checked');
+  setTimeout(() => el.classList.remove('just-checked'), 400);
+  if (typeof currentStep === 'number') updateProgress();
 }
 
 // Document checklist
-function toggleDoc(el, e) { if(e){e.preventDefault();e.stopPropagation();} el.classList.toggle('checked'); }
+function toggleDoc(el, e) {
+  if(e){e.preventDefault();e.stopPropagation();}
+  el.classList.toggle('checked');
+  el.classList.remove('just-checked');
+  void el.offsetWidth;
+  el.classList.add('just-checked');
+  setTimeout(() => el.classList.remove('just-checked'), 350);
+}
 
 // Urgência
 function setUrgencia(tipo, el, e) {
@@ -2326,10 +2353,10 @@ function showResult() {
       <div class="preview-divider"></div>
       ${row('PAPP-A', g('pappA')!=='—'?g('pappA')+' MoM':'')}
       ${row('β-hCG livre', g('bhcg')!=='—'?g('bhcg')+' MoM':'')}
-      ${row('Risco T21', g('riscoT21'), g('riscoT21').toLowerCase().includes('alto')?'alert':'')}
+      ${row('Risco T21', g('riscoT21'), (String(g('riscoT21'))).toLowerCase().includes('alto')?'alert':'')}
       ${row('Risco T18', g('riscoT18'))}
       ${row('Risco T13', g('riscoT13'))}
-      ${row('Risco PE precoce', g('riscoPE'), g('riscoPE').toLowerCase().includes('alto')?'alert':'')}
+      ${row('Risco PE precoce', g('riscoPE'), (String(g('riscoPE'))).toLowerCase().includes('alto')?'alert':'')}
     `:rastreioFez==='Nao'?row('Motivo',g('rastreioMotivo')):'<span class="no-data-msg">Aguardando resultado</span>'}
   </div>
 
@@ -2554,13 +2581,17 @@ function openWhatsApp() {
 }
 
 function resetForm() {
+  try { sessionStorage.removeItem('mdv_fetal_form'); } catch(e) {}
   document.querySelectorAll('#form input, #form select, #form textarea').forEach(el => {
     if (el.type === 'checkbox') el.checked = false;
     else el.value = '';
-    el.classList.remove('invalid');
+    el.classList.remove('invalid','field-error','field-warn');
   });
   document.querySelectorAll('.check-item').forEach(el => el.classList.remove('checked'));
   document.querySelectorAll('.doc-item').forEach(el => el.classList.remove('checked'));
+  document.querySelectorAll('.field-validation').forEach(el => el.remove());
+  const igRes = document.getElementById('igCalcResult');
+  if (igRes) igRes.remove();
   document.getElementById('rastreioFields').style.display = 'block';
   document.getElementById('rastreioMotivoField').style.display = 'none';
   document.getElementById('ecoFields').style.display = 'block';
@@ -2572,7 +2603,7 @@ function resetForm() {
   document.getElementById('step1').style.display = 'block';
   currentStep = 1;
   urgencia = 'eletivo';
-  document.querySelectorAll('.urg-btn').forEach(b => b.className = 'urg-btn');
+  document.querySelectorAll('#urgSelector .urg-btn').forEach(b => b.className = 'urg-btn');
   document.getElementById('urgEletivo').classList.add('active-eletivo');
   updateProgress();
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2726,20 +2757,7 @@ function burstConfetti(x, y) {
 }
 
 // ── Enhanced nextStep with confetti ───────────────────
-const _origNextStep = nextStep;
-function nextStep(to) {
-  if (to === 2 && !validateStep1()) return;
-  if (to === 3 && !validateStep2()) return;
-  if (to === 5 && !validateStep4()) return;
-  // Confetti from progress bar area
-  const bar = document.getElementById('progressBar');
-  if (bar) {
-    const rect = bar.getBoundingClientRect();
-    burstConfetti(rect.left + rect.width * (currentStep/6), rect.top + rect.height/2);
-  }
-  animStep(currentStep, to);
-  saveProgress();
-}
+// nextStep consolidated above
 
 // ── Step progress percentage ───────────────────────────
 function countStepFields(stepNum) {
@@ -2748,7 +2766,7 @@ function countStepFields(stepNum) {
   const inputs = step.querySelectorAll('input[type="text"],input[type="tel"],input[type="number"],input[type="date"],select,textarea');
   let filled = 0, total = 0;
   inputs.forEach(el => {
-    if (el.closest('[style*="display:none"]') || el.closest('[style*="display: none"]')) return;
+    if (el.offsetParent === null) return;
     total++;
     if (el.value && el.value.trim() && el.value !== '') filled++;
   });
@@ -2782,29 +2800,10 @@ document.addEventListener('change', () => {
 }, { passive: true });
 
 // ── Enhanced toggleCheck with bounce ──────────────────
-const _origToggleCheck = toggleCheck;
-function toggleCheck(el, e) {
-  if(e) { e.preventDefault(); e.stopPropagation(); }
-  el.classList.toggle('checked');
-  el.querySelector('input').checked = el.classList.contains('checked');
-  // Bounce animation
-  el.classList.remove('just-checked');
-  void el.offsetWidth;
-  el.classList.add('just-checked');
-  setTimeout(() => el.classList.remove('just-checked'), 400);
-  if (typeof currentStep === 'number' || currentStep === 'result') { if (currentStep !== 'result') updateProgress(); }
-}
+// toggleCheck consolidated above
 
 // ── Enhanced toggleDoc with animation ─────────────────
-const _origToggleDoc = toggleDoc;
-function toggleDoc(el, e) {
-  if(e){e.preventDefault();e.stopPropagation();}
-  el.classList.toggle('checked');
-  el.classList.remove('just-checked');
-  void el.offsetWidth;
-  el.classList.add('just-checked');
-  setTimeout(() => el.classList.remove('just-checked'), 350);
-}
+// toggleDoc consolidated above
 
 // ── Swipe gestures between steps ──────────────────────
 (function setupSwipe() {
@@ -2835,11 +2834,7 @@ function toggleDoc(el, e) {
 })();
 
 // ── PWA: clear sessionStorage on explicit reset ────────
-const _origResetForm = resetForm;
-function resetForm() {
-  try { sessionStorage.removeItem(SS_KEY); } catch(e) {}
-  _origResetForm();
-}
+// resetForm consolidated above
 
 // ── Init: try restoring session ────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
@@ -3069,7 +3064,7 @@ function resetFormCardio(){
   document.querySelectorAll('.spec-indicator').forEach(e=>e.remove());
   document.querySelectorAll('.form-step').forEach(s=>{s.style.display='none';});
   document.getElementById('step0').style.display='block';
-  currentStep=1;currentStepCardio=3;currentSpecialty='fetal';urgencia='eletivo';urgenciaCardio='eletivo';
+  currentStep=1;currentStepCardio=3;currentSpecialty=null;urgencia='eletivo';urgenciaCardio='eletivo';
   updateProgressMulti();window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -3089,15 +3084,7 @@ navTo=function(id){
   }
 };
 
-// Override nextStep for cardio specialty
-const _nextStepOrig2=nextStep;
-nextStep=function(to){
-  if(currentSpecialty==='cardio'&&to===3){
-    if(!validateStep2())return;
-    animStepCardio(2,3);return;
-  }
-  _nextStepOrig2(to);
-};
+// nextStep cardio routing consolidated above
 
 
 // ── IG Calculator ────────────────────────────────────────────
@@ -3268,6 +3255,16 @@ enviarWhatsApp = function() {
   _enviarWAOrig();
   scheduleAutoCleanup();
 };
+// ── Base enviarWhatsAppCardio (definição base) ──────────────
+function enviarWhatsAppCardio() {
+  // implementação base — sobrescrita pelo hook de pseudonimização
+  document.getElementById('sendingOverlay').classList.add('show');
+  setTimeout(() => {
+    document.getElementById('sendingOverlay').classList.remove('show');
+    showToast('⚠️ Função de envio não configurada');
+  }, 800);
+}
+
 const _enviarWACardioOrig = enviarWhatsAppCardio;
 enviarWhatsAppCardio = function() {
   _enviarWACardioOrig();
@@ -3296,7 +3293,7 @@ function generateCaseID(specialty) {
   const mi = String(now.getMinutes()).padStart(2,'0');
   // Sequence: use last 3 digits of timestamp for uniqueness
   const seq = String(now.getTime()).slice(-3);
-  return `${prefix}-${yy}${mm}${dd}-${hh}${mi}`;
+  return `${prefix}-${yy}${mm}${dd}-${hh}${mi}-${seq}`;
 }
 
 // ── Nome → Iniciais ──────────────────────────────────────────
@@ -3436,7 +3433,7 @@ _Joinville–SC · SES/SC_`;
     const ecoRes  = g('ecoResultado') !== '—' ? `Morfológico: ${g('ecoResultado')}. ` : '';
     const ecoDiag = g('ecoDiag') !== '—' ? `Suspeita: ${g('ecoDiag')}. ` : '';
     const crescFet = g('crescFetal') !== '—' ? `Crescimento: ${g('crescFetal')}. ` : '';
-    const cardioSus = g('cardioSuspFeita') !== '—' ? g('cardioSuspFeita') : '';
+    const cardioSus = g('cardioSuspeita') !== '—' ? g('cardioSuspeita') : '';
     const niptVal = g('nipt') !== '—' && g('nipt') !== 'Nao' ? `NIPT: ${g('nipt')}${g('niptRes')!=='—'?' → '+g('niptRes'):''}` : '';
     const carioVal = g('cariotipo') !== '—' && g('cariotipo') !== 'Nao' ? `Cariótipo: ${g('cariotipo')}${g('carioRes')!=='—'?' → '+g('carioRes'):''}` : '';
 
