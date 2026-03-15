@@ -2052,6 +2052,7 @@ const CONFIG = {
 
 let urgencia = 'eletivo';        // Medicina Fetal
 let urgenciaCardio = 'eletivo';  // Cardiologia Fetal
+let currentCaseID = null;
 
 // Splash
 window.addEventListener('load', () => {
@@ -2076,6 +2077,13 @@ function navTo(id) {
   if(appEl) appEl.scrollTop = 0;
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (id === 'form' && currentStep === 'result') resetForm();
+  if (id === 'form' && !currentSpecialty) {
+    setTimeout(() => {
+      document.querySelectorAll('.form-step').forEach(s => s.style.display = 'none');
+      const s0 = document.getElementById('step0');
+      if (s0) s0.style.display = 'block';
+    }, 20);
+  }
 }
 
 // Step navigation
@@ -2257,6 +2265,7 @@ function urgLabel(cardio = false) {
 
 // Show result
 function showResult() {
+  currentCaseID = generateCaseID('fetal');
 
   const decl = document.getElementById('declaracaoRevisao');
   if (!decl || !decl.checked) {
@@ -2445,6 +2454,8 @@ function showResult() {
   currentStep = 'result';
   document.querySelectorAll('.progress-step').forEach(s => s.classList.add('done'));
   document.getElementById('stepLabel').innerHTML = '<strong style="font-size:.85rem;color:var(--purple-mid)">✅ Encaminhamento completo</strong>';
+  showUrgencyAlert();
+  showCaseID('fetal');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -2462,125 +2473,14 @@ function getDocsHTML() {
   }).join('');
 }
 
-function enviarWhatsApp() {
-  document.getElementById('sendingOverlay').classList.add('show');
-  setTimeout(() => {
-    document.getElementById('sendingOverlay').classList.remove('show');
-
-    const igStr = `${g('igSem')}sem${g('igDias') !== '—' && g('igDias') !== '0' ? g('igDias')+'d' : ''}`;
-    const comorbs = getChecked('comorb');
-    const sistemas = getChecked('sistemas');
-    const ecoAch = getChecked('ecoAchados');
-    const docs = getDocs();
-    const rastreioFez = g('rastreioRealizou');
-    const ecoFez = g('ecoRealizado');
-    const cardioSus = g('cardioSuspeita');
-    const ecoCardioRes = g('ecoCardio');
-    const niptVal = g('nipt');
-    const carioVal = g('cariotipo');
-
-    let rastreioBlock = '';
-    if (rastreioFez === 'Sim') {
-      rastreioBlock = `\n🔬 *RASTREIO 1º TRIMESTRE*
-• TN: ${g('tn')} mm ${g('tnMom') !== '—' ? '('+g('tnMom')+')' : ''}
-• Osso nasal: ${g('oNasal')}
-• Ductus venoso: ${g('ductusVen')}
-• Regurg. tricúspide: ${g('regurgTri')}
-• IP uterinas: ${g('ipUterinas')} ${g('ipUterinasP') !== '—' ? '('+g('ipUterinasP')+')' : ''}
-• PAPP-A: ${g('pappA')} MoM
-• β-hCG livre: ${g('bhcg')} MoM
-• Risco T21: ${g('riscoT21')} | T18: ${g('riscoT18')} | T13: ${g('riscoT13')}
-• Risco pré-eclâmpsia: ${g('riscoPE')}`;
-    } else {
-      rastreioBlock = `\n🔬 *RASTREIO 1º TRIMESTRE*\n• ${rastreioFez === 'Nao' ? 'Não realizado: '+g('rastreioMotivo') : 'Aguardando resultado'}`;
-    }
-
-    let ecoBlock = '';
-    if (ecoFez !== 'Nao') {
-      ecoBlock = `\n🔍 *ECO MORFOLÓGICO*
-• Data: ${g('ecoData')} | IG na época: ${g('ecoIG')} sem
-• Resultado: ${g('ecoResultado')}
-• Sistemas: ${sistemas}
-• Suspeita diagnóstica: ${g('ecoDiag')}
-• Crescimento fetal: ${g('crescFetal')}
-• Líquido amniótico: ${g('liquidoAmn')} ${g('ilaVal') !== '—' ? '('+g('ilaVal')+')' : ''}
-• Hidropsia: ${g('hidropsia')}`;
-    } else {
-      ecoBlock = `\n🔍 *ECO MORFOLÓGICO*\n• Não realizado`;
-    }
-
-    let cardioBlock = '';
-    if (cardioSus && cardioSus !== 'Nao' && cardioSus !== '—') {
-      cardioBlock = `\n❤️ *CARDIOLOGIA FETAL*
-• Suspeita: ${cardioSus}
-• Ecocardiograma fetal: ${ecoCardioRes}
-${ecoCardioRes.startsWith('Sim') ? '• Achados eco cardíaco: '+ecoAch : ''}
-${ecoCardioRes.startsWith('Sim') && g('cardioHip') !== '—' ? '• Hipótese: '+g('cardioHip') : ''}
-${g('cardioDesc') !== '—' ? '• Descrição: '+g('cardioDesc') : ''}
-• Ritmo fetal: ${g('ritmo')}
-• Doppler AU: ${g('dopUA')} | ACM: ${g('dopACM')} | DV: ${g('dopDV')} | DA: ${g('dopDA')}`;
-    }
-
-    let geneticaBlock = '';
-    if (niptVal !== 'Nao' || carioVal !== 'Nao') {
-      geneticaBlock = `\n🧬 *INVESTIGAÇÃO GENÉTICA*
-• NIPT: ${niptVal}${niptVal.startsWith('Sim') ? ' → '+g('niptRes') : ''}
-• Cariótipo: ${carioVal}${carioVal !== 'Nao' ? ' → '+g('carioRes') : ''}`;
-    }
-
-    const now = new Date();
-    const dataEnv = now.toLocaleDateString('pt-BR') + ' às ' + now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
-    const msg = `🏥 *ENCAMINHAMENTO FETAL — MDV*
-╔══════════════════════════╗
-║  Maternidade Darcy Vargas  ║
-║  Ambulatório Fetal · SUS  ║
-╚══════════════════════════╝
-📅 Gerado em: ${dataEnv}
-⚕️ _Pré-triagem — não substitui regulação oficial_
-
-👨‍⚕️ *MÉDICO SOLICITANTE*
-• Nome: ${g('medNome')}
-• CRM: ${g('medCRM')}-${g('medEstado')} | ${g('medEsp')}
-• Serviço: ${g('medServico')}
-• Telefone: ${g('medTel')}
-
-🤰 *GESTANTE*
-• Nome: ${g('gestNome')}
-• Idade: ${g('gestIdade')} anos | Cidade: ${g('gestCidade')}
-• Telefone: ${g('gestTel')}
-• Cartão SUS: ${g('gestSUS')}
-
-📅 *DADOS OBSTÉTRICOS*
-• IG atual: ${igStr} | Datação: ${g('gestDatacao')}
-• DUM: ${g('gestDUM')} | DPP: ${g('gestDPP')}
-• Obstetrícia: G${g('obsG')} P${g('obsP')} A${g('obsA')} | ${g('gestTipo')}
-• Comorbidades: ${comorbs}
-• Histórico familiar: ${g('histFamiliar')}
-${rastreioBlock}
-${ecoBlock}
-${cardioBlock}
-${geneticaBlock}
-
-📋 *FINALIZAÇÃO*
-• Urgência: ${urgLabel()}
-• Motivo do encaminhamento: ${g('motivoEnc')}
-${g('obsAdic') !== '—' ? '• Obs.: '+g('obsAdic') : ''}
-• Documentos a enviar: ${docs}
-
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-_📱 Ambulatório MDV · MDV_
-_Maternidade Darcy Vargas · Joinville–SC_
-_⚠️ Dados clínicos confidenciais_`;
-
-    window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(msg), '_blank');
-  }, 1200);
-}
+// enviarWhatsApp legacy removed — see clean version below
 
 function openWhatsApp() {
   window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent('Olá! Gostaria de informações sobre o Ambulatório de Medicina Fetal e Cardiologia Fetal da MDV.'), '_blank');
 }
 
 function resetForm() {
+  currentCaseID = null;
   try { sessionStorage.removeItem('mdv_fetal_form'); } catch(e) {}
   document.querySelectorAll('#form input, #form select, #form textarea').forEach(el => {
     if (el.type === 'checkbox') el.checked = false;
@@ -2989,6 +2889,7 @@ function toggleCNipt(){document.getElementById('cNiptRes').style.display=(['Norm
 function toggleCCario(){document.getElementById('cCarioRes').style.display=document.getElementById('cCario').value!=='Nao'?'block':'none';}
 
 function showResultCardio(){
+  currentCaseID = generateCaseID('cardio');
 
   const decl = document.getElementById('declaracaoRevisaoC');
   if (!decl || !decl.checked) {
@@ -3047,10 +2948,13 @@ function showResultCardio(){
   currentStep='result';
   document.querySelectorAll('.progress-step').forEach(s=>s.classList.add('done'));
   document.getElementById('stepLabel').innerHTML='<strong style="color:var(--rose)">✅ Pré-triagem completa — Cardiologia Fetal</strong>';
+  showUrgencyAlert();
+  showCaseID('cardio');
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function resetFormCardio(){
+  currentCaseID = null;
   try{sessionStorage.removeItem('mdv_fetal_form');}catch(e){}
   document.querySelectorAll('#step3c,#step4c,#step5c').forEach(sec=>{
     sec.querySelectorAll('input,select,textarea').forEach(el=>el.value='');
@@ -3064,25 +2968,12 @@ function resetFormCardio(){
   document.querySelectorAll('.spec-indicator').forEach(e=>e.remove());
   document.querySelectorAll('.form-step').forEach(s=>{s.style.display='none';});
   document.getElementById('step0').style.display='block';
-  currentStep=1;currentStepCardio=3;currentSpecialty=null;urgencia='eletivo';urgenciaCardio='eletivo';
+  currentStep=1;currentStepCardio=1;currentSpecialty=null;urgencia='eletivo';urgenciaCardio='eletivo';currentCaseID=null;
   updateProgressMulti();window.scrollTo({top:0,behavior:'smooth'});
 }
 
 // Override navTo to show step0 when entering form without specialty
-const _navToOrig=navTo;
-navTo=function(id){
-  _navToOrig(id);
-  if(id==='form'){
-    // If we came from home via nav (not startForm), show step0
-    if(!document.querySelector('.spec-indicator')){
-      setTimeout(()=>{
-        document.querySelectorAll('.form-step').forEach(s=>s.style.display='none');
-        const s0=document.getElementById('step0');
-        if(s0)s0.style.display='block';
-      },20);
-    }
-  }
-};
+// navTo step0 logic integrated below
 
 // nextStep cardio routing consolidated above
 
@@ -3197,18 +3088,7 @@ function showUrgencyAlert() {
   }
 }
 
-// Hook into showResult
-const _showResultOrig = showResult;
-showResult = function() {
-  _showResultOrig();
-  setTimeout(showUrgencyAlert, 50);
-};
-// Also hook cardio result
-const _showResultCardioOrig = showResultCardio;
-showResultCardio = function() {
-  _showResultCardioOrig();
-  setTimeout(showUrgencyAlert, 50);
-};
+// showUrgencyAlert integrated directly into showResult/showResultCardio
 
 
 // ── Auto-cleanup após envio WhatsApp ────────────────────────
@@ -3250,26 +3130,8 @@ function performCleanup() {
 }
 
 // Hook cleanup into both WA send functions
-const _enviarWAOrig = enviarWhatsApp;
-enviarWhatsApp = function() {
-  _enviarWAOrig();
-  scheduleAutoCleanup();
-};
-// ── Base enviarWhatsAppCardio (definição base) ──────────────
-function enviarWhatsAppCardio() {
-  // implementação base — sobrescrita pelo hook de pseudonimização
-  document.getElementById('sendingOverlay').classList.add('show');
-  setTimeout(() => {
-    document.getElementById('sendingOverlay').classList.remove('show');
-    showToast('⚠️ Função de envio não configurada');
-  }, 800);
-}
+// enviarWhatsApp cleanup integrated below
 
-const _enviarWACardioOrig = enviarWhatsAppCardio;
-enviarWhatsAppCardio = function() {
-  _enviarWACardioOrig();
-  scheduleAutoCleanup();
-};
 
 
 // ── Admin panel: ?admin=1 apenas ────────────────────────────
@@ -3336,7 +3198,8 @@ function maskDoctorName(name) {
 
 // ── Mensagem pseudonimizada ──────────────────────────────────
 function buildWAMessage(specialty) {
-  const caseID = generateCaseID(specialty);
+  const caseID = currentCaseID || generateCaseID(specialty);
+  currentCaseID = caseID;
   const gc = id => { const el=document.getElementById(id); return el?el.value||'—':'—'; };
   const getChk = gid => {
     const its = document.querySelectorAll('#'+gid+' .check-item.checked input');
@@ -3490,7 +3353,8 @@ _Joinville–SC · SES/SC_`;
 // ── Override enviarWhatsApp ───────────────────────────────────
 // Show case ID in result screen
 function showCaseID(specialty) {
-  const caseID = generateCaseID(specialty);
+  const caseID = currentCaseID || generateCaseID(specialty);
+  currentCaseID = caseID;
   // Insert case ID badge after result hero
   const resultHero = document.querySelector('.result-hero');
   if (resultHero) {
@@ -3508,21 +3372,10 @@ function showCaseID(specialty) {
   }
 }
 
-// Hook showResult and showResultCardio
-const _showResultPseudo = showResult;
-showResult = function() {
-  _showResultPseudo();
-  setTimeout(() => showCaseID('fetal'), 60);
-};
-const _showResultCardioPseudo = showResultCardio;
-showResultCardio = function() {
-  _showResultCardioPseudo();
-  setTimeout(() => showCaseID('cardio'), 60);
-};
+// showCaseID integrated directly into showResult/showResultCardio
 
 // Override WA send to use pseudonymized message
-const _enviarWAFull = enviarWhatsApp;
-enviarWhatsApp = function() {
+function enviarWhatsApp() {
   document.getElementById('sendingOverlay').classList.add('show');
   setTimeout(() => {
     document.getElementById('sendingOverlay').classList.remove('show');
@@ -3530,10 +3383,9 @@ enviarWhatsApp = function() {
     window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(msg), '_blank');
     scheduleAutoCleanup();
   }, 1200);
-};
+}
 
-const _enviarWACardioFull = enviarWhatsAppCardio;
-enviarWhatsAppCardio = function() {
+function enviarWhatsAppCardio() {
   document.getElementById('sendingOverlay').classList.add('show');
   setTimeout(() => {
     document.getElementById('sendingOverlay').classList.remove('show');
@@ -3541,7 +3393,7 @@ enviarWhatsAppCardio = function() {
     window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(msg), '_blank');
     scheduleAutoCleanup();
   }, 1200);
-};
+}
 
 </script>
 </body>
