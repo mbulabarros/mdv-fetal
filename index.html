@@ -1168,7 +1168,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 <div class="app" id="app">
   <div class="disclaimer-banner" id="disclaimerBanner">
     <span class="disc-icon">ℹ️</span>
-    <span><strong>Ferramenta de pré-triagem.</strong> Não substitui prontuário eletrônico, regulação oficial nem avaliação médica presencial. Casos graves: contato direto imediato com a MDV.</span>
+    <span><strong>Ferramenta de pré-triagem clínica.</strong> Este formulário não substitui regulação oficial, prontuário eletrônico, encaminhamento formal nem avaliação médica presencial. A classificação apresentada é apenas inicial. <strong>Casos com sinais de gravidade exigem contato direto imediato com a MDV.</strong></span>
     <span class="disc-close" onclick="document.getElementById('disclaimerBanner').style.display='none'" title="Fechar">✕</span>
   </div>
 
@@ -1197,7 +1197,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     </div>
     <div class="hero-logo"><span class="hero-logo-text">MDV</span></div>
     <h1 class="hero-fullname">Maternidade Darcy Vargas</h1>
-    <p class="tagline" style="margin-top:2px">Formulário de Encaminhamento Fetal</p>
+    <p class="tagline" style="margin-top:2px">Formulário de Pré-Triagem para Encaminhamento Fetal</p>
     <p style="font-size:.63rem;color:rgba(255,255,255,.38);margin-top:6px;letter-spacing:.5px;position:relative;z-index:1">Referência Estadual SES/SC · Joinville–SC · Fundada 1947</p>
     <div class="badges">
       <span class="badge badge-teal">Medicina Fetal</span>
@@ -1238,7 +1238,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     <div class="footer">
       Maternidade Darcy Vargas · Unidade Própria SES/SC<br>
       Rua Miguel Couto, 44 — Anita Garibaldi, Joinville–SC<br>
-      <span style="opacity:.55">Sistema de Encaminhamento Digital — MDV</span>
+      <span style="opacity:.55">Sistema digital de pré-triagem para encaminhamento — MDV</span>
     </div>
   </div>
 </div>
@@ -1678,13 +1678,42 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       </div>
     </div>
 
+    
+    <div class="fcard">
+      <div class="fcard-hdr">
+        <span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></span>
+        <span class="title">Sinais de alerta atuais</span>
+        <span class="badge-opt">Importante</span>
+      </div>
+      <div class="field">
+        <label>Marque os sinais presentes no momento <span class="hint">(marque todos os aplicáveis)</span></label>
+        <div class="check-group" id="alertasAtuais">
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Hidropsia fetal"><span class="dot"></span>Hidropsia fetal</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Bradicardia fetal importante"><span class="dot"></span>Bradicardia importante</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Taquicardia fetal importante"><span class="dot"></span>Taquicardia importante</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Arritmia fetal sustentada"><span class="dot"></span>Arritmia sustentada</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Ductus venoso com onda a ausente ou reversa"><span class="dot"></span>Ductus venoso alterado</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Doppler fetal com piora recente"><span class="dot"></span>Piora recente do Doppler</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Oligodrâmnio grave"><span class="dot"></span>Oligodrâmnio grave</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Polidrâmnio importante"><span class="dot"></span>Polidrâmnio importante</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Redução importante de movimentos fetais"><span class="dot"></span>Movimentos fetais reduzidos</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Risco iminente de parto"><span class="dot"></span>Risco iminente de parto</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Sem sinais de alerta atuais"><span class="dot"></span>Sem sinais de alerta</label>
+        </div>
+      </div>
+      <div class="field">
+        <label>Descrição breve dos sinais de alerta <span class="hint">(opcional)</span></label>
+        <textarea id="alertasDescricao" placeholder="Ex: bradicardia persistente em torno de 85 bpm, onda a reversa no ductus venoso, piora do Doppler nas últimas 24h..."></textarea>
+      </div>
+    </div>
+
     <div class="fcard">
       <div class="fcard-hdr"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 10h11v2H3zm0-4h11v2H3zm0 8h7v2H3zm15.01-2.13 1.41-1.41 2.12 2.12-1.41 1.41zm-.71.71-5.3 5.3V20h2.12l5.3-5.3z"/></svg></span><span class="title">Finalização</span><span class="badge-req">Obrigatório</span></div>
       <div class="field"><label>Urgência do atendimento <span class="req">*</span></label>
         <div class="urg-selector" id="urgSelector">
           <div class="urg-btn active-eletivo" onclick="setUrgencia('eletivo',this,event)" id="urgEletivo"><div class="ug-icon">🟢</div><div class="ug-lbl">Eletivo</div></div>
-          <div class="urg-btn" onclick="setUrgencia('prioritario',this,event)" id="urgPrioritario"><div class="ug-icon">🟡</div><div class="ug-lbl">Prioritário</div></div>
-          <div class="urg-btn" onclick="setUrgencia('urgente',this,event)" id="urgUrgente"><div class="ug-icon">🔴</div><div class="ug-lbl">Urgente</div></div>
+          <div class="urg-btn" onclick="setUrgencia('prioritario',this,event)" id="urgPrioritario"><div class="ug-icon">🟡</div><div class="ug-lbl">Prioridade clínica</div></div>
+          <div class="urg-btn" onclick="setUrgencia('urgente',this,event)" id="urgUrgente"><div class="ug-icon">🔴</div><div class="ug-lbl">Contato imediato</div></div>
         </div>
       </div>
       <div class="field"><label>Motivo principal do encaminhamento <span class="req">*</span></label>
@@ -1692,6 +1721,19 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       </div>
       <div class="field"><label>Observações adicionais <span class="hint">(opcional)</span></label>
         <textarea id="obsAdic" placeholder="Outras informações relevantes para o médico assistente..."></textarea>
+      </div>
+    </div>
+
+    
+    <div class="fcard" style="background:linear-gradient(135deg,var(--purple-bg),rgba(232,67,122,.04));border:1.5px solid rgba(107,63,160,.15)">
+      <div class="field" style="margin-bottom:0">
+        <label class="check-item" onclick="toggleCheck(this,event)" style="border-radius:12px;align-items:flex-start;padding:12px 14px;background:transparent;border:none">
+          <input type="checkbox" id="declaracaoRevisao" value="Revisei as informações e orientei contato direto em caso de gravidade">
+          <span class="dot" style="margin-top:3px;flex-shrink:0"></span>
+          <span style="line-height:1.5;font-size:.82rem;color:var(--text)">
+            Declaro que revisei as informações preenchidas e que, em caso de sinais de gravidade, foi orientado <strong>contato direto imediato com a MDV</strong>, sem aguardar resposta deste formulário.
+          </span>
+        </label>
       </div>
     </div>
 
@@ -1786,18 +1828,60 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
         <div class="doc-item" onclick="toggleDoc(this,event)"><div class="doc-check"></div><span class="doc-lbl">ECG / Holter materno</span><span class="doc-tag">PDF</span></div>
       </div>
     </div>
+    
+    <div class="fcard">
+      <div class="fcard-hdr">
+        <span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></span>
+        <span class="title">Sinais de alerta atuais</span>
+        <span class="badge-opt">Importante</span>
+      </div>
+      <div class="field">
+        <label>Marque os sinais presentes no momento <span class="hint">(marque todos os aplicáveis)</span></label>
+        <div class="check-group" id="alertasAtuaisC">
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Hidropsia fetal"><span class="dot"></span>Hidropsia fetal</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Bradicardia fetal importante"><span class="dot"></span>Bradicardia importante</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Taquicardia fetal importante"><span class="dot"></span>Taquicardia importante</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Arritmia fetal sustentada"><span class="dot"></span>Arritmia sustentada</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Ductus venoso com onda a ausente ou reversa"><span class="dot"></span>Ductus venoso alterado</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Doppler fetal com piora recente"><span class="dot"></span>Piora recente do Doppler</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Oligodrâmnio grave"><span class="dot"></span>Oligodrâmnio grave</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Polidrâmnio importante"><span class="dot"></span>Polidrâmnio importante</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Redução importante de movimentos fetais"><span class="dot"></span>Movimentos fetais reduzidos</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Risco iminente de parto"><span class="dot"></span>Risco iminente de parto</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Sem sinais de alerta atuais"><span class="dot"></span>Sem sinais de alerta</label>
+        </div>
+      </div>
+      <div class="field">
+        <label>Descrição breve dos sinais de alerta <span class="hint">(opcional)</span></label>
+        <textarea id="alertasDescricaoC" placeholder="Ex: bradicardia persistente em torno de 85 bpm, onda a reversa no ductus venoso, piora do Doppler nas últimas 24h..."></textarea>
+      </div>
+    </div>
+
     <div class="fcard">
       <div class="fcard-hdr"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 10h11v2H3zm0-4h11v2H3zm0 8h7v2H3zm15.01-2.13 1.41-1.41 2.12 2.12-1.41 1.41zm-.71.71-5.3 5.3V20h2.12l5.3-5.3z"/></svg></span><span class="title">Finalização</span><span class="badge-req">Obrigatório</span></div>
-      <div class="field"><label>Urgência <span class="req">*</span></label>
+      <div class="field"><label>Classificação inicial de prioridade <span class="req">*</span></label>
         <div class="urg-selector" id="cUrgSelector">
           <div class="urg-btn active-eletivo" onclick="setUrgencia('eletivo',this,event)" id="cUrgEletivo"><div class="ug-icon">🟢</div><div class="ug-lbl">Eletivo</div></div>
-          <div class="urg-btn" onclick="setUrgencia('prioritario',this,event)" id="cUrgPrioritario"><div class="ug-icon">🟡</div><div class="ug-lbl">Prioritário</div></div>
-          <div class="urg-btn" onclick="setUrgencia('urgente',this,event)" id="cUrgUrgente"><div class="ug-icon">🔴</div><div class="ug-lbl">Urgente</div></div>
+          <div class="urg-btn" onclick="setUrgencia('prioritario',this,event)" id="cUrgPrioritario"><div class="ug-icon">🟡</div><div class="ug-lbl">Prioridade clínica</div></div>
+          <div class="urg-btn" onclick="setUrgencia('urgente',this,event)" id="cUrgUrgente"><div class="ug-icon">🔴</div><div class="ug-lbl">Contato imediato</div></div>
         </div>
       </div>
       <div class="field"><label>Motivo do encaminhamento <span class="req">*</span></label><textarea id="cMotivoPrincipal" placeholder="Descreva o motivo clínico que justifica o encaminhamento à Cardiologia Fetal..."></textarea></div>
       <div class="field"><label>Observações adicionais <span class="hint">(opcional)</span></label><textarea id="cObs" placeholder="Outras informações relevantes..."></textarea></div>
     </div>
+    
+    <div class="fcard" style="background:linear-gradient(135deg,var(--purple-bg),rgba(232,67,122,.04));border:1.5px solid rgba(107,63,160,.15)">
+      <div class="field" style="margin-bottom:0">
+        <label class="check-item" onclick="toggleCheck(this,event)" style="border-radius:12px;align-items:flex-start;padding:12px 14px;background:transparent;border:none">
+          <input type="checkbox" id="declaracaoRevisaoC" value="Revisei as informações e orientei contato direto em caso de gravidade">
+          <span class="dot" style="margin-top:3px;flex-shrink:0"></span>
+          <span style="line-height:1.5;font-size:.82rem;color:var(--text)">
+            Declaro que revisei as informações preenchidas e que, em caso de sinais de gravidade, foi orientado <strong>contato direto imediato com a MDV</strong>, sem aguardar resposta deste formulário.
+          </span>
+        </label>
+      </div>
+    </div>
+
     <div class="btn-row-mt">
       <button class="btn btn-outline" onclick="prevStepCardio(4)" style="flex:1">Voltar</button>
       <button class="btn btn-primary" onclick="showResultCardio()" style="flex:2"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></span> Ver Resumo</button>
@@ -2141,11 +2225,19 @@ function getDocs() {
 }
 function urgLabel(cardio = false) {
   const u = cardio ? urgenciaCardio : urgencia;
-  return u === 'eletivo' ? '🟢 Eletivo' : u === 'prioritario' ? '🟡 Prioritário' : '🔴 URGENTE';
+  return u === 'eletivo' ? '🟢 Eletivo' : u === 'prioritario' ? '🟡 Prioridade clínica' : '🔴 Contato imediato com a MDV';
 }
 
 // Show result
 function showResult() {
+
+  const decl = document.getElementById('declaracaoRevisao');
+  if (!decl || !decl.checked) {
+    showToast('⚠️ Confirme a revisão das informações antes de prosseguir');
+    decl && decl.closest('.check-item') && (decl.closest('.check-item').style.animation = 'none') && void decl.closest('.check-item').offsetWidth && (decl.closest('.check-item').style.animation = 'check-bounce .4s');
+    return;
+  }
+
   const motivoEl = document.getElementById('motivoEnc');
   if (!motivoEl.value.trim()) {
     motivoEl.classList.add('invalid');
@@ -2155,7 +2247,7 @@ function showResult() {
   motivoEl.classList.remove('invalid');
 
   const urgBannerClass = urgencia==='eletivo'?'urg-banner-eletivo':urgencia==='prioritario'?'urg-banner-prioritario':'urg-banner-urgente';
-  const urgTxt = urgencia==='eletivo'?'🟢 Eletivo':urgencia==='prioritario'?'🟡 Prioritário':'🔴 URGENTE — Contato imediato';
+  const urgTxt = urgencia==='eletivo'?'🟢 Eletivo':urgencia==='prioritario'?'🟡 Prioridade clínica':'🔴 Contato imediato com a MDV';
 
   const row = (lbl, val, cls='') => {
     const v = (val && val!=='—' && val!=='') ? val : null;
@@ -2902,6 +2994,14 @@ function toggleCNipt(){document.getElementById('cNiptRes').style.display=(['Norm
 function toggleCCario(){document.getElementById('cCarioRes').style.display=document.getElementById('cCario').value!=='Nao'?'block':'none';}
 
 function showResultCardio(){
+
+  const decl = document.getElementById('declaracaoRevisaoC');
+  if (!decl || !decl.checked) {
+    showToast('⚠️ Confirme a revisão das informações antes de prosseguir');
+    decl && decl.closest('.check-item') && (decl.closest('.check-item').style.animation = 'none') && void decl.closest('.check-item').offsetWidth && (decl.closest('.check-item').style.animation = 'check-bounce .4s');
+    return;
+  }
+
   const mp=document.getElementById('cMotivoPrincipal');
   if(!mp||!mp.value.trim()){mp&&mp.classList.add('invalid');showToast('⚠️ Informe o motivo do encaminhamento');return;}
   mp.classList.remove('invalid');
@@ -2912,7 +3012,7 @@ function showResultCardio(){
   const rowB=(lbl,val)=>val&&val!=='—'?`<div class="preview-row" style="flex-direction:column;gap:4px"><span class="pr-lbl">${lbl}</span><div class="preview-block">${val}</div></div>`:'';
   const chips=gid=>{const its=document.querySelectorAll('#'+gid+' .check-item.checked input');return its.length?`<div class="preview-chips">${Array.from(its).map(i=>`<span class="preview-chip">${i.value}</span>`).join('')}</div>`:'<span class="pr-val empty">Nenhum</span>';};
   const urgBCls=urgenciaCardio==='eletivo'?'urg-banner-eletivo':urgenciaCardio==='prioritario'?'urg-banner-prioritario':'urg-banner-urgente';
-  const urgTxt=urgenciaCardio==='eletivo'?'🟢 Eletivo':urgenciaCardio==='prioritario'?'🟡 Prioritário':'🔴 URGENTE';
+  const urgTxt=urgenciaCardio==='eletivo'?'🟢 Eletivo':urgenciaCardio==='prioritario'?'🟡 Prioridade clínica':'🔴 Contato imediato com a MDV';
   const now=new Date();const dataEnv=now.toLocaleDateString('pt-BR')+' às '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
   const svgSend=`<svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"/></svg>`;
   const svgReset=`<svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>`;
@@ -3127,25 +3227,37 @@ try { const s=localStorage.getItem('mdv_wa'); if(s){CONFIG.whatsapp=s;} } catch(
 function showUrgencyAlert() {
   const container = document.getElementById('urgencyAlertContainer');
   if (!container) return;
-  if (urgencia === 'urgente') {
+  const u = currentSpecialty === 'cardio' ? urgenciaCardio : urgencia;
+  if (u === 'urgente') {
     container.innerHTML = `
       <div class="urgency-alert-box">
         <div class="ua-icon">🚨</div>
         <div>
-          <div class="ua-title">CASO URGENTE — Contato imediato obrigatório</div>
-          <div class="ua-text">O preenchimento deste formulário <strong>não garante atendimento imediato</strong>. Casos urgentes devem ser comunicados diretamente à equipe da MDV por telefone ou WhatsApp, <strong>sem aguardar resposta do formulário</strong>.</div>
+          <div class="ua-title">CONTATO IMEDIATO COM A MDV</div>
+          <div class="ua-text">
+            Esta classificação corresponde apenas à <strong>pré-triagem inicial</strong>.
+            Ela <strong>não substitui regulação oficial</strong>, avaliação presencial nem decisão assistencial definitiva.<br><br>
+            Em caso de gravidade clínica, a equipe solicitante deve realizar
+            <strong>contato direto imediato com a MDV</strong>, sem aguardar retorno do formulário.
+          </div>
           <a class="ua-btn" href="tel:+554733019200">📞 Ligar agora para a MDV</a>
         </div>
       </div>`;
-  } else if (urgencia === 'prioritario') {
+  } else if (u === 'prioritario') {
     container.innerHTML = `
       <div class="urgency-alert-box" style="background:linear-gradient(135deg,rgba(243,156,18,.08),rgba(230,126,34,.05));border-color:rgba(243,156,18,.3)">
         <div class="ua-icon">⚠️</div>
         <div>
-          <div class="ua-title" style="color:#8B5E00">CASO PRIORITÁRIO — Resposta em até 48h</div>
-          <div class="ua-text" style="color:#6B4A00">Após enviar o WhatsApp, aguarde contato da equipe em até 48 horas úteis. Se houver piora clínica, entre em contato imediato com a MDV.</div>
+          <div class="ua-title" style="color:#8B5E00">PRIORIDADE CLÍNICA</div>
+          <div class="ua-text" style="color:#6B4A00">
+            Caso classificado como prioridade inicial na pré-triagem.
+            Recomenda-se envio imediato da documentação e monitorização clínica ativa.
+            Havendo piora, realize <strong>contato direto com a MDV</strong> sem aguardar retorno do formulário.
+          </div>
         </div>
       </div>`;
+  } else {
+    container.innerHTML = '';
   }
 }
 
@@ -3284,6 +3396,11 @@ function buildWAMessage(specialty) {
     const its = document.querySelectorAll('#'+gid+' .check-item.checked input');
     return its.length ? Array.from(its).map(i=>i.value).join(', ') : 'Nenhuma';
   };
+  // Alertas atuais
+  const alertasID = specialty === 'cardio' ? 'alertasAtuaisC' : 'alertasAtuais';
+  const alertasDescID = specialty === 'cardio' ? 'alertasDescricaoC' : 'alertasDescricao';
+  const alertasAtuais = getChk(alertasID);
+  const alertasDescricao = gc(alertasDescID);
   const getDocs = listId => {
     const its = document.querySelectorAll('#'+listId+' .doc-item.checked .doc-lbl');
     return its.length ? Array.from(its).map(i=>i.textContent).join(', ') : 'Nenhum';
@@ -3314,14 +3431,19 @@ function buildWAMessage(specialty) {
     const carioStr = gc('cCario') !== 'Nao' ? `Cariótipo: ${gc('cCario')}${gc('cCarioVal')!=='—'?' → '+gc('cCarioVal'):''}. ` : '';
     const ritmoStr = `Ritmo: ${gc('cRitmo')}${gc('cFC')!=='—'?' ('+gc('cFC')+' bpm)':''}`;
 
-    return `❤️ *ENCAMINHAMENTO — CARDIOLOGIA FETAL*
+    return `❤️ *PRÉ-TRIAGEM — CARDIOLOGIA FETAL*
 ╔══════════════════════════╗
 ║  Maternidade Darcy Vargas  ║
 ║  Cardiologia Fetal · SUS  ║
 ╚══════════════════════════╝
 🆔 *Caso ID:* \`${caseID}\`
 📅 ${dataEnv}
-⚕️ _Pré-triagem — não substitui regulação oficial_
+⚕️ _Classificação inicial de pré-triagem — não substitui regulação oficial_
+
+*Resumo imediato*
+• Prioridade: ${urgStr}
+• IG: ${igStr} | Município: ${pacCidade}
+• Motivo: ${gc('cMotivo') !== '—' ? gc('cMotivo').substring(0,80) : 'Ver dados clínicos'}
 
 👤 *PACIENTE*
 • ID: ${pacIniciais} | Idade: ${pacIdade}
@@ -3343,7 +3465,11 @@ function buildWAMessage(specialty) {
 • ${ritmoStr}
 • Doppler AU: ${gc('cDopUA')} | ACM: ${gc('cDopACM')}
 ${niptStr || carioStr ? '🧬 ' + niptStr + carioStr : ''}
-📋 *URGÊNCIA:* ${urgStr}
+🚨 *SINAIS DE ALERTA ATUAIS*
+• ${alertasAtuais !== 'Nenhuma' ? alertasAtuais : 'Não informado'}
+${alertasDescricao !== '—' ? '• Detalhes: ' + alertasDescricao : ''}
+
+📋 *CLASSIFICAÇÃO INICIAL:* ${urgStr}
 • ${gc('cMotivoPrincipal')}
 • Documentos: ${getDocs('cDocList')}
 
@@ -3368,14 +3494,19 @@ _Joinville–SC · SES/SC_`;
     const clinSummary = [tnVal, riscoT21, riscoPE, ecoRes, ecoDiag, crescFet, cardioSus]
       .filter(Boolean).join(' | ') || 'Ver dados clínicos abaixo';
 
-    return `🔬 *ENCAMINHAMENTO — MEDICINA FETAL*
+    return `🔬 *PRÉ-TRIAGEM — MEDICINA FETAL*
 ╔══════════════════════════╗
 ║  Maternidade Darcy Vargas  ║
 ║  Medicina Fetal · SUS    ║
 ╚══════════════════════════╝
 🆔 *Caso ID:* \`${caseID}\`
 📅 ${dataEnv}
-⚕️ _Pré-triagem — não substitui regulação oficial_
+⚕️ _Classificação inicial de pré-triagem — não substitui regulação oficial_
+
+*Resumo imediato*
+• Prioridade: ${urgStr}
+• IG: ${igStr} | Município: ${pacCidade}
+• Motivo principal: ${g('motivoEnc') !== '—' ? g('motivoEnc').substring(0,80) : 'Ver dados clínicos'}
 
 👤 *PACIENTE*
 • ID: ${pacIniciais} | Idade: ${pacIdade}
@@ -3395,7 +3526,11 @@ _Joinville–SC · SES/SC_`;
 • ${clinSummary}
 ${niptVal ? '🧬 ' + niptVal : ''}${carioVal ? ' | ' + carioVal : ''}
 
-📋 *URGÊNCIA:* ${urgStr}
+🚨 *SINAIS DE ALERTA ATUAIS*
+• ${alertasAtuais !== 'Nenhuma' ? alertasAtuais : 'Não informado'}
+${alertasDescricao !== '—' ? '• Detalhes: ' + alertasDescricao : ''}
+
+📋 *CLASSIFICAÇÃO INICIAL:* ${urgStr}
 • ${g('motivoEnc')}
 • Documentos: ${getDocs('docList')}
 
