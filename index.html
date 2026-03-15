@@ -1508,7 +1508,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
         <div class="field"><label>Suspeita diagnóstica principal <span class="req">*</span></label>
           <textarea id="ecoDiag" placeholder="Ex: Cardiopatia congênita complexa (suspeita de CIV perimembranosa + aorta cavalgante). Afastar T21..."></textarea>
         </div>
-        <div class="field"><label>Crescimento fetal <button class="tip-btn" onclick="event.stopPropagation();showTip('ciur',this)">ⓘ</button> <button class="tip-btn" onclick="event.stopPropagation();showTip('ciur',this)" aria-label="Saiba mais">ⓘ</button></label>
+        <div class="field"><label>Crescimento fetal <button class="tip-btn" onclick="event.stopPropagation();showTip('ciur',this)">ⓘ</button> </label>
           <select id="crescFetal">
             <option value="AIG (adequado para IG)">AIG — adequado para IG</option>
             <option value="PIG / CIUR">PIG / CIUR — pequeno para IG</option>
@@ -1755,13 +1755,13 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       <div class="fcard-hdr"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99l1.5 1.5z"/></svg></span><span class="title">Doppler Fetal</span><span class="badge-opt">Opcional</span></div>
       <div class="row-2"><div class="field"><label>IP Artéria Umbilical</label><input type="text" id="cDopUA" placeholder="Ex: 0.98 (normal)"></div><div class="field"><label>IP ACM <button class="tip-btn" onclick="event.stopPropagation();showTip('acm',this)" aria-label="Saiba mais">ⓘ</button></label><input type="text" id="cDopACM" placeholder="Ex: 1.52"></div></div>
       <div class="row-2"><div class="field"><label>Ductus venoso</label><input type="text" id="cDopDV" placeholder="Ex: onda a positiva"></div><div class="field"><label>Ductus arterioso</label><input type="text" id="cDopDA" placeholder="Ex: normal"></div></div>
-      <div class="field"><label>IP Uterinas média <button class="tip-btn" onclick="event.stopPropagation();showTip('ip',this)">ⓘ</button> <button class="tip-btn" onclick="event.stopPropagation();showTip('ip',this)" aria-label="Saiba mais">ⓘ</button></label><input type="number" id="cIpUter" placeholder="Ex: 1.2" step="0.01" min="0" max="5"></div>
+      <div class="field"><label>IP Uterinas média <button class="tip-btn" onclick="event.stopPropagation();showTip('ip',this)">ⓘ</button> </label><input type="number" id="cIpUter" placeholder="Ex: 1.2" step="0.01" min="0" max="5"></div>
     </div>
     <div class="fcard">
       <div class="fcard-hdr"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.8 18.4 14 10.67V6.5l1.35-1.69c.26-.33.03-.81-.39-.81H9.04c-.42 0-.65.48-.39.81L10 6.5v4.17L4.2 18.4c-.49.66-.02 1.6.8 1.6h14c.82 0 1.29-.94.8-1.6z"/></svg></span><span class="title">Genética Fetal</span><span class="badge-opt">Opcional</span></div>
       <div class="row-2">
-        <div class="field"><label>NIPT <button class="tip-btn" onclick="event.stopPropagation();showTip('nipt',this)">ⓘ</button> <button class="tip-btn" onclick="event.stopPropagation();showTip('nipt',this)" aria-label="Saiba mais">ⓘ</button></label><select id="cNipt" onchange="toggleCNipt()"><option value="Nao">Não realizado</option><option value="Normal">Sim — normal</option><option value="Alterado">Sim — alterado</option><option value="Andamento">Em andamento</option></select></div>
-        <div class="field"><label>Cariótipo <button class="tip-btn" onclick="event.stopPropagation();showTip('cariotipo',this)">ⓘ</button> <button class="tip-btn" onclick="event.stopPropagation();showTip('cariotipo',this)" aria-label="Saiba mais">ⓘ</button></label><select id="cCario" onchange="toggleCCario()"><option value="Nao">Não realizado</option><option value="Amniocentese">Amniocentese</option><option value="BVC">Biópsia de vilo corial (BVC)</option></select></div>
+        <div class="field"><label>NIPT <button class="tip-btn" onclick="event.stopPropagation();showTip('nipt',this)">ⓘ</button> </label><select id="cNipt" onchange="toggleCNipt()"><option value="Nao">Não realizado</option><option value="Normal">Sim — normal</option><option value="Alterado">Sim — alterado</option><option value="Andamento">Em andamento</option></select></div>
+        <div class="field"><label>Cariótipo <button class="tip-btn" onclick="event.stopPropagation();showTip('cariotipo',this)">ⓘ</button> </label><select id="cCario" onchange="toggleCCario()"><option value="Nao">Não realizado</option><option value="Amniocentese">Amniocentese</option><option value="BVC">Biópsia de vilo corial (BVC)</option></select></div>
       </div>
       <div id="cNiptRes" style="display:none"><div class="field"><label>Resultado NIPT</label><input type="text" id="cNiptVal" placeholder="Ex: Trissomia 21 detectada"></div></div>
       <div id="cCarioRes" style="display:none"><div class="field"><label>Resultado cariótipo</label><input type="text" id="cCarioVal" placeholder="Ex: 47,XY,+21"></div></div>
@@ -1889,7 +1889,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
   </a>
   <a class="contact-item" href="tel:+5547XXXXXXXX">
     <span class="mdi-icon" style="color:var(--teal)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span>
-    <div><span class="lbl">Telefone MDV</span><br><span class="det">(47) XXXX-XXXX</span></div>
+    <div><span class="lbl">Telefone MDV</span><br><span class="det">(47) 3301-9200</span></div>
   </a>
   <a class="contact-item" href="https://www.google.com/maps/search/?api=1&query=Maternidade+Darcy+Vargas+Joinville" target="_blank">
     <span class="mdi-icon" style="color:var(--rose)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
@@ -1936,7 +1936,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       </div>
 
       <!-- Configurar WA -->
-      <div class="wa-config-card" style="margin-top:12px">
+      <div class="wa-config-card" id="waAdminPanel" style="margin-top:12px;display:none">
         <div style="font-size:.75rem;font-weight:800;color:var(--text);margin-bottom:6px">⚙️ Configurar número do WhatsApp <span class="badge-opt" style="vertical-align:middle;margin-left:4px">Admin</span></div>
         <p style="font-size:.72rem;color:var(--text-muted);margin:0 0 8px;line-height:1.4">Configure o número para onde os encaminhamentos serão enviados (DDI + DDD + número).</p>
         <div style="display:flex;gap:8px;align-items:flex-end">
@@ -1966,7 +1966,8 @@ const CONFIG = {
   instName: 'MDV — Ambulatório Fetal'
 };
 
-let urgencia = 'eletivo';
+let urgencia = 'eletivo';        // Medicina Fetal
+let urgenciaCardio = 'eletivo';  // Cardiologia Fetal
 
 // Splash
 window.addEventListener('load', () => {
@@ -2109,10 +2110,17 @@ function toggleCheck(el, e) {
 function toggleDoc(el, e) { if(e){e.preventDefault();e.stopPropagation();} el.classList.toggle('checked'); }
 
 // Urgência
-function setUrgencia(tipo, el, e) { if(e){e.preventDefault();e.stopPropagation();}
-  urgencia = tipo;
-  document.querySelectorAll('.urg-btn').forEach(b => b.className = 'urg-btn');
-  el.classList.add('active-' + tipo);
+function setUrgencia(tipo, el, e) {
+  if(e){e.preventDefault();e.stopPropagation();}
+  const inCardio = el.closest('#cUrgSelector') !== null;
+  if (inCardio) {
+    urgenciaCardio = tipo;
+    document.querySelectorAll('#cUrgSelector .urg-btn').forEach(b => { b.className='urg-btn'; });
+  } else {
+    urgencia = tipo;
+    document.querySelectorAll('#urgSelector .urg-btn').forEach(b => { b.className='urg-btn'; });
+  }
+  el.className = 'urg-btn active-' + tipo;
 }
 
 // Helpers
@@ -2131,8 +2139,9 @@ function getDocs() {
   if (!items.length) return 'Nenhum selecionado';
   return Array.from(items).map(i => i.textContent).join(', ');
 }
-function urgLabel() {
-  return urgencia === 'eletivo' ? '🟢 Eletivo' : urgencia === 'prioritario' ? '🟡 Prioritário' : '🔴 URGENTE';
+function urgLabel(cardio = false) {
+  const u = cardio ? urgenciaCardio : urgencia;
+  return u === 'eletivo' ? '🟢 Eletivo' : u === 'prioritario' ? '🟡 Prioritário' : '🔴 URGENTE';
 }
 
 // Show result
@@ -2299,11 +2308,11 @@ function showResult() {
           <a href="tel:+554733019200" style="font-size:.72rem;font-weight:700;color:var(--violet-dark);text-decoration:none">☎️ (47) 3301-9200</a>
         </div>
       </div>
-      <div class="wa-config-card" style="margin-top:12px">
+      <div class="wa-config-card" id="waAdminPanel" style="margin-top:12px;display:none">
         <div style="font-size:.75rem;font-weight:800;color:var(--text);margin-bottom:6px">⚙️ Configurar número WhatsApp <span class="badge-opt" style="vertical-align:middle;margin-left:4px">Admin</span></div>
         <p style="font-size:.72rem;color:var(--text-muted);margin:0 0 8px;line-height:1.4">Número para onde os encaminhamentos serão enviados (DDI+DDD+número, sem espaços).</p>
         <div style="display:flex;gap:8px">
-          <input type="tel" id="waConfigInput" placeholder="5547XXXXXXXXX" maxlength="15" value="5547XXXXXXXX" style="flex:1;font-family:monospace;font-size:.82rem">
+          <input type="tel" id="waConfigInput2"placeholder="5547XXXXXXXXX" maxlength="15" value="5547XXXXXXXX" style="flex:1;font-family:monospace;font-size:.82rem">
           <button class="btn btn-primary" onclick="saveWAConfig()" style="flex-shrink:0;padding:10px 14px">Salvar</button>
         </div>
       </div>
@@ -2408,6 +2417,7 @@ ${g('cardioDesc') !== '—' ? '• Descrição: '+g('cardioDesc') : ''}
 ║  Ambulatório Fetal · SUS  ║
 ╚══════════════════════════╝
 📅 Gerado em: ${dataEnv}
+⚕️ _Pré-triagem — não substitui regulação oficial_
 
 👨‍⚕️ *MÉDICO SOLICITANTE*
 • Nome: ${g('medNome')}
@@ -2901,8 +2911,8 @@ function showResultCardio(){
   const row=(lbl,val,cls='')=>val&&val!=='—'?`<div class="preview-row"><span class="pr-lbl">${lbl}</span><span class="pr-val ${cls}">${val}</span></div>`:'';
   const rowB=(lbl,val)=>val&&val!=='—'?`<div class="preview-row" style="flex-direction:column;gap:4px"><span class="pr-lbl">${lbl}</span><div class="preview-block">${val}</div></div>`:'';
   const chips=gid=>{const its=document.querySelectorAll('#'+gid+' .check-item.checked input');return its.length?`<div class="preview-chips">${Array.from(its).map(i=>`<span class="preview-chip">${i.value}</span>`).join('')}</div>`:'<span class="pr-val empty">Nenhum</span>';};
-  const urgBCls=urgencia==='eletivo'?'urg-banner-eletivo':urgencia==='prioritario'?'urg-banner-prioritario':'urg-banner-urgente';
-  const urgTxt=urgencia==='eletivo'?'🟢 Eletivo':urgencia==='prioritario'?'🟡 Prioritário':'🔴 URGENTE';
+  const urgBCls=urgenciaCardio==='eletivo'?'urg-banner-eletivo':urgenciaCardio==='prioritario'?'urg-banner-prioritario':'urg-banner-urgente';
+  const urgTxt=urgenciaCardio==='eletivo'?'🟢 Eletivo':urgenciaCardio==='prioritario'?'🟡 Prioritário':'🔴 URGENTE';
   const now=new Date();const dataEnv=now.toLocaleDateString('pt-BR')+' às '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
   const svgSend=`<svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"/></svg>`;
   const svgReset=`<svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>`;
@@ -2960,6 +2970,7 @@ function enviarWhatsAppCardio(){
 ║  Cardiologia Fetal · SUS  ║
 ╚══════════════════════════╝
 📅 Gerado em: ${dt}
+⚕️ _Pré-triagem — não substitui regulação oficial_
 
 👨‍⚕️ *MÉDICO SOLICITANTE*
 • ${g('medNome')} | CRM ${g('medCRM')}-${g('medEstado')}
@@ -3009,7 +3020,7 @@ function resetFormCardio(){
   document.querySelectorAll('.spec-indicator').forEach(e=>e.remove());
   document.querySelectorAll('.form-step').forEach(s=>{s.style.display='none';});
   document.getElementById('step0').style.display='block';
-  currentStep=1;currentStepCardio=3;currentSpecialty='fetal';urgencia='eletivo';
+  currentStep=1;currentStepCardio=3;currentSpecialty='fetal';urgencia='eletivo';urgenciaCardio='eletivo';
   updateProgressMulti();window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -3101,7 +3112,8 @@ document.addEventListener('input', e => { if (FV[e.target.id]) validateFV(e.targ
 // ── WA contact ───────────────────────────────────────────────
 function openWhatsAppContact() { window.open('https://wa.me/'+CONFIG.whatsapp, '_blank'); }
 function saveWAConfig() {
-  const inp = document.getElementById('waConfigInput');
+  const inp = document.getElementById('waConfigInput') || document.getElementById('waConfigInput2');
+  if (!inp) return;
   const num = inp.value.replace(/\D/g,'');
   if (num.length < 10) { showToast('⚠️ Número inválido'); return; }
   CONFIG.whatsapp = num;
@@ -3199,6 +3211,255 @@ const _enviarWACardioOrig = enviarWhatsAppCardio;
 enviarWhatsAppCardio = function() {
   _enviarWACardioOrig();
   scheduleAutoCleanup();
+};
+
+
+// ── Admin panel: ?admin=1 apenas ────────────────────────────
+if (new URLSearchParams(window.location.search).get('admin') === '1') {
+  document.querySelectorAll('#waAdminPanel,[id^="waAdminPanel"]').forEach(el => el.style.display='block');
+}
+
+
+// ══════════════════════════════════════════════════════════════
+//  PSEUDONIMIZAÇÃO — Privacidade na mensagem WhatsApp
+// ══════════════════════════════════════════════════════════════
+
+// ── Gerador de ID único do caso ──────────────────────────────
+function generateCaseID(specialty) {
+  const prefix = specialty === 'cardio' ? 'CAR' : 'FET';
+  const now = new Date();
+  const yy = String(now.getFullYear()).slice(2);
+  const mm = String(now.getMonth()+1).padStart(2,'0');
+  const dd = String(now.getDate()).padStart(2,'0');
+  const hh = String(now.getHours()).padStart(2,'0');
+  const mi = String(now.getMinutes()).padStart(2,'0');
+  // Sequence: use last 3 digits of timestamp for uniqueness
+  const seq = String(now.getTime()).slice(-3);
+  return `${prefix}-${yy}${mm}${dd}-${hh}${mi}`;
+}
+
+// ── Nome → Iniciais ──────────────────────────────────────────
+function toInitials(fullName) {
+  if (!fullName || fullName === '—') return '—';
+  return fullName.trim().split(/\s+/)
+    .filter(w => w.length > 0)
+    .map(w => w[0].toUpperCase() + '.')
+    .join('');
+}
+
+// ── Mascarar Cartão SUS ──────────────────────────────────────
+function maskSUS(sus) {
+  if (!sus || sus === '—') return '—';
+  const digits = sus.replace(/\D/g,'');
+  if (digits.length < 4) return sus;
+  return '****' + digits.slice(-4);
+}
+
+// ── Mascarar telefone ────────────────────────────────────────
+function maskPhone(phone) {
+  if (!phone || phone === '—') return '—';
+  const digits = phone.replace(/\D/g,'');
+  if (digits.length < 4) return phone;
+  return 'final ' + digits.slice(-4);
+}
+
+// ── Nome médico → iniciais sobrenome ────────────────────────
+function maskDoctorName(name) {
+  if (!name || name === '—') return '—';
+  const parts = name.trim().split(/\s+/);
+  if (parts.length === 1) return parts[0];
+  // Keep title (Dr./Dra.) + first name initial + last name
+  const title = parts[0].match(/^Dr[a]?\.?$/i) ? parts[0] + ' ' : '';
+  const firstName = parts[title ? 1 : 0];
+  const lastName = parts[parts.length - 1];
+  if (title) return `${parts[0]} ${firstName[0]}. ${lastName}`;
+  return `${firstName[0]}. ${lastName}`;
+}
+
+// ── Mensagem pseudonimizada ──────────────────────────────────
+function buildWAMessage(specialty) {
+  const caseID = generateCaseID(specialty);
+  const gc = id => { const el=document.getElementById(id); return el?el.value||'—':'—'; };
+  const getChk = gid => {
+    const its = document.querySelectorAll('#'+gid+' .check-item.checked input');
+    return its.length ? Array.from(its).map(i=>i.value).join(', ') : 'Nenhuma';
+  };
+  const getDocs = listId => {
+    const its = document.querySelectorAll('#'+listId+' .doc-item.checked .doc-lbl');
+    return its.length ? Array.from(its).map(i=>i.textContent).join(', ') : 'Nenhum';
+  };
+  const now = new Date();
+  const dataEnv = now.toLocaleDateString('pt-BR') + ' às ' + now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+
+  // Dados pseudonimizados
+  const pacIniciais   = toInitials(g('gestNome'));
+  const pacIdade      = g('gestIdade') !== '—' ? g('gestIdade') + ' anos' : '—';
+  const pacCidade     = g('gestCidade');
+  const susMask       = maskSUS(g('gestSUS'));
+  const telMask       = maskPhone(g('gestTel'));
+  const medNomeMask   = maskDoctorName(g('medNome'));
+  const medCRM        = g('medCRM') !== '—' ? 'CRM ' + g('medCRM') + '-' + g('medEstado') : '';
+  const medServico    = g('medServico');
+  const medTelMask    = maskPhone(g('medTel'));
+  const igStr         = g('igSem') + 'sem' + (g('igDias')&&g('igDias')!=='—' ? ' '+g('igDias')+'d' : '');
+  const urgStr        = specialty === 'cardio' ? urgLabel(true) : urgLabel();
+
+  if (specialty === 'cardio') {
+    // ── Cardiologia Fetal ──
+    const ecoFeitoVal = gc('cEcoFeito');
+    const ecoSummary = ecoFeitoVal !== 'Nao'
+      ? `Eco realizado (${ecoFeitoVal}). Resultado: ${gc('cEcoResultado')}. Hipótese: ${gc('cHipotese')}.`
+      : 'Ecocardiograma não realizado — solicitar.';
+    const niptStr = gc('cNipt') !== 'Nao' ? `NIPT: ${gc('cNipt')}${gc('cNiptVal')!=='—'?' → '+gc('cNiptVal'):''}. ` : '';
+    const carioStr = gc('cCario') !== 'Nao' ? `Cariótipo: ${gc('cCario')}${gc('cCarioVal')!=='—'?' → '+gc('cCarioVal'):''}. ` : '';
+    const ritmoStr = `Ritmo: ${gc('cRitmo')}${gc('cFC')!=='—'?' ('+gc('cFC')+' bpm)':''}`;
+
+    return `❤️ *ENCAMINHAMENTO — CARDIOLOGIA FETAL*
+╔══════════════════════════╗
+║  Maternidade Darcy Vargas  ║
+║  Cardiologia Fetal · SUS  ║
+╚══════════════════════════╝
+🆔 *Caso ID:* \`${caseID}\`
+📅 ${dataEnv}
+⚕️ _Pré-triagem — não substitui regulação oficial_
+
+👤 *PACIENTE*
+• ID: ${pacIniciais} | Idade: ${pacIdade}
+• Município: ${pacCidade}
+• SUS: ${susMask} | Tel: ${telMask}
+
+👨‍⚕️ *SOLICITANTE*
+• ${medNomeMask} | ${medCRM}
+• ${medServico} | Tel: ${medTelMask}
+
+📅 *OBSTETRÍCIA*
+• IG: ${igStr} | DPP: ${g('gestDPP')}
+• G${g('obsG')} P${g('obsP')} A${g('obsA')} | ${g('gestTipo')}
+• Comorbidades: ${getChk('comorb')}
+
+❤️ *CARDIOLOGIA FETAL*
+• Motivo: ${gc('cMotivo')}
+• ${ecoSummary}
+• ${ritmoStr}
+• Doppler AU: ${gc('cDopUA')} | ACM: ${gc('cDopACM')}
+${niptStr || carioStr ? '🧬 ' + niptStr + carioStr : ''}
+📋 *URGÊNCIA:* ${urgStr}
+• ${gc('cMotivoPrincipal')}
+• Documentos: ${getDocs('cDocList')}
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+_Caso ID: ${caseID}_
+_Ambulatório de Medicina Fetal e Cardiologia Fetal — MDV_
+_Joinville–SC · SES/SC_`;
+
+  } else {
+    // ── Medicina Fetal ──
+    const rastreioFez = gc('rastreioFeito') || g('rastreioFez');
+    const tnVal  = g('tn') !== '—' ? `TN: ${g('tn')}mm` : '';
+    const riscoPE = g('riscoPE') !== '—' ? `PE: ${g('riscoPE')}` : '';
+    const riscoT21 = g('riscoT21') !== '—' ? `T21: ${g('riscoT21')}` : '';
+    const ecoRes  = g('ecoResultado') !== '—' ? `Morfológico: ${g('ecoResultado')}. ` : '';
+    const ecoDiag = g('ecoDiag') !== '—' ? `Suspeita: ${g('ecoDiag')}. ` : '';
+    const crescFet = g('crescFetal') !== '—' ? `Crescimento: ${g('crescFetal')}. ` : '';
+    const cardioSus = g('cardioSuspFeita') !== '—' ? g('cardioSuspFeita') : '';
+    const niptVal = g('nipt') !== '—' && g('nipt') !== 'Nao' ? `NIPT: ${g('nipt')}${g('niptRes')!=='—'?' → '+g('niptRes'):''}` : '';
+    const carioVal = g('cariotipo') !== '—' && g('cariotipo') !== 'Nao' ? `Cariótipo: ${g('cariotipo')}${g('carioRes')!=='—'?' → '+g('carioRes'):''}` : '';
+
+    const clinSummary = [tnVal, riscoT21, riscoPE, ecoRes, ecoDiag, crescFet, cardioSus]
+      .filter(Boolean).join(' | ') || 'Ver dados clínicos abaixo';
+
+    return `🔬 *ENCAMINHAMENTO — MEDICINA FETAL*
+╔══════════════════════════╗
+║  Maternidade Darcy Vargas  ║
+║  Medicina Fetal · SUS    ║
+╚══════════════════════════╝
+🆔 *Caso ID:* \`${caseID}\`
+📅 ${dataEnv}
+⚕️ _Pré-triagem — não substitui regulação oficial_
+
+👤 *PACIENTE*
+• ID: ${pacIniciais} | Idade: ${pacIdade}
+• Município: ${pacCidade}
+• SUS: ${susMask} | Tel: ${telMask}
+
+👨‍⚕️ *SOLICITANTE*
+• ${medNomeMask} | ${medCRM}
+• ${medServico} | Tel: ${medTelMask}
+
+📅 *OBSTETRÍCIA*
+• IG: ${igStr} | DUM: ${g('gestDUM')} | DPP: ${g('gestDPP')}
+• G${g('obsG')} P${g('obsP')} A${g('obsA')} | ${g('gestTipo')}
+• Comorbidades: ${getChk('comorb')}
+
+🔬 *RESUMO CLÍNICO*
+• ${clinSummary}
+${niptVal ? '🧬 ' + niptVal : ''}${carioVal ? ' | ' + carioVal : ''}
+
+📋 *URGÊNCIA:* ${urgStr}
+• ${g('motivoEnc')}
+• Documentos: ${getDocs('docList')}
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+_Caso ID: ${caseID}_
+_Ambulatório de Medicina Fetal e Cardiologia Fetal — MDV_
+_Joinville–SC · SES/SC_`;
+  }
+}
+
+// ── Override enviarWhatsApp ───────────────────────────────────
+// Show case ID in result screen
+function showCaseID(specialty) {
+  const caseID = generateCaseID(specialty);
+  // Insert case ID badge after result hero
+  const resultHero = document.querySelector('.result-hero');
+  if (resultHero) {
+    let badge = document.getElementById('caseIDBadge');
+    if (!badge) {
+      badge = document.createElement('div');
+      badge.id = 'caseIDBadge';
+      badge.style.cssText = 'background:var(--purple-bg);border:1.5px solid rgba(107,63,160,.2);border-radius:var(--r-sm);padding:8px 14px;margin:10px 0;display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--purple)';
+      badge.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" style="width:15px;height:15px;flex-shrink:0"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>';
+      resultHero.after(badge);
+    }
+    badge.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" style="width:15px;height:15px;flex-shrink:0;color:var(--purple)"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>'
+      + '<span><strong>Caso ID:</strong> <code style="font-family:monospace;font-size:.82rem;background:rgba(107,63,160,.1);padding:2px 8px;border-radius:4px">' + caseID + '</code>'
+      + ' — Paciente: <strong>' + toInitials(g('gestNome')) + '</strong></span>';
+  }
+}
+
+// Hook showResult and showResultCardio
+const _showResultPseudo = showResult;
+showResult = function() {
+  _showResultPseudo();
+  setTimeout(() => showCaseID('fetal'), 60);
+};
+const _showResultCardioPseudo = showResultCardio;
+showResultCardio = function() {
+  _showResultCardioPseudo();
+  setTimeout(() => showCaseID('cardio'), 60);
+};
+
+// Override WA send to use pseudonymized message
+const _enviarWAFull = enviarWhatsApp;
+enviarWhatsApp = function() {
+  document.getElementById('sendingOverlay').classList.add('show');
+  setTimeout(() => {
+    document.getElementById('sendingOverlay').classList.remove('show');
+    const msg = buildWAMessage('fetal');
+    window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(msg), '_blank');
+    scheduleAutoCleanup();
+  }, 1200);
+};
+
+const _enviarWACardioFull = enviarWhatsAppCardio;
+enviarWhatsAppCardio = function() {
+  document.getElementById('sendingOverlay').classList.add('show');
+  setTimeout(() => {
+    document.getElementById('sendingOverlay').classList.remove('show');
+    const msg = buildWAMessage('cardio');
+    window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(msg), '_blank');
+    scheduleAutoCleanup();
+  }, 1200);
 };
 
 </script>
