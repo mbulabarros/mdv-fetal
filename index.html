@@ -967,6 +967,108 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     .specialty-grid{gap:16px !important}
   }
 
+
+  /* ══ DESKTOP LAYOUT REFINEMENTS ══ */
+  @media(min-width:768px){
+
+    /* Body: neutral dark background instead of loud purple */
+    body{
+      background:#1a1a2e !important;
+    }
+
+    /* Outer wrap: sidebar left + app center, full height */
+    #outerWrap{
+      display:flex;
+      height:100vh;
+      width:100%;
+      overflow:hidden;
+      align-items:stretch;
+    }
+
+    /* App: white/cream card centered with max-width */
+    .app{
+      flex:1;
+      max-width:760px !important;
+      min-height:100vh;
+      height:100vh;
+      overflow-y:auto;
+      background:var(--cream);
+      box-shadow:0 0 60px rgba(0,0,0,.4);
+      border-radius:0;
+      margin:0 auto;
+    }
+
+    /* Right area fill */
+    #outerWrap::after{
+      content:'';
+      flex:1;
+      max-width:calc((100vw - 260px - 760px) / 2);
+      min-width:0;
+    }
+
+    /* Hero: compact, no scan lines on desktop */
+    #home .hero{
+      display:block !important;
+      padding:20px 28px 18px !important;
+      background:linear-gradient(135deg,#3D1266 0%,#6B3FA0 50%,#A8307A 100%) !important;
+      animation:none !important;
+    }
+    #home .hero-illustration{display:none}
+    #home .hero-logo{
+      width:48px;height:48px;
+      margin-bottom:6px;
+      animation:none !important;
+      background:rgba(255,255,255,.15) !important;
+      box-shadow:none !important;
+    }
+    #home .hero-logo-text{font-size:.88rem}
+    #home .hero-fullname{font-size:1rem !important;margin:4px 0 2px}
+    #home .hero .tagline{font-size:.68rem;margin-top:2px}
+    #home .hero .badges{margin-top:8px;gap:5px}
+    #home .hero .badge{font-size:.58rem;padding:2px 8px}
+    #home{padding-top:0 !important}
+
+    /* Specialty grid: 2 equal columns */
+    .specialty-grid{
+      display:grid !important;
+      grid-template-columns:1fr 1fr !important;
+      gap:12px !important;
+    }
+    .spec-card{min-height:auto}
+    .spec-card .spec-content h3{font-size:.92rem}
+    .spec-card .spec-content p{font-size:.74rem}
+
+    /* Menu grid: 3 columns */
+    .menu-grid{
+      display:grid !important;
+      grid-template-columns:1fr 1fr 1fr !important;
+      gap:10px !important;
+    }
+    .card h3{font-size:.88rem}
+    .card p{font-size:.74rem}
+
+    /* Sections padding */
+    .screen{padding:22px 26px !important}
+    #home > div[style]{padding:16px 20px !important}
+
+    /* Form cards on desktop */
+    .fcard{padding:16px 18px !important}
+
+    /* Scrollbar */
+    .app::-webkit-scrollbar{width:5px}
+    .app::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+    .app::-webkit-scrollbar-track{background:transparent}
+  }
+
+  @media(min-width:1100px){
+    .app{max-width:800px !important}
+    .sidebar{width:280px !important;min-width:280px}
+  }
+  @media(min-width:1400px){
+    .app{max-width:860px !important}
+    .sidebar{width:300px !important;min-width:300px}
+  }
+
 </style>
 </head>
 <body>
@@ -1025,7 +1127,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
   <div class="sidebar-footer">
     Referência Estadual · SES/SC<br>
     Rua Miguel Couto, 44<br>Joinville – SC<br>
-    <span style="opacity:.6;font-size:.58rem">MbulaApps · MDV Fetal App</span>
+    <span style="opacity:.6;font-size:.58rem">Ambulatório Materno-Fetal · MDV</span>
   </div>
 </aside>
 
@@ -1144,7 +1246,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     <div class="footer">
       Maternidade Darcy Vargas · Unidade Própria SES/SC<br>
       Rua Miguel Couto, 44 — Anita Garibaldi, Joinville–SC<br>
-      <span style="opacity:.55">Sistema de Encaminhamento Digital — MbulaApps · v4</span>
+      <span style="opacity:.55">Sistema de Encaminhamento Digital · Ambulatório MDV</span>
     </div>
   </div>
 </div>
@@ -2232,7 +2334,7 @@ function showResult() {
     <button class="btn btn-whatsapp" onclick="enviarWhatsApp()"><span class="mdi-icon">${svgSend}</span> Enviar pelo WhatsApp</button>
     <p style="text-align:center;font-size:.76rem;color:var(--text-muted);margin-top:8px;line-height:1.45">Abre o WhatsApp com todos os dados formatados.<br>Lembre-se de <strong>anexar os documentos</strong> marcados acima.</p>
     <button class="btn btn-outline" onclick="resetForm()"><span class="mdi-icon">${svgReset}</span> Novo Encaminhamento</button>
-    <div class="footer">Encaminhamento gerado via MDV Fetal App · MbulaApps · Maternidade Darcy Vargas</div>
+    <div class="footer">Maternidade Darcy Vargas · Ambulatório de Medicina Fetal e Cardiologia Fetal</div>
   </div>`;
 
   document.getElementById('step6').style.display = 'none';
@@ -2364,8 +2466,8 @@ ${g('obsAdic') !== '—' ? '• Obs.: '+g('obsAdic') : ''}
 • Documentos a enviar: ${docs}
 
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-_📱 MDV Fetal App · MbulaApps_
-_CRM-SC 8512 · Joinville–SC_
+_📱 Ambulatório de Medicina Fetal e Cardiologia Fetal_
+_Maternidade Darcy Vargas · Joinville–SC_
 _⚠️ Dados clínicos confidenciais_`;
 
     window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(msg), '_blank');
@@ -2896,7 +2998,7 @@ function showResultCardio() {
     <button class="btn btn-whatsapp" onclick="enviarWhatsAppCardio()"><span class="mdi-icon">${svgSend}</span> Enviar pelo WhatsApp</button>
     <p style="text-align:center;font-size:.76rem;color:var(--text-muted);margin-top:8px;line-height:1.45">Abre o WhatsApp com todos os dados formatados.<br>Lembre-se de <strong>anexar os documentos</strong> marcados.</p>
     <button class="btn btn-outline" onclick="resetFormCardio()"><span class="mdi-icon">${svgReset}</span> Novo Encaminhamento</button>
-    <div class="footer">Encaminhamento gerado via MDV Fetal App · MbulaApps</div>
+    <div class="footer">Maternidade Darcy Vargas · Ambulatório Materno-Fetal</div>
   </div>`;
 
   document.getElementById('step5c').style.display='none';
@@ -2988,8 +3090,8 @@ ${gc('cObs')!=='—'?'• Obs.: '+gc('cObs'):''}
 • Documentos: ${getDcs()}
 
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-_📱 MDV Fetal App · MbulaApps_
-_CRM-SC 8512 · Joinville–SC_
+_📱 Ambulatório de Medicina Fetal e Cardiologia Fetal_
+_Maternidade Darcy Vargas · Joinville–SC_
 _⚠️ Dados clínicos confidenciais_`;
     window.open('https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent(msg),'_blank');
   },1200);
