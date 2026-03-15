@@ -871,8 +871,8 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
   .hero-illustration{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:0}
   @keyframes scan-sweep{0%{transform-origin:160px 8px;transform:rotate(-20deg)}100%{transform-origin:160px 8px;transform:rotate(20deg)}}
   .scan-cursor{animation:scan-sweep 2.5s ease-in-out infinite alternate}
-  @keyframes hb-beat{0%,100%{transform:translate(140px,28px) scale(1)}15%{transform:translate(140px,28px) scale(1.2)}30%{transform:translate(140px,28px) scale(1)}45%{transform:translate(140px,28px) scale(1.1)}60%{transform:translate(140px,28px) scale(1)}}
-  .fetal-heart{animation:hb-beat 1s ease-in-out infinite}
+  @keyframes fetal-hb-beat{0%,100%{transform:translate(140px,28px) scale(1)}15%{transform:translate(140px,28px) scale(1.2)}30%{transform:translate(140px,28px) scale(1)}45%{transform:translate(140px,28px) scale(1.1)}60%{transform:translate(140px,28px) scale(1)}}
+  .fetal-heart{animation:fetal-hb-beat 1s ease-in-out infinite}
   .hero-fullname{
     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;
     font-size:1.3rem;font-weight:800;color:#fff;
@@ -2020,7 +2020,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       </div>
 
       <!-- Configurar WA -->
-      <div class="wa-config-card" id="waAdminPanel" style="margin-top:12px;display:none">
+      <div class="wa-config-card" id="waAdminPanelContact" style="margin-top:12px;display:none">
         <div style="font-size:.75rem;font-weight:800;color:var(--text);margin-bottom:6px">⚙️ Configurar número do WhatsApp <span class="badge-opt" style="vertical-align:middle;margin-left:4px">Admin</span></div>
         <p style="font-size:.72rem;color:var(--text-muted);margin:0 0 8px;line-height:1.4">Configure o número para onde os encaminhamentos serão enviados (DDI + DDD + número).</p>
         <div style="display:flex;gap:8px;align-items:flex-end">
@@ -2400,7 +2400,7 @@ function showResult() {
           <a href="tel:+554733019200" style="font-size:.72rem;font-weight:700;color:var(--violet-dark);text-decoration:none">☎️ (47) 3301-9200</a>
         </div>
       </div>
-      <div class="wa-config-card" id="waAdminPanel" style="margin-top:12px;display:none">
+      <div class="wa-config-card" id="waAdminPanelResult" style="margin-top:12px;display:none">
         <div style="font-size:.75rem;font-weight:800;color:var(--text);margin-bottom:6px">⚙️ Configurar número WhatsApp <span class="badge-opt" style="vertical-align:middle;margin-left:4px">Admin</span></div>
         <p style="font-size:.72rem;color:var(--text-muted);margin:0 0 8px;line-height:1.4">Número para onde os encaminhamentos serão enviados (DDI+DDD+número, sem espaços).</p>
         <div style="display:flex;gap:8px">
@@ -2775,10 +2775,10 @@ function updateProgress() {
 
 // Update % as user types
 document.addEventListener('input', () => {
-  if (typeof currentStep === 'number') updateProgress();
+  if (typeof currentStep === 'number' || currentStep === 'result') { if (currentStep !== 'result') updateProgress(); }
 }, { passive: true });
 document.addEventListener('change', () => {
-  if (typeof currentStep === 'number') updateProgress();
+  if (typeof currentStep === 'number' || currentStep === 'result') { if (currentStep !== 'result') updateProgress(); }
 }, { passive: true });
 
 // ── Enhanced toggleCheck with bounce ──────────────────
@@ -2792,7 +2792,7 @@ function toggleCheck(el, e) {
   void el.offsetWidth;
   el.classList.add('just-checked');
   setTimeout(() => el.classList.remove('just-checked'), 400);
-  if (typeof currentStep === 'number') updateProgress();
+  if (typeof currentStep === 'number' || currentStep === 'result') { if (currentStep !== 'result') updateProgress(); }
 }
 
 // ── Enhanced toggleDoc with animation ─────────────────
@@ -3037,88 +3037,22 @@ function showResultCardio(){
     <div class="preview-section"><div class="preview-section-hdr"><h3>📅 Dados Obstétricos</h3></div>${row('IG',g('igSem')+'sem'+(g('igDias')&&g('igDias')!=='—'?' '+g('igDias')+'d':''),'highlight')}${row('DUM/DPP',g('gestDUM')+' / '+g('gestDPP'))}${row('G/P/A','G'+g('obsG')+' P'+g('obsP')+' A'+g('obsA'))}${row('Gestação',g('gestTipo'))}<div class="preview-row" style="flex-direction:column;gap:6px"><span class="pr-lbl">Comorbidades</span>${chips('comorb')}</div></div>
     <div class="preview-section">
       <div class="preview-section-hdr"><div class="ps-icon ps-icon-rose"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></div><h3>Sinais de alerta atuais</h3></div>
-      <div class="preview-row" style="flex-direction:column;gap:6px"><span class="pr-lbl">Alertas</span>${chips('alertasAtuais')}</div>
-      ${g('alertasDescricao') && g('alertasDescricao') !== '—' ? rowBlock('Descrição', g('alertasDescricao')) : ''}
-    </div>
-        <div class="preview-section">
-      <div class="preview-section-hdr"><div class="ps-icon ps-icon-rose"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></div><h3>Sinais de alerta atuais</h3></div>
       <div class="preview-row" style="flex-direction:column;gap:6px"><span class="pr-lbl">Alertas</span>${chips('alertasAtuaisC')}</div>
-      ${gc('alertasDescricaoC') && gc('alertasDescricaoC') !== '—' ? rowBlock('Descrição', gc('alertasDescricaoC')) : ''}
-    </div>
-        <div class="preview-section"><div class="preview-section-hdr"><h3>❤️ Cardiologia Fetal</h3></div>${row('Motivo',gc('cMotivo'),'alert')}${ecoBlock}${row('Ritmo',gc('cRitmo'),gc('cRitmo').includes('BAV')||gc('cRitmo').includes('Bradicardia')||gc('cRitmo').includes('Taquicardia')?'alert':'')}${gc('cFC')!=='—'?row('Frequência cardíaca',gc('cFC')+' bpm'):''}${row('IP Art. Umbilical',gc('cDopUA'))}${row('IP ACM',gc('cDopACM'))}${row('Ductus venoso',gc('cDopDV'))}</div>
-    ${genBlock}
-    <div class="doc-checklist"><h3>📎 Documentos</h3>${Array.from(document.querySelectorAll('#cDocList .doc-item')).map(el=>`<div class="doc-item ${el.classList.contains('checked')?'checked':''}" onclick="toggleDoc(this,event)"><div class="doc-check"></div><span class="doc-lbl">${el.querySelector('.doc-lbl').textContent}</span><span class="doc-tag">${el.querySelector('.doc-tag').textContent}</span></div>`).join('')}</div>
-        <div class="preview-section">
-      <div class="preview-section-hdr"><div class="ps-icon ps-icon-rose"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></div><h3>Sinais de alerta atuais</h3></div>
-      <div class="preview-row" style="flex-direction:column;gap:6px"><span class="pr-lbl">Alertas</span>${chips('alertasAtuaisC')}</div>
-      ${gc('alertasDescricaoC') && gc('alertasDescricaoC') !== '—' ? rowBlock('Descrição', gc('alertasDescricaoC')) : ''}
+      ${gc('alertasDescricaoC') && gc('alertasDescricaoC') !== '—' ? rowB('Descrição', gc('alertasDescricaoC')) : ''}
     </div>
     <div class="preview-section">${rowB('Motivo do encaminhamento',gc('cMotivoPrincipal'))}${gc('cObs')&&gc('cObs')!=='—'?rowB('Observações',gc('cObs')):''}</div>
     <div class="result-actions">
       <button class="btn btn-whatsapp" onclick="enviarWhatsAppCardio()">${svgSend} Enviar pelo WhatsApp</button>
-      <p style="text-align:center;font-size:.76rem;color:var(--text-muted);margin-top:8px">Abre o WhatsApp com todos os dados. Lembre-se de <strong>anexar os documentos</strong>.</p>
-      <button class="btn btn-outline" onclick="resetFormCardio()">${svgReset} Novo Encaminhamento</button>
+      <p style="text-align:center;font-size:.76rem;color:var(--text-muted);margin-top:8px;line-height:1.55">O WhatsApp será aberto com os dados da <strong>pré-triagem</strong> já formatados.<br>Lembre-se de <strong>anexar os documentos</strong> marcados acima.<br><strong>Casos graves não devem aguardar resposta do formulário.</strong></p>
+      <button class="btn-print" onclick="window.print()"><svg viewBox="0 0 24 24" fill="currentColor" style="width:17px;height:17px"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg> Imprimir / Salvar PDF</button>
+      <button class="btn btn-outline" onclick="resetFormCardio()">${svgReset} Nova Pré-Triagem</button>
       <div class="footer">Maternidade Darcy Vargas · Ambulatório de Medicina Fetal e Cardiologia Fetal</div>
     </div>`;
+  document.getElementById('step5c').style.display='none';
   currentStep='result';
   document.querySelectorAll('.progress-step').forEach(s=>s.classList.add('done'));
-  document.getElementById('stepLabel').innerHTML='<strong style="color:var(--rose)">✅ Encaminhamento completo — Cardiologia Fetal</strong>';
+  document.getElementById('stepLabel').innerHTML='<strong style="color:var(--rose)">✅ Pré-triagem completa — Cardiologia Fetal</strong>';
   window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function enviarWhatsAppCardio(){
-  document.getElementById('sendingOverlay').classList.add('show');
-  setTimeout(()=>{
-    document.getElementById('sendingOverlay').classList.remove('show');
-    const gc=id=>{const el=document.getElementById(id);return el?el.value||'—':'—';};
-    const getChk=gid=>{const its=document.querySelectorAll('#'+gid+' .check-item.checked input');return its.length?Array.from(its).map(i=>i.value).join(', '):'Nenhum';};
-    const getDcs=()=>{const its=document.querySelectorAll('#cDocList .doc-item.checked .doc-lbl');return its.length?Array.from(its).map(i=>i.textContent).join(', '):'Nenhum';};
-    const now=new Date();const dt=now.toLocaleDateString('pt-BR')+' às '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
-    const eco=gc('cEcoFeito')!=='Nao'
-      ?`\n🔬 *ECOCARDIOGRAMA FETAL*\n• Realizado: ${gc('cEcoFeito')}\n• Data: ${gc('cEcoData')} | IG: ${gc('cEcoIG')} sem\n• Resultado: ${gc('cEcoResultado')}\n• Achados: ${getChk('cEcoAchados')}\n• Hipótese: ${gc('cHipotese')}${gc('cEcoDesc')!=='—'?'\n• Descrição: '+gc('cEcoDesc'):''}`
-      :'\n🔬 *ECOCARDIOGRAMA FETAL*\n• Não realizado — encaminhamento para realização';
-    const gen=(gc('cNipt')!=='Nao'||gc('cCario')!=='Nao')
-      ?`\n🧬 *GENÉTICA*\n• NIPT: ${gc('cNipt')}${gc('cNiptVal')!=='—'?' → '+gc('cNiptVal'):''}\n• Cariótipo: ${gc('cCario')}${gc('cCarioVal')!=='—'?' → '+gc('cCarioVal'):''}`:'' ;
-    const msg=`❤️ *ENCAMINHAMENTO — CARDIOLOGIA FETAL*
-╔══════════════════════════╗
-║  Maternidade Darcy Vargas  ║
-║  Cardiologia Fetal · SUS  ║
-╚══════════════════════════╝
-📅 Gerado em: ${dt}
-⚕️ _Pré-triagem — não substitui regulação oficial_
-
-👨‍⚕️ *MÉDICO SOLICITANTE*
-• ${g('medNome')} | CRM ${g('medCRM')}-${g('medEstado')}
-• ${g('medEsp')} | ${g('medServico')}
-• Tel: ${g('medTel')}
-
-🤰 *GESTANTE*
-• ${g('gestNome')} | ${g('gestIdade')} anos | ${g('gestCidade')}
-• Tel: ${g('gestTel')}
-
-📅 *DADOS OBSTÉTRICOS*
-• IG: ${g('igSem')}sem${g('igDias')&&g('igDias')!=='—'?' '+g('igDias')+'d':''} | DUM: ${g('gestDUM')} | DPP: ${g('gestDPP')}
-• G${g('obsG')} P${g('obsP')} A${g('obsA')} | ${g('gestTipo')}
-• Comorbidades: ${getChk('comorb')}
-
-❤️ *MOTIVO DO ENCAMINHAMENTO CARDÍACO*
-• ${gc('cMotivo')}
-• Ritmo: ${gc('cRitmo')}${gc('cFC')!=='—'?' ('+gc('cFC')+' bpm)':''}
-${eco}
-📊 *DOPPLER*
-• AU: ${gc('cDopUA')} | ACM: ${gc('cDopACM')} | DV: ${gc('cDopDV')}
-${gen}
-📋 *FINALIZAÇÃO*
-• Urgência: ${urgLabel()}
-• ${gc('cMotivoPrincipal')}
-• Documentos: ${getDcs()}
-
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-_📱 Ambulatório de Medicina Fetal e Cardiologia Fetal_
-_Maternidade Darcy Vargas · Joinville–SC_
-_⚠️ Dados clínicos confidenciais_`;
-    window.open('https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent(msg),'_blank');
-  },1200);
 }
 
 function resetFormCardio(){
@@ -3343,7 +3277,7 @@ enviarWhatsAppCardio = function() {
 
 // ── Admin panel: ?admin=1 apenas ────────────────────────────
 if (new URLSearchParams(window.location.search).get('admin') === '1') {
-  document.querySelectorAll('#waAdminPanel,[id^="waAdminPanel"]').forEach(el => el.style.display='block');
+  document.querySelectorAll('[id^="waAdminPanel"]').forEach(el => el.style.display='block');
 }
 
 
@@ -3495,7 +3429,7 @@ _Joinville–SC · SES/SC_`;
 
   } else {
     // ── Medicina Fetal ──
-    const rastreioFez = gc('rastreioFeito') || g('rastreioFez');
+    const rastreioFez = g('rastreioRealizou');
     const tnVal  = g('tn') !== '—' ? `TN: ${g('tn')}mm` : '';
     const riscoPE = g('riscoPE') !== '—' ? `PE: ${g('riscoPE')}` : '';
     const riscoT21 = g('riscoT21') !== '—' ? `T21: ${g('riscoT21')}` : '';
