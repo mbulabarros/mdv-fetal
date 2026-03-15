@@ -866,6 +866,59 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     body{background:var(--navy)}
   }
 
+
+  /* ── Hero illustration ── */
+  .hero-illustration{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:0}
+  @keyframes scan-sweep{0%{transform-origin:160px 8px;transform:rotate(-20deg)}100%{transform-origin:160px 8px;transform:rotate(20deg)}}
+  .scan-cursor{animation:scan-sweep 2.5s ease-in-out infinite alternate}
+  @keyframes hb-beat{0%,100%{transform:translate(140px,28px) scale(1)}15%{transform:translate(140px,28px) scale(1.2)}30%{transform:translate(140px,28px) scale(1)}45%{transform:translate(140px,28px) scale(1.1)}60%{transform:translate(140px,28px) scale(1)}}
+  .fetal-heart{animation:hb-beat 1s ease-in-out infinite}
+  .hero-fullname{
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;
+    font-size:1.3rem;font-weight:800;color:#fff;
+    margin:6px 0 2px;position:relative;z-index:1;line-height:1.2;letter-spacing:.3px
+  }
+  .hero-logo{position:relative;z-index:1;margin-bottom:4px}
+  .hero .tagline{position:relative;z-index:1}
+  .hero .badges{position:relative;z-index:1}
+
+  @media(min-width:768px){
+    /* Hero compacto no desktop */
+    #home .hero-fullname{font-size:1.05rem !important}
+    #home .hero{min-height:auto}
+
+    /* Specialty cards: mais altura, melhor proporção */
+    .spec-card{padding:20px 18px;align-items:center}
+    .spec-icon-wrap{width:60px;height:60px;border-radius:16px;flex-shrink:0}
+    .spec-svg{width:38px;height:38px}
+    .spec-content h3{font-size:1rem}
+    .spec-content p{font-size:.76rem;line-height:1.45}
+    .spec-tags span{font-size:.65rem;padding:3px 8px}
+
+    /* Cards secundários: altura uniforme */
+    .menu-grid .card{
+      min-height:80px;
+      display:flex;align-items:center;gap:12px;
+      padding:14px 16px
+    }
+    .menu-grid .card > div{flex:1}
+    .menu-grid .card h3{font-size:.88rem;margin-bottom:2px}
+    .menu-grid .card p{font-size:.73rem;margin:0}
+    .menu-grid .card-icon{flex-shrink:0}
+
+    /* Home padding mais equilibrado */
+    #home > div[style]{padding:20px 28px 24px !important}
+
+    /* Specialty grid gap */
+    .specialty-grid{gap:14px !important;margin-bottom:12px}
+
+    /* Sidebar: nome em duas linhas mais elegante */
+    .sidebar-title{font-size:1rem !important;letter-spacing:.3px}
+    .sidebar-logo{width:64px;height:64px;margin-bottom:12px}
+    .sidebar-logo-text{font-size:1.05rem}
+    .sidebar-nav-item{font-size:.85rem}
+  }
+
 </style>
 </head>
 <body>
@@ -932,10 +985,30 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 <!-- ==================== HOME ==================== -->
 <div id="home" class="screen active" style="padding:0">
   <div class="hero">
+    <!-- Ultrassom SVG animado -->
+    <div class="hero-illustration" aria-hidden="true">
+      <svg viewBox="0 0 320 90" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+        <g opacity="0.12">
+          <line x1="160" y1="8" x2="20" y2="88" stroke="white" stroke-width="0.5"/>
+          <line x1="160" y1="8" x2="70" y2="88" stroke="white" stroke-width="0.5"/>
+          <line x1="160" y1="8" x2="120" y2="88" stroke="white" stroke-width="0.5"/>
+          <line x1="160" y1="8" x2="160" y2="88" stroke="white" stroke-width="0.5"/>
+          <line x1="160" y1="8" x2="200" y2="88" stroke="white" stroke-width="0.5"/>
+          <line x1="160" y1="8" x2="250" y2="88" stroke="white" stroke-width="0.5"/>
+          <line x1="160" y1="8" x2="300" y2="88" stroke="white" stroke-width="0.5"/>
+        </g>
+        <path d="M 20 88 A 145 145 0 0 1 300 88" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <g class="fetal-heart" transform="translate(140,28)">
+          <path d="M20,6 C20,2 16,0 13,0 C10,0 7,2 7,5 C7,2 4,0 1,0 C-2,0 -6,2 -6,6 C-6,10 -1,15 7,22 C15,15 20,11 20,6Z" fill="rgba(232,67,122,0.6)" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+        </g>
+        <polyline points="30,58 55,58 63,58 68,43 73,73 78,36 83,78 88,58 110,58 300,58" fill="none" stroke="#E8437A" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        <line class="scan-cursor" x1="160" y1="8" x2="255" y2="88" stroke="rgba(232,67,122,0.4)" stroke-width="1.5"/>
+      </svg>
+    </div>
     <div class="hero-logo"><span class="hero-logo-text">MDV</span></div>
-    <h1>Encaminhamento Fetal</h1>
-    <p class="tagline" style="margin-top:4px">Medicina Fetal · Cardiologia Fetal</p>
-    <p style="font-size:.65rem;color:rgba(255,255,255,.45);margin-top:8px;letter-spacing:.5px;position:relative;z-index:1">Referência Estadual · SES/SC · 100% SUS · Joinville</p>
+    <h1 class="hero-fullname">Maternidade Darcy Vargas</h1>
+    <p class="tagline" style="margin-top:2px">Formulário de Encaminhamento · Ambulatório de Medicina Fetal</p>
+    <p style="font-size:.63rem;color:rgba(255,255,255,.38);margin-top:6px;letter-spacing:.5px;position:relative;z-index:1">Referência Estadual SES/SC · Joinville–SC · Fundada 1947</p>
     <div class="badges">
       <span class="badge badge-teal">Medicina Fetal</span>
       <span class="badge badge-rose">Cardiologia Fetal</span>
