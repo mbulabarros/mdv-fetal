@@ -17,6 +17,16 @@
 <meta name="apple-touch-fullscreen" content="yes">
 <meta name="format-detection" content="telephone=no">
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%236B3FA0'/><stop offset='1' stop-color='%23E8437A'/></linearGradient></defs><rect width='100' height='100' rx='22' fill='url(%23g)'/><text y='66' x='50' text-anchor='middle' font-size='38' fill='white' font-family='Arial,sans-serif' font-weight='900' letter-spacing='-1'>MDV</text></svg>">
+<link rel="manifest" href="data:application/json,{
+  %22name%22:%22MDV%20Encaminhamento%20Fetal%22,
+  %22short_name%22:%22MDV%20Fetal%22,
+  %22start_url%22:%22.%22,
+  %22display%22:%22standalone%22,
+  %22background_color%22:%22%233D1266%22,
+  %22theme_color%22:%22%236B3FA0%22,
+  %22orientation%22:%22portrait%22,
+  %22icons%22:[{%22src%22:%22data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%236B3FA0'/><stop offset='1' stop-color='%23E8437A'/></linearGradient></defs><rect width='192' height='192' rx='40' fill='url(%23g)'/><text y='130' x='96' text-anchor='middle' font-size='72' fill='white' font-family='Arial,sans-serif' font-weight='900' letter-spacing='-2'>MDV</text></svg>%22,%22sizes%22:%22192x192%22,%22type%22:%22image/svg+xml%22}]
+}">
 <meta property="og:description" content="Formulário de encaminhamento ao Ambulatório de Medicina Fetal e Cardiologia Fetal da MDV.">
 
 <style>
@@ -56,9 +66,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
 .splash.hide{opacity:0;transform:scale(1.04);pointer-events:none;visibility:hidden}
 .splash-orb{position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(232,67,122,.18),transparent 70%);animation:orb 3s ease-in-out infinite alternate}
 @keyframes orb{0%{transform:scale(1);opacity:.5}100%{transform:scale(1.2);opacity:.9}}
-.splash-logo-ring{width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,#E8437A,#8B5CC8);display:flex;align-items:center;justify-content:center;box-shadow:0 0 60px rgba(26,122,110,.4),0 0 0 8px rgba(26,160,144,.08);animation:spFloat 2.5s ease-in-out infinite;position:relative;z-index:1}
+.splash-logo-ring{width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,#E8437A,#8B5CC8);display:flex;align-items:center;justify-content:center;box-shadow:0 0 60px rgba(139,92,200,.5),0 0 0 8px rgba(232,67,122,.1);animation:spFloat 2.5s ease-in-out infinite;position:relative;z-index:1}
 @keyframes spFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-.splash-mdv-text{font-family:Georgia,'Times New Roman',serif;font-size:2rem;font-weight:700;color:#fff;letter-spacing:3px;position:relative;z-index:1}
+.splash-mdv-text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;font-size:2rem;font-weight:900;color:#fff;letter-spacing:4px;position:relative;z-index:1}
 .splash-title{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;color:rgba(255,255,255,.85);font-size:.78rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;margin-top:10px;position:relative;z-index:1;opacity:0;animation:fadeUp .8s .5s forwards}
 .splash-sub{color:rgba(164,200,220,.7);font-size:.7rem;margin-top:5px;position:relative;z-index:1;opacity:0;animation:fadeUp .8s .75s forwards;letter-spacing:1px;text-align:center;padding:0 20px}
 .splash-bar{width:56px;height:2px;background:rgba(255,255,255,.1);border-radius:1px;margin-top:28px;overflow:hidden;position:relative;z-index:1}
@@ -75,8 +85,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
 .hero{background:linear-gradient(150deg,#3D1266 0%,#6B3FA0 45%,#A8307A 75%,#E8437A 100%);padding:28px 20px 24px;text-align:center;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(26,122,110,.08),transparent 70%)}
 .hero::after{content:'';position:absolute;bottom:-30px;left:-30px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(201,107,138,.05),transparent 70%)}
-.hero-logo{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#E8437A,#8B5CC8);display:inline-flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(26,122,110,.35),0 0 0 4px rgba(255,255,255,.08);margin-bottom:14px;position:relative;z-index:1}
-.hero-logo-text{font-family:Georgia,'Times New Roman',serif;font-size:1.3rem;font-weight:700;color:#fff;letter-spacing:2px}
+.hero-logo{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#E8437A,#8B5CC8);display:inline-flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(232,67,122,.4),0 0 0 4px rgba(255,255,255,.1);margin-bottom:14px;position:relative;z-index:1}
+.hero-logo-text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;font-size:1.25rem;font-weight:900;color:#fff;letter-spacing:3px}
 .hero h1{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;font-size:1.45rem;font-weight:700;color:#fff;margin-bottom:4px;position:relative;z-index:1;line-height:1.3}
 .hero .tagline{font-size:.78rem;color:rgba(164,200,220,.85);font-weight:400;letter-spacing:1.5px;text-transform:uppercase;position:relative;z-index:1}
 .hero .badges{display:flex;gap:6px;justify-content:center;margin-top:12px;flex-wrap:wrap;position:relative;z-index:1}
@@ -443,8 +453,8 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     }
 
     /* ── Sidebar (left panel) ── */
-    .sidebar{display:flex !important;position:relative;left:0;visibility:visible;pointer-events:auto}
-    .sidebar{display:none;
+    .sidebar{
+      display:flex !important;position:relative;left:0;visibility:visible;pointer-events:auto;
       width:280px;flex-shrink:0;
       background:linear-gradient(170deg,#2A0D50,#5A1F8A 60%,#7C2FBE);
       display:flex;flex-direction:column;align-items:center;
@@ -466,12 +476,12 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       width:80px;height:80px;border-radius:50%;
       background:linear-gradient(135deg,#E8437A,#8B5CC8);
       display:flex;align-items:center;justify-content:center;
-      box-shadow:0 0 40px rgba(26,122,110,.4),0 0 0 6px rgba(255,255,255,.06);
+      box-shadow:0 0 40px rgba(232,67,122,.35),0 0 0 6px rgba(255,255,255,.08);
       margin-bottom:16px;position:relative;z-index:1;flex-shrink:0
     }
     .sidebar-logo-text{
-      font-family:Georgia,'Times New Roman',serif;
-      font-size:1.4rem;font-weight:700;color:#fff;letter-spacing:2px
+      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;
+      font-size:1.35rem;font-weight:900;color:#fff;letter-spacing:3px
     }
     .sidebar-title{
       font-family:Georgia,'Times New Roman',serif;
@@ -588,6 +598,145 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     .fcard{padding:12px}
   }
 
+
+  /* ══════════════════════════════════════
+     WOW EFFECTS v3
+  ══════════════════════════════════════ */
+
+  /* Animated conic-gradient hero */
+  @property --a {syntax:'<angle>';inherits:false;initial-value:0deg}
+  @keyframes spin-gradient {to{--a:360deg}}
+  .hero{
+    background:conic-gradient(from var(--a) at 60% 40%,
+      #3D1266 0%,#6B3FA0 20%,#A8307A 40%,#E8437A 55%,
+      #C8507A 65%,#8B5CC8 80%,#3D1266 100%);
+    animation:spin-gradient 10s linear infinite;
+  }
+  @supports not (background:conic-gradient(from 0deg,red,blue)){
+    .hero{background:linear-gradient(150deg,#3D1266 0%,#6B3FA0 45%,#A8307A 75%,#E8437A 100%)}
+  }
+
+  /* Heartbeat SVG in splash */
+  .splash-heartbeat{position:relative;z-index:1;margin:16px 0 0}
+  .splash-heartbeat svg{width:180px;height:48px;overflow:visible}
+  .hb-line{fill:none;stroke:rgba(255,255,255,.35);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+  .hb-pulse{fill:none;stroke:#E8437A;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:300;stroke-dashoffset:300;animation:hb-draw 1.8s .9s ease-out forwards,hb-beat 1.8s 2.7s ease-in-out infinite}
+  @keyframes hb-draw{to{stroke-dashoffset:0}}
+  @keyframes hb-beat{0%,100%{stroke-width:2.5;opacity:1}50%{stroke-width:3.5;opacity:.8}}
+
+  /* Animated logo ring in hero */
+  .hero-logo{
+    background:conic-gradient(from var(--a),#E8437A,#8B5CC8,#E8437A);
+    animation:spin-gradient 4s linear infinite;
+  }
+
+  /* Sidebar logo animated */
+  .sidebar-logo{
+    background:conic-gradient(from var(--a),#E8437A,#8B5CC8,#E8437A);
+    animation:spin-gradient 6s linear infinite;
+  }
+
+  /* Step complete flash */
+  @keyframes step-flash{
+    0%{box-shadow:0 0 0 0 rgba(139,92,200,.6)}
+    50%{box-shadow:0 0 0 16px rgba(139,92,200,0)}
+    100%{box-shadow:none}
+  }
+  .progress-step.just-done{animation:step-flash .6s ease-out}
+
+  /* Checkbox bounce */
+  @keyframes check-bounce{
+    0%{transform:scale(1)}30%{transform:scale(1.35)}60%{transform:scale(.92)}80%{transform:scale(1.1)}100%{transform:scale(1)}
+  }
+  .check-item.just-checked{animation:check-bounce .4s cubic-bezier(.22,1,.36,1)}
+  .check-item.just-checked .dot{animation:check-bounce .4s cubic-bezier(.22,1,.36,1)}
+
+  /* Doc item check animation */
+  @keyframes doc-check-in{
+    0%{transform:scale(0) rotate(-45deg)}60%{transform:scale(1.2) rotate(5deg)}100%{transform:scale(1) rotate(0)}
+  }
+  .doc-item.just-checked .doc-check{animation:doc-check-in .35s cubic-bezier(.22,1,.36,1)}
+
+  /* Step advance confetti burst */
+  .confetti-burst{position:fixed;pointer-events:none;z-index:500;top:0;left:0;width:100%;height:100%}
+  .cb-dot{position:absolute;width:6px;height:6px;border-radius:50%;animation:cb-fall .8s ease-out forwards}
+  @keyframes cb-fall{
+    0%{opacity:1;transform:translate(0,0) scale(1)}
+    100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.3)}
+  }
+
+  /* Urgency pulse on URGENTE */
+  .urg-btn.active-urgente{animation:urg-pulse 1.5s ease-in-out infinite}
+  @keyframes urg-pulse{0%,100%{box-shadow:0 0 0 0 rgba(192,57,43,.4)}50%{box-shadow:0 0 0 8px rgba(192,57,43,0)}}
+
+  /* Progress bar fill animation */
+  .progress-step{transition:background .5s cubic-bezier(.22,1,.36,1),transform .3s}
+  .progress-step.done{transform:scaleY(1.2)}
+  .progress-step.active{transform:scaleY(1.5)}
+
+  /* Card hover lift on desktop */
+  @media(hover:hover){
+    .card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+    .card-featured:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(107,63,160,.35)}
+  }
+
+  /* Input focus glow MDV */
+  input:focus,select:focus,textarea:focus{
+    border-color:var(--purple);
+    box-shadow:0 0 0 3px rgba(107,63,160,.12);
+    background:var(--white)
+  }
+
+  /* Approach card hover */
+  @media(hover:hover){
+    .approach-card{transition:transform .2s,box-shadow .2s}
+    .approach-card:hover{transform:translateX(4px);box-shadow:var(--shadow-md)}
+  }
+
+  /* Sidebar nav item hover glow */
+  .sidebar-nav-item.active{
+    background:linear-gradient(135deg,rgba(232,67,122,.2),rgba(139,92,200,.15));
+    border-color:rgba(232,67,122,.4);
+    box-shadow:inset 0 0 20px rgba(232,67,122,.05)
+  }
+
+  /* Step label color pulse when complete */
+  @keyframes label-complete{
+    0%{color:var(--purple-mid)}50%{color:var(--rose)}100%{color:var(--purple-mid)}
+  }
+
+  /* Preview section entrance */
+  .preview-section{animation:screenIn .35s ease both}
+  .preview-section:nth-child(1){animation-delay:.05s}
+  .preview-section:nth-child(2){animation-delay:.1s}
+  .preview-section:nth-child(3){animation-delay:.15s}
+  .preview-section:nth-child(4){animation-delay:.2s}
+  .preview-section:nth-child(5){animation-delay:.25s}
+  .preview-section:nth-child(6){animation-delay:.3s}
+  .preview-section:nth-child(7){animation-delay:.35s}
+
+  /* WhatsApp button pulse */
+  .btn-whatsapp{animation:wa-pulse 3s ease-in-out infinite}
+  @keyframes wa-pulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.25)}50%{box-shadow:0 4px 32px rgba(37,211,102,.5)}}
+
+  /* Badges float */
+  .hero .badge{animation:badgeFloat 4s ease-in-out infinite}
+  .hero .badge:nth-child(1){animation-delay:0s}
+  .hero .badge:nth-child(2){animation-delay:.4s}
+  .hero .badge:nth-child(3){animation-delay:.8s}
+  @keyframes badgeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+
+  /* ── sessionStorage restored indicator ── */
+  .restore-banner{
+    background:linear-gradient(135deg,var(--purple-bg),var(--rose-bg));
+    border:1px solid rgba(107,63,160,.2);
+    border-radius:var(--r-sm);padding:8px 12px;
+    font-size:.76rem;color:var(--purple);
+    display:flex;align-items:center;gap:6px;margin-bottom:10px;
+    animation:screenIn .4s ease
+  }
+
 </style>
 </head>
 <body>
@@ -598,7 +747,15 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
   <div class="splash-logo-ring"><span class="splash-mdv-text">MDV</span></div>
   <div class="splash-title">Maternidade Darcy Vargas</div>
   <div class="splash-sub">Ambulatório de Medicina Fetal<br>& Cardiologia Fetal · Joinville–SC</div>
-  <div class="splash-bar"></div>
+  <div class="splash-heartbeat">
+  <svg viewBox="0 0 180 48">
+    <!-- background flat line -->
+    <polyline class="hb-line" points="0,24 30,24 40,24 50,24 60,24 70,24 180,24"/>
+    <!-- ECG pulse shape -->
+    <polyline class="hb-pulse" points="0,24 30,24 38,24 42,8 46,40 50,4 54,44 58,24 66,24 74,24 180,24"/>
+  </svg>
+</div>
+<div class="splash-bar"></div>
 </div>
 
 <!-- OVERLAY -->
@@ -620,6 +777,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     <div class="hero-logo"><span class="hero-logo-text">MDV</span></div>
     <h1>Encaminhamento Fetal</h1>
     <p class="tagline" style="margin-top:4px">Medicina Fetal · Cardiologia Fetal</p>
+    <p style="font-size:.65rem;color:rgba(255,255,255,.45);margin-top:8px;letter-spacing:.5px;position:relative;z-index:1">Referência Estadual · SES/SC · 100% SUS · Joinville</p>
     <div class="badges">
       <span class="badge badge-teal">Medicina Fetal</span>
       <span class="badge badge-rose">Cardiologia Fetal</span>
@@ -1620,8 +1778,14 @@ ${g('cardioDesc') !== '—' ? '• Descrição: '+g('cardioDesc') : ''}
 • Cariótipo: ${carioVal}${carioVal !== 'Nao' ? ' → '+g('carioRes') : ''}`;
     }
 
+    const now = new Date();
+    const dataEnv = now.toLocaleDateString('pt-BR') + ' às ' + now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
     const msg = `🏥 *ENCAMINHAMENTO FETAL — MDV*
-━━━━━━━━━━━━━━━━━━━━━━
+╔══════════════════════════╗
+║  Maternidade Darcy Vargas  ║
+║  Ambulatório Fetal · SUS  ║
+╚══════════════════════════╝
+📅 Gerado em: ${dataEnv}
 
 👨‍⚕️ *MÉDICO SOLICITANTE*
 • Nome: ${g('medNome')}
@@ -1652,9 +1816,10 @@ ${geneticaBlock}
 ${g('obsAdic') !== '—' ? '• Obs.: '+g('obsAdic') : ''}
 • Documentos a enviar: ${docs}
 
-━━━━━━━━━━━━━━━━━━━━━━
-_📱 Via MDV Fetal App — MbulaApps_
-_Maternidade Darcy Vargas · Joinville–SC_`;
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+_📱 MDV Fetal App · MbulaApps_
+_CRM-SC 8512 · Joinville–SC_
+_⚠️ Dados clínicos confidenciais_`;
 
     window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(msg), '_blank');
   }, 1200);
@@ -1721,10 +1886,248 @@ document.querySelectorAll('input,select,textarea').forEach(el=>{
   },{passive:true});
 });
 
-// Init sliders
+
+// ══════════════════════════════════════════════════════
+//  WOW v3 — Swipe · sessionStorage · Confetti · Micro-fx
+// ══════════════════════════════════════════════════════
+
+// ── sessionStorage: save & restore ────────────────────
+const SS_KEY = 'mdv_fetal_form';
+
+function saveProgress() {
+  try {
+    const data = {};
+    document.querySelectorAll('#form input,#form select,#form textarea').forEach(el => {
+      if (el.id) data[el.id] = el.type === 'checkbox' ? el.checked : el.value;
+    });
+    data['__step'] = currentStep;
+    data['__urgencia'] = urgencia;
+    data['__checked'] = Array.from(document.querySelectorAll('.check-item.checked input'))
+                             .map(i => i.value);
+    data['__docs'] = Array.from(document.querySelectorAll('#docList .doc-item.checked .doc-lbl'))
+                          .map(i => i.textContent);
+    sessionStorage.setItem(SS_KEY, JSON.stringify(data));
+  } catch(e) {}
+}
+
+function restoreProgress() {
+  try {
+    const raw = sessionStorage.getItem(SS_KEY);
+    if (!raw) return false;
+    const data = JSON.parse(raw);
+    // Restore field values
+    document.querySelectorAll('#form input,#form select,#form textarea').forEach(el => {
+      if (el.id && data[el.id] !== undefined) {
+        if (el.type === 'checkbox') el.checked = data[el.id];
+        else el.value = data[el.id];
+      }
+    });
+    // Restore checkboxes
+    if (data['__checked']) {
+      document.querySelectorAll('.check-item').forEach(item => {
+        const inp = item.querySelector('input');
+        if (inp && data['__checked'].includes(inp.value)) {
+          item.classList.add('checked');
+          inp.checked = true;
+        }
+      });
+    }
+    // Restore doc checkmarks
+    if (data['__docs']) {
+      document.querySelectorAll('#docList .doc-item').forEach(item => {
+        const lbl = item.querySelector('.doc-lbl');
+        if (lbl && data['__docs'].includes(lbl.textContent)) {
+          item.classList.add('checked');
+        }
+      });
+    }
+    // Restore toggle states
+    toggleRastreio(); toggleEco(); toggleCardio(); toggleEcoCardio(); toggleNIPT(); toggleCariotipo();
+    // Restore urgencia
+    if (data['__urgencia'] && data['__urgencia'] !== 'eletivo') {
+      urgencia = data['__urgencia'];
+      const btn = document.getElementById('urg' + urgencia.charAt(0).toUpperCase() + urgencia.slice(1));
+      if (btn) { document.querySelectorAll('.urg-btn').forEach(b=>b.className='urg-btn'); btn.classList.add('active-'+urgencia); }
+    }
+    // Navigate to saved step
+    const savedStep = data['__step'];
+    if (savedStep && typeof savedStep === 'number' && savedStep > 1) {
+      // Show all steps up to savedStep via direct display
+      for (let i = 1; i <= 6; i++) {
+        const el = document.getElementById('step'+i);
+        if (el) el.style.display = (i === savedStep) ? 'block' : 'none';
+      }
+      currentStep = savedStep;
+      updateProgress();
+      // Show restore banner
+      const banner = document.createElement('div');
+      banner.className = 'restore-banner';
+      banner.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;flex-shrink:0"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg> Progresso restaurado — etapa ' + savedStep + ' de 6';
+      const formScreen = document.getElementById('form');
+      const sectionHdr = formScreen.querySelector('.section-hdr');
+      if (sectionHdr) sectionHdr.after(banner);
+      setTimeout(() => banner.remove(), 4000);
+      return true;
+    }
+  } catch(e) {}
+  return false;
+}
+
+// Auto-save on any input change
+document.addEventListener('change', (e) => {
+  if (e.target.closest('#form')) saveProgress();
+}, { passive: true });
+document.addEventListener('input', (e) => {
+  if (e.target.closest('#form')) saveProgress();
+}, { passive: true });
+
+// ── Confetti burst ─────────────────────────────────────
+function burstConfetti(x, y) {
+  const colors = ['#E8437A','#8B5CC8','#6B3FA0','#F2799F','#B99EE0','#E8C860'];
+  const container = document.createElement('div');
+  container.className = 'confetti-burst';
+  document.body.appendChild(container);
+  for (let i = 0; i < 18; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'cb-dot';
+    const angle = (i / 18) * 360;
+    const dist = 60 + Math.random() * 80;
+    const dx = Math.cos(angle * Math.PI/180) * dist;
+    const dy = Math.sin(angle * Math.PI/180) * dist - 40;
+    dot.style.cssText = `left:${x}px;top:${y}px;background:${colors[i%colors.length]};
+      --dx:${dx}px;--dy:${dy}px;animation-delay:${Math.random()*0.1}s;animation-duration:${0.6+Math.random()*0.3}s`;
+    container.appendChild(dot);
+  }
+  setTimeout(() => container.remove(), 1200);
+}
+
+// ── Enhanced nextStep with confetti ───────────────────
+const _origNextStep = nextStep;
+function nextStep(to) {
+  if (to === 2 && !validateStep1()) return;
+  if (to === 3 && !validateStep2()) return;
+  if (to === 5 && !validateStep4()) return;
+  // Confetti from progress bar area
+  const bar = document.getElementById('progressBar');
+  if (bar) {
+    const rect = bar.getBoundingClientRect();
+    burstConfetti(rect.left + rect.width * (currentStep/6), rect.top + rect.height/2);
+  }
+  animStep(currentStep, to);
+  saveProgress();
+}
+
+// ── Step progress percentage ───────────────────────────
+function countStepFields(stepNum) {
+  const step = document.getElementById('step'+stepNum);
+  if (!step) return {filled:0,total:0};
+  const inputs = step.querySelectorAll('input[type="text"],input[type="tel"],input[type="number"],input[type="date"],select,textarea');
+  let filled = 0, total = 0;
+  inputs.forEach(el => {
+    if (el.closest('[style*="display:none"]') || el.closest('[style*="display: none"]')) return;
+    total++;
+    if (el.value && el.value.trim() && el.value !== '') filled++;
+  });
+  return {filled, total};
+}
+
+function updateProgress() {
+  document.querySelectorAll('.progress-step').forEach((s, i) => {
+    s.classList.remove('done','active','just-done');
+    if (i < currentStep - 1) { s.classList.add('done'); s.classList.remove('just-done'); }
+    if (i === currentStep - 1) s.classList.add('active');
+  });
+  const lbl = document.getElementById('stepLabel');
+  if (lbl && typeof currentStep === 'number') {
+    const {filled, total} = countStepFields(currentStep);
+    const pct = total > 0 ? Math.round(filled/total*100) : 0;
+    const pctHtml = total > 0
+      ? ` <span style="font-size:.65rem;background:var(--purple-bg);color:var(--purple);
+          padding:1px 7px;border-radius:10px;margin-left:4px">${pct}% preenchido</span>`
+      : '';
+    lbl.innerHTML = `Etapa <strong>${currentStep}</strong> de 6 — ${stepNames[currentStep-1]}${pctHtml}`;
+  }
+}
+
+// Update % as user types
+document.addEventListener('input', () => {
+  if (typeof currentStep === 'number') updateProgress();
+}, { passive: true });
+document.addEventListener('change', () => {
+  if (typeof currentStep === 'number') updateProgress();
+}, { passive: true });
+
+// ── Enhanced toggleCheck with bounce ──────────────────
+const _origToggleCheck = toggleCheck;
+function toggleCheck(el, e) {
+  if(e) { e.preventDefault(); e.stopPropagation(); }
+  el.classList.toggle('checked');
+  el.querySelector('input').checked = el.classList.contains('checked');
+  // Bounce animation
+  el.classList.remove('just-checked');
+  void el.offsetWidth;
+  el.classList.add('just-checked');
+  setTimeout(() => el.classList.remove('just-checked'), 400);
+  if (typeof currentStep === 'number') updateProgress();
+}
+
+// ── Enhanced toggleDoc with animation ─────────────────
+const _origToggleDoc = toggleDoc;
+function toggleDoc(el, e) {
+  if(e){e.preventDefault();e.stopPropagation();}
+  el.classList.toggle('checked');
+  el.classList.remove('just-checked');
+  void el.offsetWidth;
+  el.classList.add('just-checked');
+  setTimeout(() => el.classList.remove('just-checked'), 350);
+}
+
+// ── Swipe gestures between steps ──────────────────────
+(function setupSwipe() {
+  let startX = 0, startY = 0, startTime = 0;
+  const app = document.getElementById('app');
+  app.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    startTime = Date.now();
+  }, { passive: true });
+  app.addEventListener('touchend', e => {
+    if (typeof currentStep !== 'number') return;
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = e.changedTouches[0].clientY - startY;
+    const dt = Date.now() - startTime;
+    // Only horizontal swipe, not too slow, not too vertical
+    if (Math.abs(dx) < 60 || Math.abs(dy) > Math.abs(dx) * 0.8 || dt > 500) return;
+    // Don't swipe if touching an input
+    if (e.target.closest('input,select,textarea,.check-group,.urg-selector,.doc-item')) return;
+    if (dx < -60 && currentStep < 6) {
+      // Swipe left = advance (with validation)
+      nextStep(currentStep + 1);
+    } else if (dx > 60 && currentStep > 1) {
+      // Swipe right = go back
+      prevStep(currentStep - 1);
+    }
+  }, { passive: true });
+})();
+
+// ── PWA: clear sessionStorage on explicit reset ────────
+const _origResetForm = resetForm;
+function resetForm() {
+  try { sessionStorage.removeItem(SS_KEY); } catch(e) {}
+  _origResetForm();
+}
+
+// ── Init: try restoring session ────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   updateProgress();
+  // Small delay to let DOM settle, then restore
+  setTimeout(() => {
+    if (document.getElementById('form').classList.contains('active')) {
+      restoreProgress();
+    }
+  }, 100);
 });
+
 </script>
 </body>
 </html>
