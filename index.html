@@ -866,7 +866,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     position:fixed;inset:0;z-index:7999;
     background:rgba(0,0,0,0);pointer-events:none
   }
-  .tooltip-overlay.show{pointer-events:auto}
+  .tooltip-overlay.show{pointer-events:auto;background:rgba(0,0,0,.25)}
 
 </style>
 </head>
@@ -1310,7 +1310,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
         <div class="field"><label>Suspeita diagnóstica principal <span class="req">*</span></label>
           <textarea id="ecoDiag" placeholder="Ex: Cardiopatia congênita complexa (suspeita de CIV perimembranosa + aorta cavalgante). Afastar T21..."></textarea>
         </div>
-        <div class="field"><label>Crescimento fetal <button class="tip-btn" onclick="event.stopPropagation();showTip('ciur',this)" aria-label="O que é CIUR/PIG?">ⓘ</button> <button class="tip-btn" onclick="event.stopPropagation();showTip('ciur',this)" aria-label="Saiba mais">ⓘ</button></label>
+        <div class="field"><label>Crescimento fetal <button class="tip-btn" onclick="event.stopPropagation();showTip('ciur',this)" aria-label="Saiba mais">ⓘ</button></label>
           <select id="crescFetal">
             <option value="AIG (adequado para IG)">Adequado para a Idade Gestacional (AIG)</option>
             <option value="PIG / CIUR">Pequeno para a IG / Restrição de Crescimento (CIUR)</option>
@@ -1459,7 +1459,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
         </div>
       </div>
       <div id="niptResult" style="display:none">
-        <div class="field"><label>Resultado NIPT <button class="tip-btn" onclick="event.stopPropagation();showTip('nipt',this)" aria-label="O que é NIPT?">ⓘ</button> <button class="tip-btn" onclick="event.stopPropagation();showTip('nipt',this)" aria-label="Saiba mais">ⓘ</button></label><input type="text" id="niptRes" placeholder="Ex: T21 detectada, alto risco"></div>
+        <div class="field"><label>Resultado NIPT <button class="tip-btn" onclick="event.stopPropagation();showTip('nipt',this)" aria-label="Saiba mais">ⓘ</button></label><input type="text" id="niptRes" placeholder="Ex: T21 detectada, alto risco"></div>
       </div>
       <div id="carioResult" style="display:none">
         <div class="field"><label>Resultado / Situação do cariótipo</label><input type="text" id="carioRes" placeholder="Ex: 47,XX+21 — trissomia 21 confirmada"></div>
@@ -1624,14 +1624,14 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
         <div class="field"><label>Ductus venoso</label><input type="text" id="cDopDV" placeholder="Ex: onda a positiva"></div>
         <div class="field"><label>Doppler do Ductus Arterioso</label><input type="text" id="cDopDA" placeholder="Ex: IP 1.8 (normal)"></div>
       </div>
-      <div class="field"><label>Índice de Pulsatilidade (IP) das artérias uterinas — média <button class="tip-btn" onclick="event.stopPropagation();showTip('ip',this)" aria-label="Saiba mais">ⓘ</button></label>
+      <div class="field"><label>Índice de Pulsatilidade (IP) das artérias uterinas — média</label>
         <input type="number" id="cIpUter" placeholder="Ex: 1.2" step="0.01" min="0" max="5">
       </div>
     </div>
     <div class="fcard">
       <div class="fcard-hdr"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.8 18.4 14 10.67V6.5l1.35-1.69c.26-.33.03-.81-.39-.81H9.04c-.42 0-.65.48-.39.81L10 6.5v4.17L4.2 18.4c-.49.66-.02 1.6.8 1.6h14c.82 0 1.29-.94.8-1.6z"/></svg></span><span class="title">Genética Fetal</span><span class="badge-opt">Opcional</span></div>
       <div class="row-2">
-        <div class="field"><label>NIPT <button class="tip-btn" onclick="event.stopPropagation();showTip('nipt',this)" aria-label="O que é NIPT?">ⓘ</button> <button class="tip-btn" onclick="event.stopPropagation();showTip('nipt',this)" aria-label="Saiba mais">ⓘ</button></label>
+        <div class="field"><label>NIPT <button class="tip-btn" onclick="event.stopPropagation();showTip('nipt',this)" aria-label="Saiba mais">ⓘ</button></label>
           <select id="cNipt" onchange="toggleCNipt()">
             <option value="Nao">Não realizado</option>
             <option value="Normal">Sim — normal</option>
@@ -1639,7 +1639,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
             <option value="Andamento">Em andamento</option>
           </select>
         </div>
-        <div class="field"><label>Cariótipo <button class="tip-btn" onclick="event.stopPropagation();showTip('cariotipo',this)" aria-label="O que é Cariótipo?">ⓘ</button> <button class="tip-btn" onclick="event.stopPropagation();showTip('cariotipo',this)" aria-label="Saiba mais">ⓘ</button></label>
+        <div class="field"><label>Cariótipo <button class="tip-btn" onclick="event.stopPropagation();showTip('cariotipo',this)" aria-label="Saiba mais">ⓘ</button></label>
           <select id="cCario" onchange="toggleCCario()">
             <option value="Nao">Não realizado</option>
             <option value="Amniocentese">Amniocentese</option>
