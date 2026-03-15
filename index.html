@@ -440,7 +440,138 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
   /* Mobile: outerWrap is plain block */
   #outerWrap{display:block;width:100%}
 
-  
+  @media(min-width:768px){
+    /* ── Body & shell ── */
+    html,body{height:100%;overflow:hidden}
+    body{
+      background:linear-gradient(155deg,#061828,var(--navy) 40%,#0d3d6b);
+      overflow:hidden
+    }
+    #outerWrap{
+      display:flex;align-items:stretch;
+      height:100vh;width:100%;overflow:hidden
+    }
+
+    /* ── Sidebar (left panel) ── */
+    .sidebar{
+      display:flex !important;position:relative;left:0;visibility:visible;pointer-events:auto;
+      width:280px;flex-shrink:0;
+      background:linear-gradient(170deg,#2A0D50,#5A1F8A 60%,#7C2FBE);
+      display:flex;flex-direction:column;align-items:center;
+      justify-content:flex-start;padding:40px 24px 32px;
+      box-shadow:4px 0 30px rgba(0,0,0,.25);
+      position:relative;overflow:hidden;z-index:10
+    }
+    .sidebar::before{
+      content:'';position:absolute;top:-60px;right:-60px;
+      width:200px;height:200px;border-radius:50%;
+      background:radial-gradient(circle,rgba(232,67,122,.15),transparent 70%)
+    }
+    .sidebar::after{
+      content:'';position:absolute;bottom:-40px;left:-40px;
+      width:160px;height:160px;border-radius:50%;
+      background:radial-gradient(circle,rgba(139,92,200,.1),transparent 70%)
+    }
+    .sidebar-logo{
+      width:80px;height:80px;border-radius:50%;
+      background:linear-gradient(135deg,#E8437A,#8B5CC8);
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 0 40px rgba(232,67,122,.35),0 0 0 6px rgba(255,255,255,.08);
+      margin-bottom:16px;position:relative;z-index:1;flex-shrink:0
+    }
+    .sidebar-logo-text{
+      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;
+      font-size:1.35rem;font-weight:900;color:#fff;letter-spacing:3px
+    }
+    .sidebar-title{
+      font-family:Georgia,'Times New Roman',serif;
+      color:#fff;font-size:1.15rem;font-weight:700;
+      text-align:center;line-height:1.3;margin-bottom:6px;
+      position:relative;z-index:1
+    }
+    .sidebar-sub{
+      color:rgba(164,200,220,.7);font-size:.72rem;
+      letter-spacing:1.5px;text-transform:uppercase;
+      text-align:center;position:relative;z-index:1
+    }
+    .sidebar-divider{
+      width:48px;height:2px;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);
+      margin:20px 0;position:relative;z-index:1
+    }
+    .sidebar-nav{width:100%;position:relative;z-index:1}
+    .sidebar-nav-item{
+      display:flex;align-items:center;gap:10px;
+      padding:11px 14px;border-radius:12px;
+      color:rgba(200,220,240,.6);font-size:.85rem;font-weight:600;
+      cursor:pointer;transition:all .2s;margin-bottom:4px;
+      -webkit-tap-highlight-color:transparent;
+      border:1px solid transparent
+    }
+    .sidebar-nav-item:hover{
+      background:rgba(255,255,255,.06);
+      color:rgba(200,220,240,.9)
+    }
+    .sidebar-nav-item.active{
+      background:rgba(232,67,122,.18);
+      color:#F2A0BC;border-color:rgba(232,67,122,.3)
+    }
+    .sidebar-nav-item .mdi-icon{
+      width:20px;height:20px;font-size:20px;flex-shrink:0
+    }
+    .sidebar-nav-item .mdi-icon svg{width:20px;height:20px}
+    .sidebar-footer{
+      margin-top:auto;text-align:center;
+      font-size:.63rem;color:rgba(255,255,255,.2);
+      line-height:1.6;position:relative;z-index:1;padding-top:20px
+    }
+
+    /* ── Main content area ── */
+    .app{
+      flex:1;max-width:none;min-height:0;height:100vh;
+      overflow-y:auto;overflow-x:hidden;
+      border-radius:0;margin:0;
+      box-shadow:none;padding-bottom:0;
+      -webkit-overflow-scrolling:touch
+    }
+
+    /* ── Hide mobile bottom nav, show sidebar ── */
+    .bottom-nav{display:none}
+    .sidebar{display:flex}
+
+    /* ── Hide hero (shown in sidebar instead) ── */
+    #home .hero{display:none}
+    #home{padding-top:20px}
+
+    /* ── Wider form cards on large screen ── */
+    .screen{padding:28px 32px}
+    .fcard{padding:18px 20px}
+    .preview-section{padding:18px 20px}
+
+    /* ── Two-column form grid for wider cards ── */
+    .form-two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+    /* ── Result grid: up to 2 wide ── */
+    .result-grid{grid-template-columns:1fr 1fr}
+
+    /* ── Larger typography ── */
+    .section-hdr h2{font-size:1.4rem}
+    .fcard-hdr .title{font-size:.92rem}
+    .field label{font-size:.86rem}
+    input,select,textarea{font-size:16px !important;padding:12px 14px}
+
+    /* ── Progress bar bigger ── */
+    .progress-row{gap:6px;margin-bottom:8px}
+    .progress-step{height:5px}
+
+    /* ── Menu cards grid on home ── */
+    .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .card-featured{grid-column:1/-1}
+
+    /* ── Result hero bigger ── */
+    .result-hero{padding:32px 28px}
+    .result-title{font-size:1.5rem}
+  }
 
   @media(min-width:1100px){
     .sidebar{width:300px;padding:48px 28px 36px}
@@ -607,372 +738,78 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
   }
 
 
-  /* ── Hero illustration ── */
-  .hero-illustration{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:0}
-  .hero-svg{width:100%;height:100%;object-fit:cover;opacity:.7}
-  @keyframes scan-sweep{0%{transform-origin:160px 8px;transform:rotate(-25deg)}100%{transform-origin:160px 8px;transform:rotate(25deg)}}
-  .scan-cursor{animation:scan-sweep 2.5s ease-in-out infinite alternate}
-  @keyframes heart-beat{0%,100%{transform:translate(140px,30px) scale(1)}15%{transform:translate(140px,30px) scale(1.18)}30%{transform:translate(140px,30px) scale(1)}45%{transform:translate(140px,30px) scale(1.12)}60%{transform:translate(140px,30px) scale(1)}}
-  .fetal-heart{animation:heart-beat 1s ease-in-out infinite;transform-origin:150px 45px}
-  .hero-fullname{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;font-size:1.35rem;font-weight:800;color:#fff;margin:10px 0 3px;position:relative;z-index:1;line-height:1.2;letter-spacing:-.2px}
-  .hero-logo{position:relative;z-index:1;margin-bottom:6px}
-  .hero .tagline{position:relative;z-index:1}
-  .hero .badges{position:relative;z-index:1}
-
-
-  /* ── Specialty cards ── */
-  .specialty-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:4px}
-  .spec-card{
-    background:var(--white);border-radius:var(--r-lg);padding:16px 14px 14px;
-    display:flex;align-items:flex-start;gap:12px;
-    cursor:pointer;border:2px solid transparent;
-    box-shadow:var(--shadow-sm);
-    transition:transform .2s cubic-bezier(.22,1,.36,1),box-shadow .2s,border-color .2s;
-    position:relative;overflow:hidden;
-    -webkit-tap-highlight-color:transparent
-  }
-  .spec-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s}
-  .spec-fetal{border-color:rgba(107,63,160,.15)}
-  .spec-fetal::before{background:linear-gradient(135deg,rgba(107,63,160,.04),transparent)}
-  .spec-cardio{border-color:rgba(232,67,122,.15)}
-  .spec-cardio::before{background:linear-gradient(135deg,rgba(232,67,122,.04),transparent)}
-  .spec-card:active{transform:scale(.97);box-shadow:var(--shadow-md)}
-  .spec-card:active::before{opacity:1}
-  @media(hover:hover){
-    .spec-fetal:hover{border-color:var(--purple);box-shadow:var(--shadow-md),0 0 0 3px rgba(107,63,160,.08);transform:translateY(-2px)}
-    .spec-cardio:hover{border-color:var(--rose);box-shadow:var(--shadow-md),0 0 0 3px rgba(232,67,122,.08);transform:translateY(-2px)}
-  }
-  .spec-icon-wrap{
-    width:56px;height:56px;border-radius:14px;flex-shrink:0;
-    display:flex;align-items:center;justify-content:center
-  }
-  .spec-fetal .spec-icon-wrap{background:var(--purple-bg);color:var(--purple)}
-  .spec-cardio .spec-icon-wrap{background:var(--rose-bg);color:var(--rose)}
-  .spec-svg{width:36px;height:36px}
-  .spec-content{flex:1;min-width:0}
-  .spec-badge{
-    display:inline-block;font-size:.58rem;font-weight:800;
-    text-transform:uppercase;letter-spacing:1px;
-    padding:2px 8px;border-radius:20px;margin-bottom:5px;
-    background:var(--purple-bg);color:var(--purple)
-  }
-  .spec-badge-rose{background:var(--rose-bg);color:var(--rose)}
-  .spec-content h3{font-size:1rem;font-weight:800;color:var(--violet-dark);margin:0 0 3px}
-  .spec-cardio .spec-content h3{color:#8B1A3A}
-  .spec-content p{font-size:.78rem;color:var(--text-soft);line-height:1.4;margin:0 0 7px}
-  .spec-tags{display:flex;flex-wrap:wrap;gap:4px}
-  .spec-tags span{font-size:.64rem;font-weight:700;padding:2px 7px;border-radius:10px;background:var(--purple-bg);color:var(--purple)}
-  .spec-tags-rose span{background:var(--rose-bg);color:var(--rose)}
-  .spec-arrow{
-    position:absolute;right:14px;top:50%;transform:translateY(-50%);
-    font-size:1.1rem;color:var(--purple);opacity:.4;font-weight:700;
-    transition:opacity .2s,transform .2s
-  }
-  .spec-arrow-rose{color:var(--rose)}
-  .spec-card:active .spec-arrow{opacity:.8;transform:translateY(-50%) translateX(3px)}
-
-  /* Specialty indicator in form */
-  .spec-indicator{
-    display:inline-flex;align-items:center;gap:6px;
-    padding:5px 12px;border-radius:20px;font-size:.72rem;font-weight:700;
-    margin-bottom:10px;
-  }
-  .spec-indicator-fetal{background:var(--purple-bg);color:var(--purple)}
-  .spec-indicator-cardio{background:var(--rose-bg);color:var(--rose)}
-
-
-  /* ── Tooltip System ── */
-  .tip-wrap{display:inline-flex;align-items:center;gap:3px}
-  .tip-btn{
-    display:inline-flex;align-items:center;justify-content:center;
-    width:16px;height:16px;border-radius:50%;
-    background:var(--purple-bg);color:var(--purple);
-    font-size:.62rem;font-weight:900;cursor:pointer;
-    border:1.5px solid var(--purple-light);
-    flex-shrink:0;line-height:1;
-    transition:background .15s,transform .15s;
-    -webkit-tap-highlight-color:transparent;
-    user-select:none;-webkit-user-select:none;
-    vertical-align:middle;margin-left:2px
-  }
-  .tip-btn:active{transform:scale(.9);background:var(--purple);color:#fff}
-
-  /* Tooltip popup */
-  .tooltip-popup{
-    position:fixed;z-index:9000;
-    background:var(--violet-deep);color:#fff;
-    border-radius:var(--r-md);
-    padding:14px 16px;
-    max-width:min(320px, calc(100vw - 32px));
-    box-shadow:0 8px 32px rgba(61,18,102,.5);
-    opacity:0;pointer-events:none;
-    transition:opacity .2s,transform .2s;
-    transform:translateY(6px);
-  }
-  .tooltip-popup.show{opacity:1;pointer-events:auto;transform:translateY(0)}
-  .tooltip-popup .tp-term{
-    font-size:.68rem;font-weight:800;letter-spacing:1px;
-    text-transform:uppercase;color:var(--rose-light);margin-bottom:4px
-  }
-  .tooltip-popup .tp-full{
-    font-size:.88rem;font-weight:700;color:#fff;margin-bottom:6px;line-height:1.3
-  }
-  .tooltip-popup .tp-desc{
-    font-size:.79rem;color:rgba(255,255,255,.75);line-height:1.5;margin-bottom:8px
-  }
-  .tooltip-popup .tp-relevance{
-    font-size:.72rem;color:rgba(232,67,122,.85);font-style:italic;
-    border-top:1px solid rgba(255,255,255,.1);padding-top:7px;line-height:1.4
-  }
-  .tooltip-popup .tp-close{
-    position:absolute;top:10px;right:12px;
-    font-size:.7rem;color:rgba(255,255,255,.4);cursor:pointer;
-    font-weight:700;padding:2px 6px;border-radius:4px;
-    transition:color .15s
-  }
-  .tooltip-popup .tp-close:hover{color:rgba(255,255,255,.8)}
-  .tooltip-overlay{
-    position:fixed;inset:0;z-index:8999;
-    background:rgba(0,0,0,0);pointer-events:none
-  }
-  .tooltip-overlay.show{pointer-events:auto;background:rgba(0,0,0,.2);transition:background .2s}
-
-
-  /* Desktop: show tip-btn clearly on hover */
-  @media(hover:hover){
-    .tip-btn:hover{
-      background:var(--purple);color:#fff;
-      transform:scale(1.15);
-    }
-    .fcard:hover .tip-btn{opacity:1}
-  }
-  .tip-btn{opacity:.7;transition:opacity .15s,background .15s,transform .15s}
-  .tip-btn:focus{opacity:1;outline:2px solid var(--purple);outline-offset:2px}
-
-
-  /* ══════════════════════════════════════════════════
-     DESKTOP LAYOUT IMPROVEMENTS
-  ══════════════════════════════════════════════════ */
   @media(min-width:768px){
-
-    /* Better sidebar width and style */
+    .bottom-nav{display:none}
     .sidebar{
-      width:260px !important;
-      min-width:260px;
-      padding:36px 20px 28px !important;
+      display:flex !important;
+      flex-direction:column;align-items:center;justify-content:flex-start;
+      position:relative;left:auto;visibility:visible;pointer-events:auto;
+      width:260px;min-width:260px;flex-shrink:0;
+      background:linear-gradient(170deg,#2A0D50,#5A1F8A 60%,#7C2FBE);
+      padding:36px 20px 28px;z-index:10;height:100vh;overflow-y:auto;
     }
-
-    /* App content max-width for readability */
+    #outerWrap{display:flex;width:100%;min-height:100vh;align-items:stretch}
     .app{
-      max-width:680px !important;
-      background:var(--cream);
-      border-right:1px solid var(--border-soft);
+      flex:1;min-width:0;max-width:none;
+      overflow-y:auto;overflow-x:hidden;
+      background:var(--cream);padding-bottom:0;
     }
-
-    /* Hero visible on desktop with compact style */
-    #home .hero{
-      display:block !important;
-      padding:24px 28px 20px !important;
-    }
-    #home .hero-illustration{opacity:.5}
-    #home .hero-logo{width:52px;height:52px;margin-bottom:8px}
-    #home .hero-logo-text{font-size:.95rem}
-    #home .hero-fullname{font-size:1.1rem !important}
-    #home .hero .tagline{font-size:.72rem}
-    #home .hero .badges{margin-top:8px}
-    #home .hero .badge{font-size:.6rem;padding:3px 10px}
+    body{background:#1e1030}
+    #home .hero{display:block !important;padding:16px 28px !important;animation:none !important}
+    #home .hero-illustration{display:none !important}
+    #home .hero-logo{width:44px;height:44px;animation:none !important}
+    #home .hero-logo-text{font-size:.82rem}
+    #home .hero-fullname{font-size:.92rem !important}
     #home{padding-top:0 !important}
-
-    /* Specialty cards side by side on desktop */
-    .specialty-grid{
-      display:grid !important;
-      grid-template-columns:1fr 1fr !important;
-      gap:12px !important;
-    }
-    .spec-card{min-height:160px}
-
-    /* Menu grid 3 columns on desktop */
-    .menu-grid{
-      display:grid !important;
-      grid-template-columns:1fr 1fr 1fr !important;
-      gap:10px !important;
-    }
-
-    /* Body background matches sidebar */
-    body{
-      background:linear-gradient(150deg,#2A0D50,#5A1F8A 50%,#7C2FBE) !important;
-    }
-
-    /* Sidebar footer always visible */
-    .sidebar-footer{
-      display:block;
-      opacity:1;
-    }
-
-    /* Larger form area padding */
-    #form .screen, #about .screen, #criteria .screen, #contact .screen{
-      padding:24px 28px !important;
-    }
-
-    /* Result grid 2 cols always */
-    .result-grid{
-      grid-template-columns:1fr 1fr !important;
-    }
-
-    /* Scrollbar visible on desktop */
-    .app::-webkit-scrollbar{width:6px}
-    .app::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
-    .app::-webkit-scrollbar-track{background:transparent}
+    .specialty-grid{display:grid !important;grid-template-columns:1fr 1fr !important;gap:12px !important}
+    .menu-grid{display:grid !important;grid-template-columns:1fr 1fr 1fr !important;gap:10px !important}
+    .screen{padding:22px 28px !important}
+  }
+  @media(min-width:1100px){
+    .sidebar{width:280px !important;min-width:280px !important}
   }
 
-  
+</style>
+</head>
+<body>
 
-  
+<!-- SPLASH -->
+<div class="splash" id="splash">
+  <div class="splash-orb"></div>
+  <div class="splash-logo-ring"><span class="splash-mdv-text">MDV</span></div>
+  <div class="splash-title">Maternidade Darcy Vargas</div>
+  <div class="splash-sub">Ambulatório de Medicina Fetal<br>& Cardiologia Fetal · Joinville–SC</div>
+  <div class="splash-heartbeat">
+  <svg viewBox="0 0 180 48">
+    <!-- background flat line -->
+    <polyline class="hb-line" points="0,24 30,24 40,24 50,24 60,24 70,24 180,24"/>
+    <!-- ECG pulse shape -->
+    <polyline class="hb-pulse" points="0,24 30,24 38,24 42,8 46,40 50,4 54,44 58,24 66,24 74,24 180,24"/>
+  </svg>
+</div>
+<div class="splash-bar"></div>
+</div>
 
+<!-- OVERLAY -->
+<div class="sending-overlay" id="sendingOverlay">
+  <div class="ck-ring"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></span></div>
+  <p>Abrindo WhatsApp...</p>
+  <span class="sub">Encaminhamento formatado e pronto</span>
+</div>
 
-  /* ══ DESKTOP LAYOUT REFINEMENTS ══ */
-  @media(min-width:768px){
+<div class="toast" id="toast"></div>
 
-    /* Body: neutral dark background instead of loud purple */
-    body{
-      background:#1a1a2e !important;
-    }
-
-    /* Outer wrap: sidebar left + app center, full height */
-    #outerWrap{
-      display:flex;
-      height:100vh;
-      width:100%;
-      overflow:hidden;
-      align-items:stretch;
-    }
-
-    /* App: white/cream card centered with max-width */
-    .app{
-      flex:1;
-      max-width:760px !important;
-      min-height:100vh;
-      height:100vh;
-      overflow-y:auto;
-      background:var(--cream);
-      box-shadow:0 0 60px rgba(0,0,0,.4);
-      border-radius:0;
-      margin:0 auto;
-    }
-
-    /* Right area fill */
-    #outerWrap::after{
-      content:'';
-      flex:1;
-      max-width:calc((100vw - 260px - 760px) / 2);
-      min-width:0;
-    }
-
-    /* Hero: compact, no scan lines on desktop */
-    #home .hero{
-      display:block !important;
-      padding:20px 28px 18px !important;
-      background:linear-gradient(135deg,#3D1266 0%,#6B3FA0 50%,#A8307A 100%) !important;
-      animation:none !important;
-    }
-    #home .hero-illustration{display:none}
-    #home .hero-logo{
-      width:48px;height:48px;
-      margin-bottom:6px;
-      animation:none !important;
-      background:rgba(255,255,255,.15) !important;
-      box-shadow:none !important;
-    }
-    #home .hero-logo-text{font-size:.88rem}
-    #home .hero-fullname{font-size:1rem !important;margin:4px 0 2px}
-    #home .hero .tagline{font-size:.68rem;margin-top:2px}
-    #home .hero .badges{margin-top:8px;gap:5px}
-    #home .hero .badge{font-size:.58rem;padding:2px 8px}
-    #home{padding-top:0 !important}
-
-    /* Specialty grid: 2 equal columns */
-    .specialty-grid{
-      display:grid !important;
-      grid-template-columns:1fr 1fr !important;
-      gap:12px !important;
-    }
-    .spec-card{min-height:auto}
-    .spec-card .spec-content h3{font-size:.92rem}
-    .spec-card .spec-content p{font-size:.74rem}
-
-    /* Menu grid: 3 columns */
-    .menu-grid{
-      display:grid !important;
-      grid-template-columns:1fr 1fr 1fr !important;
-      gap:10px !important;
-    }
-    .card h3{font-size:.88rem}
-    .card p{font-size:.74rem}
-
-    /* Sections padding */
-    .screen{padding:22px 26px !important}
-    #home > div[style]{padding:16px 20px !important}
-
-    /* Form cards on desktop */
-    .fcard{padding:16px 18px !important}
-
-    /* Scrollbar */
-    .app::-webkit-scrollbar{width:5px}
-    .app::-webkit-scrollbar-thumb{background:var(--border);border-ra     <span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></span> Início
-    </div>
-    <div class="sidebar-nav-item" data-screen="form" onclick="navTo('form')">
-      <span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></span> Formulário
-    </div>
-    <div class="sidebar-nav-item" data-screen="criteria" onclick="navTo('criteria')">
-      <span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM10 17l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></span> Critérios
-    </div>
-    <div class="sidebar-nav-item" data-screen="about" onclick="navTo('about')">
-      <span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg></span> Ambulatório
-    </div>
-    <div class="sidebar-nav-item" data-screen="contact" onclick="navTo('contact')">
-      <span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> Contato
-    </div>
-  </nav>
-  <div class="sidebar-footer">
-    Referência Estadual · SES/SC<br>
-    Rua Miguel Couto, 44<br>Joinville – SC<br>
-    <span style="opacity:.6;font-size:.58rem">Ambulatório Materno-Fetal · MDV</span>
-  </div>
-</aside>
+<div id="outerWrap">
 
 <div class="app" id="app">
 
 <!-- ==================== HOME ==================== -->
 <div id="home" class="screen active" style="padding:0">
   <div class="hero">
-    <!-- Ultrasound illustration -->
-    <div class="hero-illustration" aria-hidden="true">
-      <svg viewBox="0 0 320 90" xmlns="http://www.w3.org/2000/svg" class="hero-svg">
-        <g opacity="0.15">
-          <line x1="160" y1="8" x2="20" y2="88" stroke="white" stroke-width="0.5"/>
-          <line x1="160" y1="8" x2="70" y2="88" stroke="white" stroke-width="0.5"/>
-          <line x1="160" y1="8" x2="120" y2="88" stroke="white" stroke-width="0.5"/>
-          <line x1="160" y1="8" x2="160" y2="88" stroke="white" stroke-width="0.5"/>
-          <line x1="160" y1="8" x2="200" y2="88" stroke="white" stroke-width="0.5"/>
-          <line x1="160" y1="8" x2="250" y2="88" stroke="white" stroke-width="0.5"/>
-          <line x1="160" y1="8" x2="300" y2="88" stroke="white" stroke-width="0.5"/>
-        </g>
-        <path d="M 20 88 A 145 145 0 0 1 300 88" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-        <path d="M 55 88 A 110 110 0 0 1 265 88" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
-        <g class="fetal-heart" transform="translate(140,28)">
-          <path d="M20,6 C20,2 16,0 13,0 C10,0 7,2 7,5 C7,2 4,0 1,0 C-2,0 -6,2 -6,6 C-6,10 -1,15 7,22 C15,15 20,11 20,6Z"
-                fill="rgba(232,67,122,0.65)" stroke="rgba(255,255,255,0.25)" stroke-width="0.5"/>
-        </g>
-        <polyline points="30,58 58,58 66,58 71,43 76,73 81,36 86,78 91,58 115,58 300,58"
-                  fill="none" stroke="#E8437A" stroke-width="1.5" stroke-linecap="round" opacity="0.55"/>
-        <line class="scan-cursor" x1="160" y1="8" x2="255" y2="88" stroke="rgba(232,67,122,0.45)" stroke-width="1.5"/>
-      </svg>
-    </div>
-
     <div class="hero-logo"><span class="hero-logo-text">MDV</span></div>
-    <h1 class="hero-fullname">Maternidade Darcy Vargas</h1>
-    <p class="tagline" style="margin-top:2px">Formulário de Encaminhamento · Ambulatório Materno-Fetal</p>
-    <p style="font-size:.63rem;color:rgba(255,255,255,.38);margin-top:6px;letter-spacing:.5px;position:relative;z-index:1">Referência Estadual SES/SC · Joinville–SC · Fundada 1947</p>
+    <h1>Encaminhamento Fetal</h1>
+    <p class="tagline" style="margin-top:4px">Medicina Fetal · Cardiologia Fetal</p>
+    <p style="font-size:.65rem;color:rgba(255,255,255,.45);margin-top:8px;letter-spacing:.5px;position:relative;z-index:1">Referência Estadual · SES/SC · 100% SUS · Joinville</p>
     <div class="badges">
       <span class="badge badge-teal">Medicina Fetal</span>
       <span class="badge badge-rose">Cardiologia Fetal</span>
@@ -980,82 +817,28 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     </div>
   </div>
   <div style="padding:18px 16px">
-    <!-- Specialty label -->
-    <p style="font-size:.72rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px">Selecione a especialidade</p>
-    <div class="specialty-grid">
-      <!-- Medicina Fetal -->
-      <div class="spec-card spec-fetal anim-delay-1" onclick="startForm('fetal')">
-        <div class="spec-icon-wrap">
-          <svg viewBox="0 0 48 48" class="spec-svg" xmlns="http://www.w3.org/2000/svg">
-            <!-- Uterus silhouette -->
-            <ellipse cx="24" cy="26" rx="13" ry="11" fill="none" stroke="currentColor" stroke-width="2" opacity="0.6"/>
-            <!-- Fetus outline -->
-            <circle cx="24" cy="24" r="5" fill="currentColor" opacity="0.25"/>
-            <circle cx="24" cy="19" r="3" fill="currentColor" opacity="0.4"/>
-            <!-- Fallopian tubes -->
-            <path d="M11,20 Q6,16 4,18 Q3,22 6,22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-            <path d="M37,20 Q42,16 44,18 Q45,22 42,22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-            <!-- Cervix -->
-            <rect x="21" y="36" width="6" height="6" rx="3" fill="currentColor" opacity="0.3"/>
-            <!-- Scan lines -->
-            <line x1="24" y1="6" x2="10" y2="46" stroke="currentColor" stroke-width="0.5" opacity="0.15"/>
-            <line x1="24" y1="6" x2="24" y2="46" stroke="currentColor" stroke-width="0.5" opacity="0.15"/>
-            <line x1="24" y1="6" x2="38" y2="46" stroke="currentColor" stroke-width="0.5" opacity="0.15"/>
-          </svg>
-        </div>
-        <div class="spec-content">
-          <div class="spec-badge">Ambulatório</div>
-          <h3>Medicina Fetal</h3>
-          <p>Anomalias estruturais, rastreio de cromossomopatias, crescimento fetal, gestação gemelar, genética</p>
-          <div class="spec-tags">
-            <span>Ultrassom Morfológico</span><span>Rastreio 1º Trimestre</span><span>NIPT / Genética</span><span>Gestação Gemelar</span>
-          </div>
-        </div>
-        <span class="spec-arrow">→</span>
+    <div class="menu-grid">
+      <div class="card card-featured anim-delay-1" onclick="navTo('form')">
+        <div class="card-icon" style="background:rgba(255,255,255,.12);color:#fff"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></span></div>
+        <div><h3>Novo Encaminhamento</h3><p>Formulário clínico completo para avaliação ambulatorial.</p></div>
       </div>
-
-      <!-- Cardiologia Fetal -->
-      <div class="spec-card spec-cardio anim-delay-2" onclick="startForm('cardio')">
-        <div class="spec-icon-wrap">
-          <svg viewBox="0 0 48 48" class="spec-svg" xmlns="http://www.w3.org/2000/svg">
-            <!-- Heart -->
-            <path d="M24,38 C24,38 8,27 8,16 C8,11 12,8 16,8 C19,8 22,10 24,13 C26,10 29,8 32,8 C36,8 40,11 40,16 C40,27 24,38 24,38Z"
-                  fill="currentColor" opacity="0.25" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
-            <!-- ECG inside heart -->
-            <polyline points="12,22 16,22 18,22 19,17 20,27 21,14 22,30 23,22 26,22 36,22"
-                      fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
-          </svg>
-        </div>
-        <div class="spec-content">
-          <div class="spec-badge spec-badge-rose">Ambulatório</div>
-          <h3>Cardiologia Fetal</h3>
-          <p>Cardiopatias congênitas, arritmias fetais, ecocardiograma fetal, Doppler cardíaco</p>
-          <div class="spec-tags spec-tags-rose">
-            <span>Ecocardiograma Fetal</span><span>Arritmia Fetal</span><span>Translucência Nucal elevada</span><span>Doppler Fetal</span>
-          </div>
-        </div>
-        <span class="spec-arrow spec-arrow-rose">→</span>
-      </div>
-    </div>
-
-    <div class="menu-grid" style="margin-top:10px">
-      <div class="card anim-delay-3" onclick="navTo('about')">
+      <div class="card anim-delay-2" onclick="navTo('about')">
         <div class="card-icon ci-teal"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg></span></div>
-        <div><h3>Sobre o Ambulatório</h3><p>Equipe, especialidades e critérios.</p></div>
+        <div><h3>Sobre o Ambulatório</h3><p>Equipe, especialidades e critérios de encaminhamento.</p></div>
       </div>
-      <div class="card anim-delay-3" onclick="navTo('criteria')">
-        <div class="card-icon ci-rose"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM10 17l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></span></div>
-        <div><h3>Critérios</h3><p>Indicações de encaminhamento.</p></div>
-      </div>
-      <div class="card anim-delay-4" onclick="navTo('contact')">
+      <div class="card anim-delay-3" onclick="navTo('contact')">
         <div class="card-icon ci-navy"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2zM19 3h-2v2h2v2h2V5h2V3h-2V1h-2v2z"/></svg></span></div>
-        <div><h3>Contato</h3><p>WhatsApp e agendamento.</p></div>
+        <div><h3>Contato e Agendamento</h3><p>WhatsApp, endereço e horários de atendimento.</p></div>
+      </div>
+      <div class="card anim-delay-4" onclick="navTo('criteria')">
+        <div class="card-icon ci-rose"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM10 17l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></span></div>
+        <div><h3>Critérios de Encaminhamento</h3><p>Indicações e documentação necessária.</p></div>
       </div>
     </div>
     <div class="footer">
       Maternidade Darcy Vargas · Unidade Própria SES/SC<br>
       Rua Miguel Couto, 44 — Anita Garibaldi, Joinville–SC<br>
-      <span style="opacity:.55">Sistema de Encaminhamento Digital · Ambulatório MDV</span>
+      <span style="opacity:.55">Sistema de Encaminhamento Digital — MDV</span>
     </div>
   </div>
 </div>
@@ -1078,49 +861,6 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     <div class="progress-step"></div>
   </div>
   <div class="step-label" id="stepLabel">Etapa <strong>1</strong> de 6 — Identificação</div>
-
-
-  <!-- STEP 0: SPECIALTY SELECTOR -->
-  <div class="form-step" id="step0" style="display:none">
-    <div class="spec-selector-header">
-      <p style="font-size:.82rem;color:var(--text-soft);margin-bottom:14px;line-height:1.45">
-        Selecione a especialidade para definir os campos clínicos do encaminhamento.
-      </p>
-    </div>
-    <div class="specialty-grid">
-      <div class="spec-card spec-fetal" onclick="selectSpecialty('fetal')">
-        <div class="spec-icon-wrap">
-          <svg viewBox="0 0 48 48" class="spec-svg" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="24" cy="26" rx="13" ry="11" fill="none" stroke="currentColor" stroke-width="2" opacity="0.6"/>
-            <circle cx="24" cy="24" r="5" fill="currentColor" opacity="0.25"/>
-            <circle cx="24" cy="19" r="3" fill="currentColor" opacity="0.4"/>
-            <path d="M11,20 Q6,16 4,18 Q3,22 6,22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-            <path d="M37,20 Q42,16 44,18 Q45,22 42,22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-          </svg>
-        </div>
-        <div class="spec-content">
-          <div class="spec-badge">Encaminhamento</div>
-          <h3>Medicina Fetal</h3>
-          <p>Anomalias estruturais, rastreio 1º trimestre, cromossomopatias, crescimento fetal, gestação gemelar</p>
-        </div>
-        <span class="spec-arrow">→</span>
-      </div>
-      <div class="spec-card spec-cardio" onclick="selectSpecialty('cardio')">
-        <div class="spec-icon-wrap">
-          <svg viewBox="0 0 48 48" class="spec-svg" xmlns="http://www.w3.org/2000/svg">
-            <path d="M24,38 C24,38 8,27 8,16 C8,11 12,8 16,8 C19,8 22,10 24,13 C26,10 29,8 32,8 C36,8 40,11 40,16 C40,27 24,38 24,38Z" fill="currentColor" opacity="0.25" stroke="currentColor" stroke-width="1.5"/>
-            <polyline points="12,22 16,22 18,22 19,17 20,27 21,14 22,30 23,22 26,22 36,22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
-          </svg>
-        </div>
-        <div class="spec-content">
-          <div class="spec-badge spec-badge-rose">Encaminhamento</div>
-          <h3>Cardiologia Fetal</h3>
-          <p>Cardiopatias congênitas, arritmias fetais, ecocardiograma fetal, translucência nucal elevada, Doppler fetal</p>
-        </div>
-        <span class="spec-arrow spec-arrow-rose">→</span>
-      </div>
-    </div>
-  </div>
 
   <!-- STEP 1: IDENTIFICAÇÃO -->
   <div class="form-step" id="step1">
@@ -1168,27 +908,27 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     <div class="fcard">
       <div class="fcard-hdr"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg></span><span class="title">Dados Obstétricos</span><span class="badge-req">Obrigatório</span></div>
       <div class="row-2">
-        <div class="field"><label>Idade Gestacional (IG) <span class="req">*</span> <span class="hint">(semanas completas)</span> <button class="tip-btn" onclick="event.stopPropagation();showTip('ig',this)" aria-label="Saiba mais">ⓘ</button></label><input type="number" id="igSem" placeholder="Ex: 22" min="8" max="42"></div>
-        <div class="field"><label>IG <span class="hint">(dias adicionais, 0–6)</span></label><input type="number" id="igDias" placeholder="0–6" min="0" max="6"></div>
+        <div class="field"><label>IG atual <span class="req">*</span> <span class="hint">(semanas)</span></label><input type="number" id="igSem" placeholder="Ex: 22" min="8" max="42"></div>
+        <div class="field"><label>IG <span class="hint">(dias)</span></label><input type="number" id="igDias" placeholder="0–6" min="0" max="6"></div>
       </div>
       <div class="row-2">
-        <div class="field"><label>Data da Última Menstruação (DUM) <span class="req">*</span> <button class="tip-btn" onclick="event.stopPropagation();showTip('dum',this)" aria-label="Saiba mais">ⓘ</button></label><input type="date" id="gestDUM"></div>
-        <div class="field"><label>Data Provável do Parto (DPP) <span class="req">*</span> <button class="tip-btn" onclick="event.stopPropagation();showTip('dum',this)" aria-label="Saiba mais">ⓘ</button></label><input type="date" id="gestDPP"></div>
+        <div class="field"><label>DUM <span class="req">*</span></label><input type="date" id="gestDUM"></div>
+        <div class="field"><label>DPP <span class="req">*</span></label><input type="date" id="gestDPP"></div>
       </div>
       <div class="field"><label>Método de datação <span class="req">*</span></label>
         <select id="gestDatacao">
           <option value="">Selecione...</option>
-          <option value="USG 1º trimestre (CRL)">Ultrassom 1º trimestre (medida CRL) — mais preciso</option>
-          <option value="USG 2º trimestre">Ultrassom 2º trimestre</option>
+          <option value="USG 1º trimestre (CRL)">USG 1º trimestre (CRL) — mais preciso</option>
+          <option value="USG 2º trimestre">USG 2º trimestre</option>
           <option value="DUM confiável">DUM confiável</option>
-          <option value="FIV / IA">Fertilização in vitro (FIV) / Inseminação artificial</option>
-          <option value="Incerto">Datação incerta — não confiável</option>
+          <option value="FIV / IA">FIV / Inseminação artificial</option>
+          <option value="Incerto">Datação incerta</option>
         </select>
       </div>
       <div class="row-3">
-        <div class="field"><label>G <span class="hint">(nº de gestações)</span></label><input type="number" id="obsG" placeholder="0" min="0" max="20"></div>
-        <div class="field"><label>P <span class="hint">(nº de partos)</span></label><input type="number" id="obsP" placeholder="0" min="0" max="20"></div>
-        <div class="field"><label>A <span class="hint">(abortos/perdas)</span></label><input type="number" id="obsA" placeholder="0" min="0" max="20"></div>
+        <div class="field"><label>G <span class="hint">(gesta)</span></label><input type="number" id="obsG" placeholder="0" min="0" max="20"></div>
+        <div class="field"><label>P <span class="hint">(para)</span></label><input type="number" id="obsP" placeholder="0" min="0" max="20"></div>
+        <div class="field"><label>A <span class="hint">(abort.)</span></label><input type="number" id="obsA" placeholder="0" min="0" max="20"></div>
       </div>
       <div class="field"><label>Gestação atual</label>
         <select id="gestTipo">
@@ -1203,19 +943,19 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 
     <div class="fcard">
       <div class="fcard-hdr"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.11 12.45 14 10.24l-3.11 6.21-2-4H7v-2h3.11l2 4 3.11-6.21 2.11 4.21H20v2h-2.22zM20 3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg></span><span class="title">Comorbidades Maternas</span><span class="badge-req">Obrigatório</span></div>
-      <div class="field"><label>Doenças/condições maternas presentes <span class="hint">(marque todas que se aplicam)</span></label>
+      <div class="field"><label>Selecione as comorbidades presentes <span class="hint">(marque todas)</span></label>
         <div class="check-group" id="comorb">
-          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Hipertensão arterial"><span class="dot"></span>Hipertensão arterial</label>
-          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Diabetes mellitus"><span class="dot"></span>Diabetes</label>
-          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Diabetes gestacional"><span class="dot"></span>Diabetes gestacional</label>
-          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Lúpus eritematoso sistêmico"><span class="dot"></span>Lúpus (LES)</label>
-          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Hipotireoidismo"><span class="dot"></span>Hipotireoidismo</label>
-          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Hipertireoidismo"><span class="dot"></span>Hipertireoidismo</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Hipertensão arterial"><span class="dot"></span>HAS</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Diabetes mellitus"><span class="dot"></span>DM</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Diabetes gestacional"><span class="dot"></span>DMG</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Lúpus eritematoso sistêmico"><span class="dot"></span>LES</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Hipotireoidismo"><span class="dot"></span>Hipotireo.</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Hipertireoidismo"><span class="dot"></span>Hipertireo.</label>
           <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Cardiopatia materna"><span class="dot"></span>Cardiopatia</label>
           <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Trombofilia"><span class="dot"></span>Trombofilia</label>
           <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Infecção (TORCH/CMV/Toxo)"><span class="dot"></span>Infecção</label>
-          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Isoimunização Rh"><span class="dot"></span>Isoimunização Rh</label>
-          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Uso de teratogênicos"><span class="dot"></span>Medicamentos Teratogênicos</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Isoimunização Rh"><span class="dot"></span>Isoimun. Rh</label>
+          <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Uso de teratogênicos"><span class="dot"></span>Teratogênicos</label>
           <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Nenhuma comorbidade"><span class="dot"></span>Nenhuma</label>
         </div>
       </div>
@@ -1238,56 +978,56 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       <div class="field"><label>Rastreio realizado?</label>
         <select id="rastreioRealizou" onchange="toggleRastreio()">
           <option value="Sim">Sim, foi realizado</option>
-          <option value="Nao">Não realizado</option>
+          <option value="Nao">Não foi realizado</option>
           <option value="Aguardando">Aguardando resultado</option>
         </select>
       </div>
       <div id="rastreioFields">
         <div class="row-2">
-          <div class="field"><label>Translucência Nucal — TN <span class="req">*</span> <span class="hint">(mm)</span> <button class="tip-btn" onclick="event.stopPropagation();showTip('tn',this)" aria-label="Saiba mais">ⓘ</button></label><input type="number" id="tn" placeholder="Ex: 1.8" step="0.1" min="0" max="10"></div>
-          <div class="field"><label>TN <span class="hint">(percentil ou múltiplo da mediana)</span></label><input type="text" id="tnMom" placeholder="Ex: p95 ou 1.8 MoM"></div>
+          <div class="field"><label>TN <span class="req">*</span> <span class="hint">(mm)</span></label><input type="number" id="tn" placeholder="Ex: 1.8" step="0.1" min="0" max="10"></div>
+          <div class="field"><label>TN <span class="hint">(percentil/MoM)</span></label><input type="text" id="tnMom" placeholder="Ex: p95 ou 1.8 MoM"></div>
         </div>
-        <div class="field"><label>Osso Nasal do Bebê <span class="req">*</span></label>
+        <div class="field"><label>Osso Nasal <span class="req">*</span></label>
           <select id="oNasal">
             <option value="">Selecione...</option>
             <option value="Presente e normal">Presente e normal</option>
             <option value="Hipoplásico">Hipoplásico</option>
-            <option value="Ausente">Ausente — não há sinais</option>
+            <option value="Ausente">Ausente</option>
             <option value="Não avaliado">Não avaliado</option>
           </select>
         </div>
         <div class="row-2">
-          <div class="field"><label>Doppler do Ductus Venoso <span class="hint">(canal entre veia umbilical e coração)</span></label>
+          <div class="field"><label>Ductus Venoso</label>
             <select id="ductusVen">
-              <option value="Normal (onda a positiva)">Normal</option>
-              <option value="Onda a ausente">Alterado — onda ausente</option>
-              <option value="Onda a reversa">Alterado — onda reversa (grave)</option>
+              <option value="Normal (onda a positiva)">Normal (onda a positiva)</option>
+              <option value="Onda a ausente">Onda a ausente</option>
+              <option value="Onda a reversa">Onda a reversa</option>
               <option value="Não avaliado">Não avaliado</option>
             </select>
           </div>
-          <div class="field"><label>Regurgitação da Válvula Tricúspide</label>
+          <div class="field"><label>Regurg. Tricúspide</label>
             <select id="regurgTri">
-              <option value="Ausente">Ausente — não há sinais — normal</option>
-              <option value="Presente">Presente — alterado</option>
+              <option value="Ausente">Ausente (normal)</option>
+              <option value="Presente">Presente</option>
               <option value="Não avaliado">Não avaliado</option>
             </select>
           </div>
         </div>
         <div class="row-2">
-          <div class="field"><label>Índice de Pulsatilidade (IP) das artérias uterinas — média <button class="tip-btn" onclick="event.stopPropagation();showTip('ip',this)" aria-label="Saiba mais">ⓘ</button></label><input type="number" id="ipUterinas" placeholder="Ex: 1.4" step="0.01" min="0" max="5"></div>
-          <div class="field"><label>IP uterinas <span class="hint">(percentil para a IG)</span></label><input type="text" id="ipUterinasP" placeholder="Ex: p90"></div>
+          <div class="field"><label>IP uterinas média</label><input type="number" id="ipUterinas" placeholder="Ex: 1.4" step="0.01" min="0" max="5"></div>
+          <div class="field"><label>IP uterinas <span class="hint">(percentil)</span></label><input type="text" id="ipUterinasP" placeholder="Ex: p90"></div>
         </div>
         <div class="divider"></div>
         <div class="row-2">
-          <div class="field"><label>PAPP-A <span class="hint">(proteína plasmática — múltiplo da mediana)</span></label><input type="number" id="pappA" placeholder="Ex: 0.45" step="0.01" min="0" max="10"></div>
-          <div class="field"><label>Beta-hCG livre <span class="hint">(múltiplo da mediana)</span></label><input type="number" id="bhcg" placeholder="Ex: 2.1" step="0.01" min="0" max="20"></div>
+          <div class="field"><label>PAPP-A <span class="hint">(MoM)</span></label><input type="number" id="pappA" placeholder="Ex: 0.45" step="0.01" min="0" max="10"></div>
+          <div class="field"><label>β-hCG livre <span class="hint">(MoM)</span></label><input type="number" id="bhcg" placeholder="Ex: 2.1" step="0.01" min="0" max="20"></div>
         </div>
-        <div class="field"><label>Risco Síndrome de Down (Trissomia 21) <span class="hint">(ex: 1:85 = alto risco)</span></label><input type="text" id="riscoT21" placeholder="Ex: 1:85 (alto risco)"></div>
+        <div class="field"><label>Risco calculado T21 <span class="hint">(1:N)</span></label><input type="text" id="riscoT21" placeholder="Ex: 1:85 (alto risco)"></div>
         <div class="row-2">
-          <div class="field"><label>Risco Síndrome de Edwards (T18)</label><input type="text" id="riscoT18" placeholder="Ex: 1:1500"></div>
-          <div class="field"><label>Risco Síndrome de Patau (T13)</label><input type="text" id="riscoT13" placeholder="Ex: 1:2000"></div>
+          <div class="field"><label>Risco T18</label><input type="text" id="riscoT18" placeholder="Ex: 1:1500"></div>
+          <div class="field"><label>Risco T13</label><input type="text" id="riscoT13" placeholder="Ex: 1:2000"></div>
         </div>
-        <div class="field"><label>Risco de Pré-eclâmpsia Precoce <span class="hint">(antes de 34 semanas)</span></label><input type="text" id="riscoPE" placeholder="Ex: 1:45 (alto risco)"></div>
+        <div class="field"><label>Risco pré-eclâmpsia precoce <span class="hint">(% ou categoria)</span></label><input type="text" id="riscoPE" placeholder="Ex: 1:45 (alto risco)"></div>
       </div>
       <div id="rastreioMotivoField" style="display:none">
         <div class="field"><label>Motivo de não realização</label>
@@ -1315,14 +1055,14 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       <div class="field"><label>Morfológico realizado?</label>
         <select id="ecoRealizado" onchange="toggleEco()">
           <option value="Sim">Sim, foi realizado</option>
-          <option value="Nao">Não realizado ainda</option>
-          <option value="Parcial">Realizado parcialmente / resultado inconclusivo</option>
+          <option value="Nao">Não foi realizado ainda</option>
+          <option value="Parcial">Realizado parcialmente / inconclusivo</option>
         </select>
       </div>
       <div id="ecoFields">
         <div class="row-2">
           <div class="field"><label>Data do exame</label><input type="date" id="ecoData"></div>
-          <div class="field"><label>Idade Gestacional na época do exame <span class="hint">(semanas)</span></label><input type="number" id="ecoIG" placeholder="Ex: 20" min="10" max="42"></div>
+          <div class="field"><label>IG na época <span class="hint">(sem)</span></label><input type="number" id="ecoIG" placeholder="Ex: 20" min="10" max="42"></div>
         </div>
         <div class="field"><label>Resultado geral <span class="req">*</span></label>
           <select id="ecoResultado">
@@ -1336,45 +1076,45 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
         <div class="field"><label>Sistemas acometidos <span class="hint">(marque os alterados)</span></label>
           <div class="check-group" id="sistemas">
             <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Cardiovascular"><span class="dot"></span>Cardiovascular</label>
-            <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Sistema Nervoso Central"><span class="dot"></span>Sist. Nervoso Central</label>
-            <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Renal / Trato urinário"><span class="dot"></span>Renal / Trato urinário</label>
-            <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Gastrointestinal"><span class="dot"></span>Gastrointestinal</label>
+            <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Sistema Nervoso Central"><span class="dot"></span>SNC</label>
+            <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Renal / Trato urinário"><span class="dot"></span>Renal/TU</label>
+            <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Gastrointestinal"><span class="dot"></span>TGI</label>
             <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Esquelético / Extremidades"><span class="dot"></span>Esquelético</label>
-            <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Parede abdominal"><span class="dot"></span>Parede abdominal</label>
+            <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Parede abdominal"><span class="dot"></span>Par. Abd.</label>
             <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Face / Palato"><span class="dot"></span>Face/Palato</label>
             <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Tórax / Pulmões"><span class="dot"></span>Tórax</label>
-            <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Placenta / Líquido amniótico"><span class="dot"></span>Placenta/Líq. Amniótico</label>
+            <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Placenta / Líquido amniótico"><span class="dot"></span>Placenta/LA</label>
             <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Nenhum"><span class="dot"></span>Nenhum</label>
           </div>
         </div>
         <div class="field"><label>Suspeita diagnóstica principal <span class="req">*</span></label>
           <textarea id="ecoDiag" placeholder="Ex: Cardiopatia congênita complexa (suspeita de CIV perimembranosa + aorta cavalgante). Afastar T21..."></textarea>
         </div>
-        <div class="field"><label>Crescimento fetal <button class="tip-btn" onclick="event.stopPropagation();showTip('ciur',this)" aria-label="Saiba mais">ⓘ</button></label>
+        <div class="field"><label>Crescimento fetal</label>
           <select id="crescFetal">
-            <option value="AIG (adequado para IG)">Adequado para a Idade Gestacional (AIG)</option>
-            <option value="PIG / CIUR">Pequeno para a IG / Restrição de Crescimento (CIUR)</option>
-            <option value="GIG (macrossomia)">Grande para a IG / Macrossomia (GIG)</option>
+            <option value="AIG (adequado para IG)">AIG — adequado para IG</option>
+            <option value="PIG / CIUR">PIG / CIUR — pequeno para IG</option>
+            <option value="GIG (macrossomia)">GIG — grande / macrossomia</option>
             <option value="Não avaliado">Não avaliado</option>
           </select>
         </div>
         <div class="row-2">
-          <div class="field"><label>Volume do Líquido Amniótico</label>
+          <div class="field"><label>Líquido amniótico</label>
             <select id="liquidoAmn">
               <option value="Normal">Normal</option>
-              <option value="Oligodrâmnio">Diminuído (Oligodrâmnio)</option>
-              <option value="Polidrâmnio">Aumentado (Polidrâmnio)</option>
+              <option value="Oligodrâmnio">Oligodrâmnio</option>
+              <option value="Polidrâmnio">Polidrâmnio</option>
             </select>
           </div>
-          <div class="field"><label>ILA / Maior bolsão <span class="hint">(índice de líquido amniótico)</span></label><input type="text" id="ilaVal" placeholder="Ex: ILA 18 cm"></div>
+          <div class="field"><label>ILA / Maior bolsão</label><input type="text" id="ilaVal" placeholder="Ex: ILA 18 cm"></div>
         </div>
         <div class="field"><label>Hidropsia fetal</label>
           <select id="hidropsia">
-            <option value="Ausente">Ausente — não há sinais</option>
-            <option value="Presente — imune">Presente — causa imunológica (incompatibilidade Rh)</option>
-            <option value="Presente — não imune">Presente — causa não imunológica</option>
+            <option value="Ausente">Ausente</option>
+            <option value="Presente — imune">Presente — imune</option>
+            <option value="Presente — não imune">Presente — não imune</option>
             <option value="Ascite isolada">Ascite isolada</option>
-            <option value="Em investigação">Suspeito — em investigação</option>
+            <option value="Em investigação">Em investigação</option>
           </select>
         </div>
       </div>
@@ -1404,7 +1144,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       <div id="cardioFields" style="display:none">
         <div class="field"><label>Ecocardiograma fetal realizado?</label>
           <select id="ecoCardio" onchange="toggleEcoCardio()">
-            <option value="Nao">Não realizado</option>
+            <option value="Nao">Não foi realizado</option>
             <option value="Sim — normal">Sim — resultado normal</option>
             <option value="Sim — alterado">Sim — resultado alterado</option>
             <option value="Sim — inconclusivo">Sim — inconclusivo</option>
@@ -1413,21 +1153,21 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
         <div id="ecoCardioFields" style="display:none">
           <div class="field"><label>Achados no ecocardiograma</label>
             <div class="check-group" id="ecoAchados">
-              <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Quatro câmaras alteradas"><span class="dot"></span>4 câmaras cardíacas</label>
-              <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Via de saída VE alterada"><span class="dot"></span>Via saída ventrículo esquerdo</label>
-              <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Via de saída VD alterada"><span class="dot"></span>Via saída ventrículo direito</label>
-              <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Arco aórtico alterado"><span class="dot"></span>Arco Aórtico</label>
-              <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Retorno venoso alterado"><span class="dot"></span>Retorno venoso pulmonar</label>
-              <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Função sistólica reduzida"><span class="dot"></span>Função sistólica</label>
-              <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Derrame pericárdico"><span class="dot"></span>Derrame pericárdico</label>
-              <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Situs inversus"><span class="dot"></span>Situs Inversus (órgãos espelhados)</label>
+              <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Quatro câmaras alteradas"><span class="dot"></span>4 câmaras</label>
+              <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Via de saída VE alterada"><span class="dot"></span>Via saída VE</label>
+              <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Via de saída VD alterada"><span class="dot"></span>Via saída VD</label>
+              <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Arco aórtico alterado"><span class="dot"></span>Arco Ao.</label>
+              <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Retorno venoso alterado"><span class="dot"></span>Ret. Venoso</label>
+              <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Função sistólica reduzida"><span class="dot"></span>Função Sist.</label>
+              <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Derrame pericárdico"><span class="dot"></span>Derm. Pericárd.</label>
+              <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Situs inversus"><span class="dot"></span>Situs Inversus</label>
             </div>
           </div>
           <div class="field"><label>Hipótese diagnóstica da cardiopatia</label>
             <select id="cardioHip">
               <option value="">Selecione ou descreva abaixo...</option>
-              <option value="CIV (Comunicação interventricular)">CIV — Comunicação Interventricular</option>
-              <option value="CIA (Comunicação interatrial)">CIA — Comunicação Interatrial</option>
+              <option value="CIV (Comunicação interventricular)">CIV — Comunicação interventricular</option>
+              <option value="CIA (Comunicação interatrial)">CIA — Comunicação interatrial</option>
               <option value="Tetralogia de Fallot">Tetralogia de Fallot</option>
               <option value="Transposição das grandes artérias (TGA)">TGA — Transposição das grandes artérias</option>
               <option value="Coarctação da aorta">Coarctação da aorta</option>
@@ -1457,14 +1197,14 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
             <option value="Irregular não classificado">Irregular — não classificado</option>
           </select>
         </div>
-        <div class="field"><label>Exames de fluxo sanguíneo fetal (Doppler)</label>
+        <div class="field"><label>Doppler fetal relevante</label>
           <div class="row-2">
-            <div class="field"><label>IP da Artéria Umbilical <button class="tip-btn" onclick="event.stopPropagation();showTip('ip',this)" aria-label="Saiba mais">ⓘ</button></label><input type="text" id="dopUA" placeholder="Ex: 1.2 (normal)"></div>
-            <div class="field"><label>IP da Artéria Cerebral Média (ACM)</label><input type="text" id="dopACM" placeholder="Ex: 1.8 (normal)"></div>
+            <div class="field"><label>IP Artéria Umbilical</label><input type="text" id="dopUA" placeholder="Ex: 1.2 (normal)"></div>
+            <div class="field"><label>IP ACM</label><input type="text" id="dopACM" placeholder="Ex: 1.8 (normal)"></div>
           </div>
           <div class="row-2">
             <div class="field"><label>Ductus venoso</label><input type="text" id="dopDV" placeholder="Ex: onda a reversa"></div>
-            <div class="field"><label>Doppler do Ductus Arterioso</label><input type="text" id="dopDA" placeholder="Ex: IP 2.1 (normal)"></div>
+            <div class="field"><label>Ductus arterioso</label><input type="text" id="dopDA" placeholder="Ex: IP 2.1 (normal)"></div>
           </div>
         </div>
       </div>
@@ -1481,7 +1221,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     <div class="fcard">
       <div class="fcard-hdr"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.8 18.4 14 10.67V6.5l1.35-1.69c.26-.33.03-.81-.39-.81H9.04c-.42 0-.65.48-.39.81L10 6.5v4.17L4.2 18.4c-.49.66-.02 1.6.8 1.6h14c.82 0 1.29-.94.8-1.6z"/></svg></span><span class="title">Investigação Genética</span><span class="badge-opt">Opcional</span></div>
       <div class="row-2">
-        <div class="field"><label>Teste Genético no Sangue Materno (NIPT) realizado? <button class="tip-btn" onclick="event.stopPropagation();showTip('nipt',this)" aria-label="Saiba mais">ⓘ</button></label>
+        <div class="field"><label>NIPT realizado?</label>
           <select id="nipt" onchange="toggleNIPT()">
             <option value="Nao">Não</option>
             <option value="Sim — normal">Sim — normal</option>
@@ -1489,7 +1229,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
             <option value="Em andamento">Em andamento</option>
           </select>
         </div>
-        <div class="field"><label>Análise dos Cromossomos do Bebê (Cariótipo)? <button class="tip-btn" onclick="event.stopPropagation();showTip('cariotipo',this)" aria-label="Saiba mais">ⓘ</button></label>
+        <div class="field"><label>Cariótipo fetal?</label>
           <select id="cariotipo" onchange="toggleCariotipo()">
             <option value="Nao">Não realizado</option>
             <option value="Amniocentese">Amniocentese</option>
@@ -1499,7 +1239,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
         </div>
       </div>
       <div id="niptResult" style="display:none">
-        <div class="field"><label>Resultado NIPT <button class="tip-btn" onclick="event.stopPropagation();showTip('nipt',this)" aria-label="Saiba mais">ⓘ</button></label><input type="text" id="niptRes" placeholder="Ex: Trissomia 21 detectada, alto risco"></div>
+        <div class="field"><label>Resultado NIPT</label><input type="text" id="niptRes" placeholder="Ex: T21 detectada, alto risco"></div>
       </div>
       <div id="carioResult" style="display:none">
         <div class="field"><label>Resultado / Situação do cariótipo</label><input type="text" id="carioRes" placeholder="Ex: 47,XX+21 — trissomia 21 confirmada"></div>
@@ -1522,7 +1262,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 
     <div class="fcard">
       <div class="fcard-hdr"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 10h11v2H3zm0-4h11v2H3zm0 8h7v2H3zm15.01-2.13 1.41-1.41 2.12 2.12-1.41 1.41zm-.71.71-5.3 5.3V20h2.12l5.3-5.3z"/></svg></span><span class="title">Finalização</span><span class="badge-req">Obrigatório</span></div>
-      <div class="field"><label>Qual a prioridade do atendimento? <span class="req">*</span></label>
+      <div class="field"><label>Urgência do atendimento <span class="req">*</span></label>
         <div class="urg-selector" id="urgSelector">
           <div class="urg-btn active-eletivo" onclick="setUrgencia('eletivo',this,event)" id="urgEletivo"><div class="ug-icon">🟢</div><div class="ug-lbl">Eletivo</div></div>
           <div class="urg-btn" onclick="setUrgencia('prioritario',this,event)" id="urgPrioritario"><div class="ug-icon">🟡</div><div class="ug-lbl">Prioritário</div></div>
@@ -1540,199 +1280,6 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     <div class="btn-row-mt">
       <button class="btn btn-outline" onclick="prevStep(5)" style="flex:1">Voltar</button>
       <button class="btn btn-primary" onclick="showResult()" style="flex:2"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></span> Ver Resumo</button>
-    </div>
-  </div>
-
-
-  <!-- STEP 3 CARDIO: ECOCARDIOGRAMA FETAL -->
-  <div class="form-step" id="step3c" style="display:none">
-    <div class="fcard">
-      <div class="fcard-hdr"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35z"/></svg></span><span class="title">Ecocardiograma Fetal</span><span class="badge-req">Obrigatório</span></div>
-      <div class="field"><label>Motivo principal do encaminhamento cardíaco <span class="req">*</span></label>
-        <select id="cMotivo">
-          <option value="">Selecione...</option>
-          <option value="Translucência Nucal elevada (≥3,5mm)">Translucência Nucal elevada (≥3,5 mm)</option>
-          <option value="Suspeita de cardiopatia no morfológico">Suspeita de cardiopatia no morfológico</option>
-          <option value="Arritmia fetal detectada">Arritmia fetal detectada</option>
-          <option value="Hidropsia fetal">Hidropsia fetal</option>
-          <option value="Histórico familiar de cardiopatia congênita">Histórico familiar de cardiopatia congênita</option>
-          <option value="Cardiopatia materna (risco transmissão)">Cardiopatia materna — risco de transmissão</option>
-          <option value="Diabetes materno — risco de cardiopatia congênita">Diabetes materno — risco de CPC</option>
-          <option value="Lúpus eritematoso sistêmico com anti-Ro/La positivo">Lúpus (LES) com anti-Ro/La positivo</option>
-          <option value="NIPT/cariótipo com Trissomia 21, 18, 13 ou deleção 22q11">NIPT/Cariótipo com Trissomia 21, 18, 13 ou deleção 22q11</option>
-          <option value="Poliesplenia / asplenia / situs suspeito">Poliesplenia / Asplenia / Situs suspeito</option>
-          <option value="Outro">Outro motivo</option>
-        </select>
-      </div>
-      <div class="field"><label>Ecocardiograma fetal já realizado?</label>
-        <select id="cEcoFeito" onchange="toggleCEco()">
-          <option value="Nao">Não realizado</option>
-          <option value="Sim-normal">Sim — resultado normal</option>
-          <option value="Sim-alterado">Sim — resultado alterado</option>
-          <option value="Sim-inconclusivo">Sim — inconclusivo / técnica limitada</option>
-        </select>
-      </div>
-      <div id="cEcoFields" style="display:none">
-        <div class="row-2">
-          <div class="field"><label>Data do eco cardíaco</label><input type="date" id="cEcoData"></div>
-          <div class="field"><label>IG no eco <span class="hint">(sem)</span></label><input type="number" id="cEcoIG" placeholder="Ex: 26" min="12" max="42"></div>
-        </div>
-        <div class="field"><label>Resultado geral do eco</label>
-          <select id="cEcoResultado">
-            <option value="">Selecione...</option>
-            <option value="Normal — quatro câmaras + vias de saída normais">Normal — 4 câmaras + vias de saída normais</option>
-            <option value="Alterado — defeito septal">Alterado — defeito septal (CIA/CIV)</option>
-            <option value="Alterado — via de saída">Alterado — via de saída (coarctação, ESAP)</option>
-            <option value="Alterado — cardiopatia complexa">Alterado — cardiopatia complexa</option>
-            <option value="Alterado — retorno venoso">Alterado — retorno venoso (TAPVR)</option>
-            <option value="Inconclusivo">Inconclusivo</option>
-          </select>
-        </div>
-        <div class="field"><label>Achados no ecocardiograma <span class="hint">(marque todos)</span></label>
-          <div class="check-group" id="cEcoAchados">
-            <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="4 câmaras alteradas"><span class="dot"></span>4 câmaras</label>
-            <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Via saída VE"><span class="dot"></span>Via saída ventrículo esquerdo</label>
-            <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Via saída VD"><span class="dot"></span>Via saída ventrículo direito</label>
-            <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Arco aórtico"><span class="dot"></span>Arco aórtico</label>
-            <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Retorno venoso"><span class="dot"></span>Ret. venoso</label>
-            <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Função sistólica reduzida"><span class="dot"></span>Função sist.</label>
-            <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Derrame pericárdico"><span class="dot"></span>Derm. pericárd.</label>
-            <label class="check-item" onclick="toggleCheck(this,event)"><input type="checkbox" value="Situs inversus / heterotaxia"><span class="dot"></span>Situs/Heterotaxia</label>
-          </div>
-        </div>
-        <div class="field"><label>Hipótese diagnóstica cardíaca</label>
-          <select id="cHipotese">
-            <option value="">Selecione ou descreva abaixo...</option>
-            <option value="CIV — Comunicação Interventricular">CIV — Comunicação Interventricular</option>
-            <option value="CIA — Comunicação Interatrial">CIA — Comunicação Interatrial</option>
-            <option value="DSAV — Defeito do Septo Atrioventricular">DSAV — Defeito do Septo Atrioventricular</option>
-            <option value="Tetralogia de Fallot">Tetralogia de Fallot</option>
-            <option value="TGA — Transposição das grandes artérias">TGA — Transposição das grandes artérias</option>
-            <option value="Coarctação da aorta">Coarctação da aorta</option>
-            <option value="SHVE — Síndrome de Hipoplasia do Ventrículo Esquerdo">SHVE — Síndrome de Hipoplasia do Ventrículo Esquerdo</option>
-            <option value="Atresia pulmonar">Atresia pulmonar</option>
-            <option value="TAPVR — Anomalia retorno venoso pulmonar">TAPVR — Retorno venoso pulmonar anômalo</option>
-            <option value="Cardiopatia complexa não especificada">Cardiopatia complexa NE</option>
-            <option value="Outra">Outra (descrever abaixo)</option>
-          </select>
-        </div>
-        <div class="field"><label>Descrição dos achados</label>
-          <textarea id="cEcoDesc" placeholder="Descreva os achados ecocardiográficos em detalhes..."></textarea>
-        </div>
-      </div>
-    </div>
-    <div class="btn-row-mt">
-      <button class="btn btn-outline" onclick="prevStepCardio(2)" style="flex:1">Voltar</button>
-      <button class="btn btn-primary" onclick="nextStepCardio(4)" style="flex:2">Continuar <span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></span></button>
-    </div>
-  </div>
-
-  <!-- STEP 4 CARDIO: RITMO + DOPPLER -->
-  <div class="form-step" id="step4c" style="display:none">
-    <div class="fcard">
-      <div class="fcard-hdr"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.11 12.45 14 10.24l-3.11 6.21-2-4H7v-2h3.11l2 4 3.11-6.21 2.11 4.21H20v2h-2.22zM20 3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg></span><span class="title">Ritmo Cardíaco Fetal</span><span class="badge-req">Obrigatório</span></div>
-      <div class="row-2">
-        <div class="field"><label>Ritmo <span class="req">*</span></label>
-          <select id="cRitmo">
-            <option value="Regular (120-160 bpm)">Regular (120–160 bpm)</option>
-            <option value="Bradicardia (<100 bpm)">Bradicardia (&lt;100 bpm)</option>
-            <option value="Taquicardia (>180 bpm)">Taquicardia (&gt;180 bpm)</option>
-            <option value="BAV 1º grau">BAV 1º grau</option>
-            <option value="BAV 2º grau">BAV 2º grau</option>
-            <option value="BAV 3º grau (BAVT)">BAV 3º grau — BAVT</option>
-            <option value="Flutter atrial fetal">Flutter atrial fetal</option>
-            <option value="Taquicardia supraventricular (TSV)">TSV fetal</option>
-            <option value="Extrassístoles">Extrassístoles</option>
-            <option value="Irregular NE">Irregular — não especificado</option>
-          </select>
-        </div>
-        <div class="field"><label>FC fetal <span class="hint">(bpm)</span></label>
-          <input type="number" id="cFC" placeholder="Ex: 145" min="60" max="300">
-        </div>
-      </div>
-      <div class="field"><label>Observações sobre o ritmo</label>
-        <input type="text" id="cRitmoObs" placeholder="Ex: extrassístoles frequentes, BAV episódico...">
-      </div>
-    </div>
-    <div class="fcard">
-      <div class="fcard-hdr"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99l1.5 1.5z"/></svg></span><span class="title">Doppler Fetal</span><span class="badge-opt">Opcional</span></div>
-      <div class="row-2">
-        <div class="field"><label>IP da Artéria Umbilical</label><input type="text" id="cDopUA" placeholder="Ex: 0.98 (normal)"></div>
-        <div class="field"><label>IP da Artéria Cerebral Média (ACM)</label><input type="text" id="cDopACM" placeholder="Ex: 1.52"></div>
-      </div>
-      <div class="row-2">
-        <div class="field"><label>Ductus venoso</label><input type="text" id="cDopDV" placeholder="Ex: onda a positiva"></div>
-        <div class="field"><label>Doppler do Ductus Arterioso</label><input type="text" id="cDopDA" placeholder="Ex: IP 1.8 (normal)"></div>
-      </div>
-      <div class="field"><label>Índice de Pulsatilidade (IP) das artérias uterinas — média</label>
-        <input type="number" id="cIpUter" placeholder="Ex: 1.2" step="0.01" min="0" max="5">
-      </div>
-    </div>
-    <div class="fcard">
-      <div class="fcard-hdr"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.8 18.4 14 10.67V6.5l1.35-1.69c.26-.33.03-.81-.39-.81H9.04c-.42 0-.65.48-.39.81L10 6.5v4.17L4.2 18.4c-.49.66-.02 1.6.8 1.6h14c.82 0 1.29-.94.8-1.6z"/></svg></span><span class="title">Genética Fetal</span><span class="badge-opt">Opcional</span></div>
-      <div class="row-2">
-        <div class="field"><label>NIPT <button class="tip-btn" onclick="event.stopPropagation();showTip('nipt',this)" aria-label="Saiba mais">ⓘ</button></label>
-          <select id="cNipt" onchange="toggleCNipt()">
-            <option value="Nao">Não realizado</option>
-            <option value="Normal">Sim — normal</option>
-            <option value="Alterado">Sim — alterado</option>
-            <option value="Andamento">Em andamento</option>
-          </select>
-        </div>
-        <div class="field"><label>Cariótipo <button class="tip-btn" onclick="event.stopPropagation();showTip('cariotipo',this)" aria-label="Saiba mais">ⓘ</button></label>
-          <select id="cCario" onchange="toggleCCario()">
-            <option value="Nao">Não realizado</option>
-            <option value="Amniocentese">Amniocentese</option>
-            <option value="BVC">Biópsia de vilo</option>
-          </select>
-        </div>
-      </div>
-      <div id="cNiptRes" style="display:none">
-        <div class="field"><label>Resultado NIPT <button class="tip-btn" onclick="event.stopPropagation();showTip('nipt',this)" aria-label="Saiba mais">ⓘ</button></label><input type="text" id="cNiptVal" placeholder="Ex: Trissomia 21 detectada"></div>
-      </div>
-      <div id="cCarioRes" style="display:none">
-        <div class="field"><label>Resultado cariótipo</label><input type="text" id="cCarioVal" placeholder="Ex: 47,XY,+21"></div>
-      </div>
-    </div>
-    <div class="btn-row-mt">
-      <button class="btn btn-outline" onclick="prevStepCardio(3)" style="flex:1">Voltar</button>
-      <button class="btn btn-primary" onclick="nextStepCardio(5)" style="flex:2">Continuar <span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></span></button>
-    </div>
-  </div>
-
-  <!-- STEP 5 CARDIO: FINALIZAÇÃO -->
-  <div class="form-step" id="step5c" style="display:none">
-    <div class="fcard">
-      <div class="fcard-hdr"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z"/></svg></span><span class="title">Documentos a Anexar</span><span class="badge-opt">Opcional</span></div>
-      <p style="font-size:.78rem;color:var(--text-muted);margin-bottom:10px;line-height:1.4">Marque os documentos que enviará junto com o encaminhamento:</p>
-      <div id="cDocList">
-        <div class="doc-item" onclick="toggleDoc(this,event)"><div class="doc-check"></div><span class="doc-lbl">Laudo ecocardiograma fetal</span><span class="doc-tag">PDF</span></div>
-        <div class="doc-item" onclick="toggleDoc(this,event)"><div class="doc-check"></div><span class="doc-lbl">Laudo rastreio 1º trimestre (TN)</span><span class="doc-tag">PDF</span></div>
-        <div class="doc-item" onclick="toggleDoc(this,event)"><div class="doc-check"></div><span class="doc-lbl">Laudo USG morfológico</span><span class="doc-tag">PDF</span></div>
-        <div class="doc-item" onclick="toggleDoc(this,event)"><div class="doc-check"></div><span class="doc-lbl">Resultado NIPT / cariótipo</span><span class="doc-tag">PDF</span></div>
-        <div class="doc-item" onclick="toggleDoc(this,event)"><div class="doc-check"></div><span class="doc-lbl">Cartão pré-natal</span><span class="doc-tag">Foto/PDF</span></div>
-        <div class="doc-item" onclick="toggleDoc(this,event)"><div class="doc-check"></div><span class="doc-lbl">ECG / Holter materno</span><span class="doc-tag">PDF</span></div>
-      </div>
-    </div>
-    <div class="fcard">
-      <div class="fcard-hdr"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 10h11v2H3zm0-4h11v2H3zm0 8h7v2H3zm15.01-2.13 1.41-1.41 2.12 2.12-1.41 1.41zm-.71.71-5.3 5.3V20h2.12l5.3-5.3z"/></svg></span><span class="title">Finalização</span><span class="badge-req">Obrigatório</span></div>
-      <div class="field"><label>Qual a prioridade do atendimento? <span class="req">*</span></label>
-        <div class="urg-selector" id="cUrgSelector">
-          <div class="urg-btn active-eletivo" onclick="setUrgencia('eletivo',this,event)" id="cUrgEletivo"><div class="ug-icon">🟢</div><div class="ug-lbl">Eletivo</div></div>
-          <div class="urg-btn" onclick="setUrgencia('prioritario',this,event)" id="cUrgPrioritario"><div class="ug-icon">🟡</div><div class="ug-lbl">Prioritário</div></div>
-          <div class="urg-btn" onclick="setUrgencia('urgente',this,event)" id="cUrgUrgente"><div class="ug-icon">🔴</div><div class="ug-lbl">Urgente</div></div>
-        </div>
-      </div>
-      <div class="field"><label>Motivo do encaminhamento <span class="req">*</span></label>
-        <textarea id="cMotivoPrincipal" placeholder="Descreva o motivo clínico que justifica o encaminhamento à Cardiologia Fetal..."></textarea>
-      </div>
-      <div class="field"><label>Observações adicionais <span class="hint">(opcional)</span></label>
-        <textarea id="cObs" placeholder="Outras informações relevantes..."></textarea>
-      </div>
-    </div>
-    <div class="btn-row-mt">
-      <button class="btn btn-outline" onclick="prevStepCardio(4)" style="flex:1">Voltar</button>
-      <button class="btn btn-primary" onclick="showResultCardio()" style="flex:2"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></span> Ver Resumo</button>
     </div>
   </div>
 
@@ -1759,12 +1306,12 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
   <div class="fcard">
     <div class="fcard-hdr"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35z"/></svg></span><span class="title">Cardiologia Fetal</span></div>
     <div class="check-group" style="flex-direction:column;gap:6px">
-      <div style="font-size:.82rem;color:var(--text-soft);line-height:1.5">• TN ≥ 3,5 mm ou TN elevada para IG<br>• Suspeita de cardiopatia no eco morfológico<br>• Arritmia fetal (bradicardia, taquicardia, irregular)<br>• Hidropsia fetal de qualquer etiologia<br>• Cardiopatia materna com risco de transmissão<br>• Histórico familiar de cardiopatia congênita<br>• Diabetes materno com risco aumentado<br>• Lúpus eritematoso sistêmico (LES) materno com anti-Ro/La positivo<br>• NIPT ou cariótipo com resultado alterado: Trissomias 21, 18, 13 ou deleção 22q11</div>
+      <div style="font-size:.82rem;color:var(--text-soft);line-height:1.5">• TN ≥ 3,5 mm ou TN elevada para IG<br>• Suspeita de cardiopatia no eco morfológico<br>• Arritmia fetal (bradicardia, taquicardia, irregular)<br>• Hidropsia fetal de qualquer etiologia<br>• Cardiopatia materna com risco de transmissão<br>• Histórico familiar de cardiopatia congênita<br>• Diabetes materno com risco aumentado<br>• LES materno com anti-Ro/La positivo<br>• NIPT ou cariótipo com T21, T18, T13, 22q11</div>
     </div>
   </div>
   <div class="fcard">
     <div class="fcard-hdr"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 19c-1.1 0-2 .9-2 2h14c0-1.1-.9-2-2-2h-4v-2h3c1.1 0 2-.9 2-2h-8c-1.66 0-3-1.34-3-3 0-1.25.77-2.33 1.87-2.79L9.07 7H7.06L7 7c-2.21 0-4 1.79-4 4s1.79 4 4 4v2H7zm11.95-12.39l-1.41-1.41-1.42 1.41 1.41 1.42zm-3.64 1.45L13.9 6.65l-6.07 6.07 1.41 1.41zm1.45 3.64 1.41-1.41-1.41-1.42-1.41 1.42z"/></svg></span><span class="title">Medicina Fetal</span></div>
-    <div style="font-size:.82rem;color:var(--text-soft);line-height:1.65">• Rastreio 1º trim com risco aumentado (Trissomia 21, 18, 13 ou Pré-Eclâmpsia)<br>• Anomalia estrutural detectada no morfológico<br>• CIUR (restrição de crescimento fetal) com Doppler alterado<br>• Polidrâmnio ou oligodrâmnio grave<br>• Gestação gemelar monocoriônica (diamniótica — MCDA ou monoamniótica — MCMA)<br>• Suspeita de Síndrome de Transfusão Feto-Fetal (STFF)<br>• Hidropsia fetal não imune<br>• Isoimunização Rh com título elevado<br>• Malformação renal / uropatia obstrutiva<br>• Tumor fetal / massa tumoral<br>• Anomalias do sistema nervoso central (hidrocefalia, ventriculomegalia)<br>• Necessidade de procedimento invasivo (amniocentese, biópsia de vilo corial — BVC)</div>
+    <div style="font-size:.82rem;color:var(--text-soft);line-height:1.65">• Rastreio 1º trim com risco aumentado (T21, T18, T13, PE)<br>• Anomalia estrutural detectada no morfológico<br>• CIUR / PIG com Doppler alterado<br>• Polidrâmnio ou oligodrâmnio severo<br>• Gemelar monocoriônica (MCDA/MCMA)<br>• Suspeita de STFF (síndrome transfusão feto-fetal)<br>• Hidropsia fetal não imune<br>• Isoimunização Rh com titre elevado<br>• Malformação renal / uropatia obstrutiva<br>• Tumor fetal / massa tumoral<br>• Anomalias do SNC (hidrocefalia, ventriculomegalia)<br>• Necessidade de procedimento invasivo (amnio, BVC)</div>
   </div>
   <div class="info-banner" style="margin-top:0"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></span>Em caso de urgência obstétrica, entre em contato imediatamente pelo número da MDV antes de preencher o formulário.</div>
   <button class="btn btn-primary" onclick="navTo('form')" style="margin-top:4px"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></span> Fazer Encaminhamento</button>
@@ -1804,7 +1351,34 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 
 </div><!-- /app -->
 
-
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo"><span class="sidebar-logo-text">MDV</span></div>
+  <div class="sidebar-title">Maternidade Darcy Vargas</div>
+  <div class="sidebar-sub">Medicina Fetal &amp; Cardiologia</div>
+  <div class="sidebar-divider"></div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-nav-item active" data-screen="home" onclick="navTo('home')">
+      <span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></span> Início
+    </div>
+    <div class="sidebar-nav-item" data-screen="form" onclick="navTo('form')">
+      <span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></span> Formulário
+    </div>
+    <div class="sidebar-nav-item" data-screen="criteria" onclick="navTo('criteria')">
+      <span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM10 17l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></span> Critérios
+    </div>
+    <div class="sidebar-nav-item" data-screen="about" onclick="navTo('about')">
+      <span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg></span> Ambulatório
+    </div>
+    <div class="sidebar-nav-item" data-screen="contact" onclick="navTo('contact')">
+      <span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> Contato
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    Referência Estadual · SES/SC<br>
+    Rua Miguel Couto, 44<br>Joinville – SC<br>
+    <span style="opacity:.6;font-size:.58rem">MDV · Ambulatório MDV</span>
+  </div>
+</aside>
 
 </div><!-- /outerWrap -->
 
@@ -2033,7 +1607,7 @@ function showResult() {
   const content = `
   <div class="result-hero">
     <p class="result-title">Pré-visualização Completa</p>
-    <p class="result-subtitle">MDV — Ambulatório de Medicina Fetal & Cardiologia Fetal</p>
+    <p class="result-subtitle">MDV — Ambulatório de Medicina Fetal &amp; Cardiologia Fetal</p>
   </div>
 
   <div class="${urgBannerClass} urg-banner">${urgTxt}</div>
@@ -2081,9 +1655,9 @@ function showResult() {
       <div class="preview-divider"></div>
       ${row('PAPP-A', g('pappA')!=='—'?g('pappA')+' MoM':'')}
       ${row('β-hCG livre', g('bhcg')!=='—'?g('bhcg')+' MoM':'')}
-      ${row('Risco Trissomia 21', g('riscoT21'), g('riscoT21').toLowerCase().includes('alto')?'alert':'')}
-      ${row('Risco Trissomia 18', g('riscoT18'))}
-      ${row('Risco Trissomia 13', g('riscoT13'))}
+      ${row('Risco T21', g('riscoT21'), g('riscoT21').toLowerCase().includes('alto')?'alert':'')}
+      ${row('Risco T18', g('riscoT18'))}
+      ${row('Risco T13', g('riscoT13'))}
       ${row('Risco PE precoce', g('riscoPE'), g('riscoPE').toLowerCase().includes('alto')?'alert':'')}
     `:rastreioFez==='Nao'?row('Motivo',g('rastreioMotivo')):'<span class="no-data-msg">Aguardando resultado</span>'}
   </div>
@@ -2134,7 +1708,7 @@ function showResult() {
   </div>
 
   <div class="preview-section">
-    <div class="preview-section-hdr"><div class="ps-icon ps-icon-navy"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 10h11v2H3zm0-4h11v2H3zm0 8h7v2H3zm15.01-2.13 1.41-1.41 2.12 2.12-1.41 1.41zm-.71.71-5.3 5.3V20h2.12l5.3-5.3z"/></svg></div><h3>Motivo & Observações</h3></div>
+    <div class="preview-section-hdr"><div class="ps-icon ps-icon-navy"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 10h11v2H3zm0-4h11v2H3zm0 8h7v2H3zm15.01-2.13 1.41-1.41 2.12 2.12-1.41 1.41zm-.71.71-5.3 5.3V20h2.12l5.3-5.3z"/></svg></div><h3>Motivo &amp; Observações</h3></div>
     ${rowBlock('Motivo do encaminhamento', g('motivoEnc'))}
     ${g('obsAdic')&&g('obsAdic')!=='—'?rowBlock('Observações adicionais',g('obsAdic')):''}
   </div>
@@ -2143,7 +1717,7 @@ function showResult() {
     <button class="btn btn-whatsapp" onclick="enviarWhatsApp()"><span class="mdi-icon">${svgSend}</span> Enviar pelo WhatsApp</button>
     <p style="text-align:center;font-size:.76rem;color:var(--text-muted);margin-top:8px;line-height:1.45">Abre o WhatsApp com todos os dados formatados.<br>Lembre-se de <strong>anexar os documentos</strong> marcados acima.</p>
     <button class="btn btn-outline" onclick="resetForm()"><span class="mdi-icon">${svgReset}</span> Novo Encaminhamento</button>
-    <div class="footer">Maternidade Darcy Vargas · Ambulatório de Medicina Fetal e Cardiologia Fetal</div>
+    <div class="footer">Encaminhamento gerado via Ambulatório MDV · MDV · Maternidade Darcy Vargas</div>
   </div>`;
 
   document.getElementById('step6').style.display = 'none';
@@ -2197,7 +1771,7 @@ function enviarWhatsApp() {
 • IP uterinas: ${g('ipUterinas')} ${g('ipUterinasP') !== '—' ? '('+g('ipUterinasP')+')' : ''}
 • PAPP-A: ${g('pappA')} MoM
 • β-hCG livre: ${g('bhcg')} MoM
-• Risco Trissomia 21: ${g('riscoT21')} | T18: ${g('riscoT18')} | T13: ${g('riscoT13')}
+• Risco T21: ${g('riscoT21')} | T18: ${g('riscoT18')} | T13: ${g('riscoT13')}
 • Risco pré-eclâmpsia: ${g('riscoPE')}`;
     } else {
       rastreioBlock = `\n🔬 *RASTREIO 1º TRIMESTRE*\n• ${rastreioFez === 'Nao' ? 'Não realizado: '+g('rastreioMotivo') : 'Aguardando resultado'}`;
@@ -2275,7 +1849,7 @@ ${g('obsAdic') !== '—' ? '• Obs.: '+g('obsAdic') : ''}
 • Documentos a enviar: ${docs}
 
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-_📱 Ambulatório de Medicina Fetal e Cardiologia Fetal_
+_📱 Ambulatório MDV · MDV_
 _Maternidade Darcy Vargas · Joinville–SC_
 _⚠️ Dados clínicos confidenciais_`;
 
@@ -2575,388 +2149,6 @@ function resetForm() {
   _origResetForm();
 }
 
-
-// ══════════════════════════════════════════════════════
-//  SPECIALTY ROUTING — Medicina Fetal vs Cardiologia Fetal
-// ══════════════════════════════════════════════════════
-
-let currentSpecialty = 'fetal'; // 'fetal' | 'cardio'
-let currentStepCardio = 3;
-const stepNamesCardio = ['Identificação','Dados Obstétricos','Ecocardiograma Fetal','Ritmo & Doppler','Finalização'];
-
-// Called from home specialty cards
-function startForm(specialty) {
-  currentSpecialty = specialty;
-  navTo('form');
-  // Show step 0 then auto-select
-  setTimeout(() => selectSpecialty(specialty), 50);
-}
-
-// Called from step0 cards
-function selectSpecialty(specialty) {
-  currentSpecialty = specialty;
-  // Update form header indicator
-  updateSpecialtyIndicator();
-  // Navigate to step 1
-  document.querySelectorAll('.form-step').forEach(s => { s.style.display='none'; s.style.opacity=''; s.style.transform=''; });
-  document.getElementById('step1').style.display = 'block';
-  currentStep = 1;
-  updateProgressMulti();
-  window.scrollTo({top:0,behavior:'smooth'});
-  // Confetti
-  const bar = document.getElementById('progressBar');
-  if (bar) { const r=bar.getBoundingClientRect(); burstConfetti(r.left+r.width/2,r.top+r.height/2); }
-}
-
-function updateSpecialtyIndicator() {
-  // Remove existing indicator
-  document.querySelectorAll('.spec-indicator').forEach(e=>e.remove());
-  const formScreen = document.getElementById('form');
-  const sectionHdr = formScreen.querySelector('.section-hdr');
-  if (!sectionHdr) return;
-  const ind = document.createElement('div');
-  if (currentSpecialty === 'fetal') {
-    ind.className = 'spec-indicator spec-indicator-fetal';
-    ind.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" style="width:13px;height:13px;flex-shrink:0"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm8 7h-5V8c0-.55-.45-1-1-1h-4c-.55 0-1 .45-1 1v5H7c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1h2v5h6v-5h2c.55 0 1-.45 1-1v-2c0-.55-.45-1-1-1h-2V9h2c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg> Medicina Fetal';
-  } else {
-    ind.className = 'spec-indicator spec-indicator-cardio';
-    ind.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" style="width:13px;height:13px;flex-shrink:0"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35z"/></svg> Cardiologia Fetal';
-  }
-  sectionHdr.before(ind);
-}
-
-// Progress bar with specialty awareness
-function updateProgressMulti() {
-  const totalSteps = currentSpecialty === 'fetal' ? 6 : 5;
-  const steps = document.querySelectorAll('.progress-step');
-  steps.forEach((s,i) => {
-    s.classList.remove('done','active','just-done');
-    if (i < currentStep-1) s.classList.add('done');
-    if (i === currentStep-1) s.classList.add('active');
-    s.style.display = i < totalSteps ? '' : 'none';
-  });
-  const lbl = document.getElementById('stepLabel');
-  if (lbl && typeof currentStep === 'number') {
-    const names = currentSpecialty === 'fetal' ? stepNames : stepNamesCardio;
-    const name = names[currentStep-1] || '';
-    const {filled,total} = countStepFields(currentStep + (currentSpecialty==='cardio'?'c':''));
-    const pctHtml = total>0 ? ` <span style="font-size:.65rem;background:var(--${currentSpecialty==='fetal'?'purple':'rose'}-bg);color:var(--${currentSpecialty==='fetal'?'purple':'rose'});padding:1px 7px;border-radius:10px;margin-left:4px">${Math.round(filled/total*100)}% preenchido</span>` : '';
-    lbl.innerHTML = `Etapa <strong>${currentStep}</strong> de ${totalSteps} — ${name}${pctHtml}`;
-  }
-}
-// Override updateProgress
-updateProgress = updateProgressMulti;
-
-// Override nextStep for specialty routing
-const _nextStepOrig = nextStep;
-nextStep = function(to) {
-  if (currentSpecialty === 'cardio') {
-    // Cardio flow: steps 1→2→3c→4c→5c
-    if (to === 2 && !validateStep1()) return;
-    if (to === 3 && !validateStep2()) return;
-    if (to === 3) { // From step 2 in cardio → go to 3c
-      const bar = document.getElementById('progressBar');
-      if(bar){const r=bar.getBoundingClientRect();burstConfetti(r.left+r.width*(currentStep/5),r.top);}
-      animStepCardio(currentStep, 3);
-      return;
-    }
-  }
-  // Fetal flow: original
-  if (to === 2 && !validateStep1()) return;
-  if (to === 3 && !validateStep2()) return;
-  if (to === 5 && !validateStep4()) return;
-  const bar = document.getElementById('progressBar');
-  if(bar){const r=bar.getBoundingClientRect();burstConfetti(r.left+r.width*(currentStep/6),r.top+r.height/2);}
-  animStep(currentStep, to);
-  saveProgress();
-};
-
-// Cardio-specific step navigation (uses step3c, step4c, step5c)
-function nextStepCardio(to) {
-  if (to===4 && !validateCardioStep3()) return;
-  if (to===5 && !document.getElementById('cMotivo').value) { showToast('⚠️ Selecione o motivo do encaminhamento'); return; }
-  const bar=document.getElementById('progressBar');
-  if(bar){const r=bar.getBoundingClientRect();burstConfetti(r.left+r.width*(currentStepCardio/5),r.top);}
-  animStepCardio(currentStepCardio, to);
-}
-function prevStepCardio(to) { animStepCardio(currentStepCardio, to); }
-
-function animStepCardio(from, to) {
-  const fromId = from <= 2 ? 'step'+from : 'step'+from+'c';
-  const toId   = to   <= 2 ? 'step'+to   : 'step'+to+'c';
-  const f = document.getElementById(fromId);
-  const t = document.getElementById(toId);
-  if (!f||!t) return;
-  const dir = to > from ? -24 : 24;
-  f.style.transition='opacity .22s,transform .22s';f.style.opacity='0';f.style.transform=`translateX(${-dir}px)`;
-  setTimeout(()=>{
-    f.style.display='none';f.style.opacity='';f.style.transform='';f.style.transition='';
-    t.style.display='block';t.style.opacity='0';t.style.transform=`translateX(${dir}px)`;
-    void t.offsetWidth;
-    t.style.transition='opacity .3s,transform .3s';t.style.opacity='1';t.style.transform='translateX(0)';
-    setTimeout(()=>t.style.transition='',300);
-  },220);
-  currentStepCardio = to;
-  currentStep = to;
-  updateProgressMulti();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function validateCardioStep3() {
-  const m = document.getElementById('cMotivo');
-  if (!m.value) { m.classList.add('invalid'); showToast('⚠️ Selecione o motivo do encaminhamento'); return false; }
-  m.classList.remove('invalid');
-  return true;
-}
-
-// Cardio toggles
-function toggleCEco() {
-  document.getElementById('cEcoFields').style.display =
-    document.getElementById('cEcoFeito').value !== 'Nao' ? 'block' : 'none';
-}
-function toggleCNipt() {
-  document.getElementById('cNiptRes').style.display =
-    document.getElementById('cNipt').value !== 'Nao' && document.getElementById('cNipt').value !== 'Andamento' ? 'block' : 'none';
-}
-function toggleCCario() {
-  document.getElementById('cCarioRes').style.display =
-    document.getElementById('cCario').value !== 'Nao' ? 'block' : 'none';
-}
-
-// getDocs for cardio
-function getDocsBySpecialty() {
-  const listId = currentSpecialty === 'cardio' ? '#cDocList .doc-item.checked .doc-lbl' : '#docList .doc-item.checked .doc-lbl';
-  const items = document.querySelectorAll(listId);
-  return items.length ? Array.from(items).map(i=>i.textContent).join(', ') : 'Nenhum selecionado';
-}
-
-// Show result for Cardiologia Fetal
-function showResultCardio() {
-  const motivoEl = document.getElementById('cMotivoPrincipal');
-  if (!motivoEl.value.trim()) { motivoEl.classList.add('invalid'); showToast('⚠️ Informe o motivo do encaminhamento'); return; }
-  motivoEl.classList.remove('invalid');
-
-  const urgBannerClass = urgencia==='eletivo'?'urg-banner-eletivo':urgencia==='prioritario'?'urg-banner-prioritario':'urg-banner-urgente';
-  const urgTxt = urgencia==='eletivo'?'🟢 Eletivo':urgencia==='prioritario'?'🟡 Prioritário':'🔴 URGENTE — Contato imediato';
-
-  const row=(lbl,val,cls='')=>{const v=(val&&val!=='—'&&val!=='')?val:null;return`<div class="preview-row"><span class="pr-lbl">${lbl}</span><span class="pr-val ${v?cls:'empty'}">${v||'Não informado'}</span></div>`;};
-  const rowBlock=(lbl,val)=>{const v=(val&&val!=='—'&&val!=='')?val:null;return v?`<div class="preview-row" style="flex-direction:column;gap:4px"><span class="pr-lbl">${lbl}</span><div class="preview-block">${v}</div></div>`:''};
-  const chips=(groupId)=>{const items=document.querySelectorAll(`#${groupId} .check-item.checked input`);if(!items.length)return'<span class="pr-val empty">Nenhum</span>';return`<div class="preview-chips">${Array.from(items).map(i=>`<span class="preview-chip">${i.value}</span>`).join('')}</div>`;};
-  const gc=(id)=>{const el=document.getElementById(id);if(!el)return'—';return el.value||'—';};
-
-  const ecoFeitoRes = gc('cEcoFeito');
-  const niptRes = gc('cNipt');
-  const carioRes = gc('cCario');
-
-  const svgSend=`<svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"/></svg>`;
-  const svgReset=`<svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>`;
-
-  const content = `
-  <div class="result-hero" style="background:linear-gradient(150deg,#8B1A3A 0%,#C0266A 50%,#E8437A 100%)">
-    <p class="result-title">❤️ Cardiologia Fetal</p>
-    <p class="result-subtitle">MDV — Pré-visualização do Encaminhamento</p>
-  </div>
-  <div class="${urgBannerClass} urg-banner">${urgTxt}</div>
-
-  <div class="preview-section">
-    <div class="preview-section-hdr"><div class="ps-icon ps-icon-navy"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div><h3>Médico Solicitante</h3></div>
-    ${row('Nome',g('medNome'),'highlight')}${row('CRM',g('medCRM')+(g('medEstado')!=='—'?'-'+g('medEstado'):''))}${row('Especialidade',g('medEsp'))}${row('Serviço',g('medServico'))}${row('Telefone',g('medTel'))}
-  </div>
-  <div class="preview-section">
-    <div class="preview-section-hdr"><div class="ps-icon ps-icon-rose"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm8 7h-5V8c0-.55-.45-1-1-1h-4c-.55 0-1 .45-1 1v5H7c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1h2v5h6v-5h2c.55 0 1-.45 1-1v-2c0-.55-.45-1-1-1h-2V9h2c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg></div><h3>Gestante</h3></div>
-    ${row('Nome',g('gestNome'),'highlight')}${row('Idade',g('gestIdade')!=='—'?g('gestIdade')+' anos':'')}${row('Cidade',g('gestCidade'))}${row('Telefone',g('gestTel'))}
-  </div>
-  <div class="preview-section">
-    <div class="preview-section-hdr"><div class="ps-icon ps-icon-teal"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg></div><h3>Dados Obstétricos</h3></div>
-    ${row('IG',g('igSem')+'sem'+(g('igDias')&&g('igDias')!=='—'?' '+g('igDias')+'d':''),'highlight')}
-    ${row('DUM/DPP',g('gestDUM')+' / '+g('gestDPP'))}${row('G/P/A','G'+g('obsG')+' P'+g('obsP')+' A'+g('obsA'))}${row('Gestação',g('gestTipo'))}
-    <div class="preview-row" style="flex-direction:column;gap:6px"><span class="pr-lbl">Comorbidades</span>${chips('comorb')}</div>
-  </div>
-  <div class="preview-section">
-    <div class="preview-section-hdr"><div class="ps-icon ps-icon-rose"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35z"/></svg></div><h3>Cardiologia Fetal</h3></div>
-    ${row('Motivo',gc('cMotivo'),'alert')}
-    ${row('Ecocardiograma',ecoFeitoRes)}
-    ${ecoFeitoRes!=='Nao'?`
-      ${row('Data/IG eco',gc('cEcoData')!=='—'?gc('cEcoData')+(gc('cEcoIG')!=='—'?' — '+gc('cEcoIG')+' sem':''):'')}
-      ${row('Resultado',gc('cEcoResultado'),gc('cEcoResultado').toLowerCase().includes('alterado')?'alert':'')}
-      <div class="preview-row" style="flex-direction:column;gap:6px"><span class="pr-lbl">Achados</span>${chips('cEcoAchados')}</div>
-      ${row('Hipótese',gc('cHipotese'))}
-      ${rowBlock('Descrição',gc('cEcoDesc'))}
-    `:''}
-    ${row('Ritmo fetal',gc('cRitmo'),gc('cRitmo').includes('BAV')||gc('cRitmo').includes('Bradicardia')||gc('cRitmo').includes('Taquicardia')?'alert':'')}
-    ${gc('cFC')!=='—'?row('FC fetal',gc('cFC')+' bpm'):''}
-    ${gc('cRitmoObs')!=='—'?rowBlock('Obs. ritmo',gc('cRitmoObs')):''}
-    <div class="preview-divider"></div>
-    ${row('IP Art. Umbilical',gc('cDopUA'))}${row('IP ACM',gc('cDopACM'))}${row('Ductus venoso',gc('cDopDV'))}${row('IP uterinas',gc('cIpUter')!=='—'?gc('cIpUter'):'')}
-  </div>
-  ${niptRes!=='Nao'||carioRes!=='Nao'?`<div class="preview-section">
-    <div class="preview-section-hdr"><div class="ps-icon ps-icon-gold"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.8 18.4 14 10.67V6.5l1.35-1.69c.26-.33.03-.81-.39-.81H9.04c-.42 0-.65.48-.39.81L10 6.5v4.17L4.2 18.4c-.49.66-.02 1.6.8 1.6h14c.82 0 1.29-.94.8-1.6z"/></svg></div><h3>Genética Fetal</h3></div>
-    ${row('NIPT',niptRes+(gc('cNiptVal')!=='—'?' → '+gc('cNiptVal'):''))}
-    ${row('Cariótipo',carioRes+(gc('cCarioVal')!=='—'?' → '+gc('cCarioVal'):''))}
-  </div>`:``}
-  <div class="doc-checklist">
-    <h3>📎 Documentos a enviar</h3>
-    ${getDocsHTMLById('cDocList')}
-  </div>
-  <div class="preview-section">
-    <div class="preview-section-hdr"><div class="ps-icon ps-icon-navy"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 10h11v2H3zm0-4h11v2H3zm0 8h7v2H3zm15.01-2.13 1.41-1.41 2.12 2.12-1.41 1.41zm-.71.71-5.3 5.3V20h2.12l5.3-5.3z"/></svg></div><h3>Motivo & Observações</h3></div>
-    ${rowBlock('Motivo do encaminhamento',gc('cMotivoPrincipal'))}
-    ${gc('cObs')&&gc('cObs')!=='—'?rowBlock('Observações',gc('cObs')):''}
-  </div>
-  <div class="result-actions">
-    <button class="btn btn-whatsapp" onclick="enviarWhatsAppCardio()"><span class="mdi-icon">${svgSend}</span> Enviar pelo WhatsApp</button>
-    <p style="text-align:center;font-size:.76rem;color:var(--text-muted);margin-top:8px;line-height:1.45">Abre o WhatsApp com todos os dados formatados.<br>Lembre-se de <strong>anexar os documentos</strong> marcados.</p>
-    <button class="btn btn-outline" onclick="resetFormCardio()"><span class="mdi-icon">${svgReset}</span> Novo Encaminhamento</button>
-    <div class="footer">Maternidade Darcy Vargas · Ambulatório Materno-Fetal</div>
-  </div>`;
-
-  document.getElementById('step5c').style.display='none';
-  const res=document.getElementById('stepResult');
-  res.style.display='block';res.innerHTML=content;
-  currentStep='result';
-  document.querySelectorAll('.progress-step').forEach(s=>s.classList.add('done'));
-  document.getElementById('stepLabel').innerHTML='<strong style="font-size:.85rem;color:var(--rose)">✅ Encaminhamento completo — Cardio Fetal</strong>';
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function getDocsHTMLById(listId) {
-  const items = document.querySelectorAll('#'+listId+' .doc-item');
-  return Array.from(items).map(item=>{
-    const checked=item.classList.contains('checked');
-    const lbl=item.querySelector('.doc-lbl').textContent;
-    const tag=item.querySelector('.doc-tag').textContent;
-    return `<div class="doc-item ${checked?'checked':''}" onclick="toggleDoc(this,event)"><div class="doc-check"></div><span class="doc-lbl">${lbl}</span><span class="doc-tag">${tag}</span></div>`;
-  }).join('');
-}
-
-function enviarWhatsAppCardio() {
-  document.getElementById('sendingOverlay').classList.add('show');
-  setTimeout(()=>{
-    document.getElementById('sendingOverlay').classList.remove('show');
-    const gc=(id)=>{const el=document.getElementById(id);return el?el.value||'—':'—';};
-    const getChk=(gid)=>{const its=document.querySelectorAll('#'+gid+' .check-item.checked input');return its.length?Array.from(its).map(i=>i.value).join(', '):'Nenhum';};
-    const getDcs=()=>{const its=document.querySelectorAll('#cDocList .doc-item.checked .doc-lbl');return its.length?Array.from(its).map(i=>i.textContent).join(', '):'Nenhum';};
-    const now=new Date();const dataEnv=now.toLocaleDateString('pt-BR')+' às '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
-    const ecoFeitoVal=gc('cEcoFeito');
-    let ecoBlock='';
-    if(ecoFeitoVal!=='Nao'){
-      ecoBlock=`
-🔬 *ECOCARDIOGRAMA FETAL*
-• Realizado: ${ecoFeitoVal}
-• Data: ${gc('cEcoData')} | IG: ${gc('cEcoIG')} sem
-• Resultado: ${gc('cEcoResultado')}
-• Achados: ${getChk('cEcoAchados')}
-• Hipótese: ${gc('cHipotese')}
-${gc('cEcoDesc')!=='—'?'• Descrição: '+gc('cEcoDesc'):''}`;
-    }else{ecoBlock=`
-🔬 *ECOCARDIOGRAMA FETAL*
-• Não realizado — encaminhamento para realização`;}
-    let genBlock='';
-    if(gc('cNipt')!=='Nao'||gc('cCario')!=='Nao'){genBlock=`
-🧬 *GENÉTICA*
-• NIPT: ${gc('cNipt')}${gc('cNiptVal')!=='—'?' → '+gc('cNiptVal'):''}
-• Cariótipo: ${gc('cCario')}${gc('cCarioVal')!=='—'?' → '+gc('cCarioVal'):''}`;}
-    const msg=`❤️ *ENCAMINHAMENTO — CARDIOLOGIA FETAL*
-╔══════════════════════════╗
-║  Maternidade Darcy Vargas  ║
-║  Cardiologia Fetal · SUS  ║
-╚══════════════════════════╝
-📅 Gerado em: ${dataEnv}
-
-👨‍⚕️ *MÉDICO SOLICITANTE*
-• Nome: ${g('medNome')}
-• CRM: ${g('medCRM')}-${g('medEstado')} | ${g('medEsp')}
-• Serviço: ${g('medServico')}
-• Telefone: ${g('medTel')}
-
-🤰 *GESTANTE*
-• Nome: ${g('gestNome')}
-• Idade: ${g('gestIdade')} anos | Cidade: ${g('gestCidade')}
-• Tel: ${g('gestTel')} | SUS: ${g('gestSUS')}
-
-📅 *DADOS OBSTÉTRICOS*
-• IG: ${g('igSem')}sem${g('igDias')&&g('igDias')!=='—'?' '+g('igDias')+'d':''} | DUM: ${g('gestDUM')} | DPP: ${g('gestDPP')}
-• G${g('obsG')} P${g('obsP')} A${g('obsA')} | ${g('gestTipo')}
-• Comorbidades: ${getChk('comorb')}
-${g('histFamiliar')!=='—'?'• Histórico familiar: '+g('histFamiliar'):''}
-
-❤️ *MOTIVO DO ENCAMINHAMENTO*
-• ${gc('cMotivo')}
-• Ritmo fetal: ${gc('cRitmo')}${gc('cFC')!=='—'?' ('+gc('cFC')+' bpm)':''}
-${gc('cRitmoObs')!=='—'?'• Obs ritmo: '+gc('cRitmoObs'):''}
-${ecoBlock}
-
-📊 *DOPPLER*
-• AU: ${gc('cDopUA')} | ACM: ${gc('cDopACM')}
-• DV: ${gc('cDopDV')} | DA: ${gc('cDopDA')}
-${gc('cIpUter')!=='—'?'• IP uterinas: '+gc('cIpUter'):''}
-${genBlock}
-
-📋 *FINALIZAÇÃO*
-• Urgência: ${urgLabel()}
-• Motivo: ${gc('cMotivoPrincipal')}
-${gc('cObs')!=='—'?'• Obs.: '+gc('cObs'):''}
-• Documentos: ${getDcs()}
-
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-_📱 Ambulatório de Medicina Fetal e Cardiologia Fetal_
-_Maternidade Darcy Vargas · Joinville–SC_
-_⚠️ Dados clínicos confidenciais_`;
-    window.open('https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent(msg),'_blank');
-  },1200);
-}
-
-function resetFormCardio() {
-  // Reset all cardio fields
-  document.querySelectorAll('#step3c input,#step3c select,#step3c textarea,#step4c input,#step4c select,#step4c textarea,#step5c input,#step5c select,#step5c textarea').forEach(el=>{el.value='';el.classList.remove('invalid');});
-  document.querySelectorAll('#cEcoAchados .check-item,#cDocList .doc-item').forEach(el=>el.classList.remove('checked'));
-  document.getElementById('cEcoFields').style.display='none';
-  document.getElementById('cNiptRes').style.display='none';
-  document.getElementById('cCarioRes').style.display='none';
-  document.querySelectorAll('#cUrgSelector .urg-btn').forEach(b=>b.className='urg-btn');
-  const urgEl=document.getElementById('cUrgEletivo');if(urgEl)urgEl.classList.add('active-eletivo');
-  // Reset to step 0
-  document.querySelectorAll('.form-step').forEach(s=>{s.style.display='none';s.style.opacity='';s.style.transform='';});
-  document.getElementById('step0').style.display='block';
-  currentStep=1;currentStepCardio=3;urgencia='eletivo';
-  updateProgressMulti();
-  window.scrollTo({top:0,behavior:'smooth'});
-  document.querySelectorAll('.spec-indicator').forEach(e=>e.remove());
-}
-
-// Override resetForm to also reset specialty
-const _origResetFormV3 = resetForm;
-resetForm = function() {
-  _origResetFormV3();
-  document.querySelectorAll('.spec-indicator').forEach(e=>e.remove());
-  currentSpecialty='fetal';
-  currentStep=1;
-  currentStepCardio=3;
-};
-
-// Override navTo for step0 on form entry
-const _origNavTo = navTo;
-navTo = function(id) {
-  _origNavTo(id);
-  if (id==='form' && currentStep===1 && !document.querySelector('.spec-indicator')) {
-    // Show step0 if no specialty selected yet
-    document.querySelectorAll('.form-step').forEach(s=>{s.style.display='none';});
-    document.getElementById('step0').style.display='block';
-  }
-};
-
-// countStepFields override for cardio steps
-const _origCountFields = countStepFields;
-countStepFields = function(stepNum) {
-  const stepId = typeof stepNum==='string'?'step'+stepNum:'step'+stepNum;
-  const step = document.getElementById(stepId);
-  if(!step) return {filled:0,total:0};
-  const inputs=step.querySelectorAll('input[type="text"],input[type="tel"],input[type="number"],input[type="date"],select,textarea');
-  let filled=0,total=0;
-  inputs.forEach(el=>{if(el.closest('[style*="display:none"]'))return;total++;if(el.value&&el.value.trim())filled++;});
-  return{filled,total};
-};
-
 // ── Init: try restoring session ────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   updateProgress();
@@ -2967,159 +2159,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, 100);
 });
-
-
-// ══════════════════════════════════════════════════════
-//  TOOLTIP SYSTEM — Definições de termos clínicos
-// ══════════════════════════════════════════════════════
-
-const TIPS = {
-  'nipt': {
-    term: 'NIPT',
-    full: 'Non-Invasive Prenatal Testing — Teste Pré-Natal Não Invasivo',
-    desc: 'Exame de sangue materno que analisa fragmentos de DNA fetal livre (cfDNA) circulante. Detecta trissomias (T21, T18, T13), aneuploidias dos cromossomos sexuais e microdeleções como 22q11. Sensibilidade >99% para Trissomia 21. Disponível a partir de 10 semanas.',
-    relevance: '⚠️ Resultado alterado é indicação formal de ecocardiograma fetal — Trissomia 21, 18, 13 e deleção 22q11 têm alta prevalência de cardiopatias congênitas.'
-  },
-  'tn': {
-    term: 'TN — Translucência Nucal',
-    full: 'Medida do acúmulo de líquido na nuca do feto',
-    desc: 'Medida por ultrassom entre 11–14 semanas (CRL 45–84mm). Valor normal varia com a IG, geralmente <3,0mm. Deve ser realizada por profissionais certificados pela Fetal Medicine Foundation (FMF).',
-    relevance: '⚠️ TN ≥3,5mm aumenta risco de cromossomopatias e cardiopatias congênitas. É indicação de ecocardiograma fetal especializado.'
-  },
-  'dum': {
-    term: 'DUM / DPP',
-    full: 'Data da Última Menstruação / Data Provável do Parto',
-    desc: 'DUM: primeiro dia da última menstruação. DPP: data estimada do parto, calculada adicionando 280 dias (40 semanas) à DUM. A datação por USG do 1º trimestre (medida do CRL — comprimento cabeça-nádega) é mais precisa quando disponível.',
-    relevance: 'A datação precisa é essencial para calcular a IG e interpretar corretamente todos os marcadores ecográficos e do rastreio.'
-  },
-  'ig': {
-    term: 'IG — Idade Gestacional',
-    full: 'Tempo de gravidez em semanas e dias',
-    desc: 'Calculada a partir do primeiro dia da DUM. Preferencialmente corrigida pelo USG do 1º trimestre (medida do CRL). Expressa em semanas + dias (ex: 22sem 4d). Determina os valores de referência de todos os marcadores ecográficos.',
-    relevance: 'Todos os parâmetros do rastreio e do ecocardiograma fetal dependem da IG correta para interpretação adequada.'
-  },
-  'ip': {
-    term: 'IP — Índice de Pulsatilidade',
-    full: 'Parâmetro do exame de Doppler que avalia a resistência vascular',
-    desc: 'Calculado pela fórmula: (velocidade sistólica máxima − velocidade diastólica mínima) / velocidade média. Usado nas artérias uterina, umbilical, cerebral média (ACM) e ductus venoso para monitorar a circulação fetal e placentária.',
-    relevance: 'IP uterinas elevado no 1º trim indica risco de pré-eclâmpsia. IP umbilical alterado sugere insuficiência placentária. IP cerebral reduzido indica centralização fetal — situação de risco.'
-  },
-  'ciur': {
-    term: 'CIUR / PIG',
-    full: 'Crescimento Intrauterino Restrito / Pequeno para Idade Gestacional',
-    desc: 'CIUR: feto com biometria abaixo do percentil 10 para a IG, associado a alterações do Doppler que indicam insuficiência placentária. PIG: feto constitucionalmente pequeno, sem alterações do Doppler. A distinção é clinicamente muito importante.',
-    relevance: 'CIUR grave requer seguimento intensivo com Doppler seriado e pode antecipar o parto. Encaminhar ao ambulatório de medicina fetal para protocolo de vigilância fetal.'
-  },
-  'dsav': {
-    term: 'DSAV',
-    full: 'Defeito do Septo Atrioventricular',
-    desc: 'Cardiopatia congênita com ausência parcial ou total dos septos atrial inferior e ventricular superior, associada a malformação das valvas atrioventriculares. A forma completa (DSAV total) é fortemente associada à Trissomia 21.',
-    relevance: '60–70% dos casos de DSAV fetal estão associados à Síndrome de Down (T21). Encaminhamento urgente para cardiologia fetal para planejamento cirúrgico perinatal.'
-  },
-  'tapvr': {
-    term: 'TAPVR',
-    full: 'Total Anomalous Pulmonary Venous Return — Retorno Venoso Pulmonar Anômalo Total',
-    desc: 'Cardiopatia congênita em que as quatro veias pulmonares drenam para o lado direito do coração em vez do átrio esquerdo. Pode ser supracardíaca, cardíaca, infracardíaca ou mista. É cirúrgica e frequentemente urgente no período neonatal.',
-    relevance: 'O diagnóstico pré-natal permite planejar o parto em centro com cirurgia cardíaca neonatal disponível. Parto deve ocorrer em hospital terciário.'
-  },
-  'shve': {
-    term: 'SHVE',
-    full: 'Síndrome de Hipoplasia do Ventrículo Esquerdo',
-    desc: 'Espectro de cardiopatias com hipoplasia grave do ventrículo esquerdo, valva mitral e/ou aorta. Uma das cardiopatias congênitas mais complexas, requerendo cirurgia em três etapas (Norwood, Glenn, Fontan) ou transplante cardíaco neonatal.',
-    relevance: 'O diagnóstico fetal é essencial para aconselhamento familiar sobre opções terapêuticas: cirurgia paliativa seriada, transplante ou cuidados paliativos. Parto deve ocorrer em centro de referência.'
-  },
-  'cariotipo': {
-    term: 'Cariótipo Fetal',
-    full: 'Análise do número e estrutura dos cromossomos do bebê',
-    desc: 'Obtido por amniocentese (a partir de 16 semanas) ou biópsia de vilo corial — BVC (10–14 semanas). Detecta trissomias, monossomias, deleções e rearranjos cromossômicos. É o exame de confirmação diagnóstica para cromossomopatias.',
-    relevance: 'Indicado quando o rastreio (TN + NIPT) aponta alto risco de cromossomopatia, ou quando é necessário diagnóstico preciso para definir conduta clínica e cirúrgica fetal.'
-  },
-  'amnio': {
-    term: 'Amniocentese',
-    full: 'Coleta de líquido amniótico para análise genética',
-    desc: 'Punção guiada por ultrassom do saco amniótico para obter células fetais. Realizada habitualmente a partir de 16 semanas. Permite cariótipo, FISH, array-CGH ou exoma. Risco de perda gestacional: ~0,1–0,3% em centros especializados.',
-    relevance: 'Padrão-ouro para confirmação de cromossomopatias após rastreio alterado. Resultado disponível em 10–14 dias (cariótipo convencional) ou 48–72h (FISH de urgência).'
-  }
-};
-
-// ── Tooltip DOM ────────────────────────────────────────
-let tipPopup, tipOverlay;
-
-function initTooltips() {
-  if (tipPopup) return; // já inicializado
-
-  tipOverlay = document.createElement('div');
-  tipOverlay.className = 'tooltip-overlay';
-  tipOverlay.onclick = closeTooltip;
-  document.body.appendChild(tipOverlay);
-
-  tipPopup = document.createElement('div');
-  tipPopup.className = 'tooltip-popup';
-  tipPopup.innerHTML =
-    '<button class="tp-close" onclick="closeTooltip()">✕ fechar</button>' +
-    '<div class="tp-term"></div>' +
-    '<div class="tp-full"></div>' +
-    '<div class="tp-desc"></div>' +
-    '<div class="tp-relevance"></div>';
-  document.body.appendChild(tipPopup);
-}
-
-function showTip(key, btn) {
-  // Ensure initialized
-  if (!tipPopup) initTooltips();
-
-  const data = TIPS[key];
-  if (!data) { console.warn('Tip not found:', key); return; }
-
-  tipPopup.querySelector('.tp-term').textContent = data.term;
-  tipPopup.querySelector('.tp-full').textContent = data.full;
-  tipPopup.querySelector('.tp-desc').textContent = data.desc;
-  const relEl = tipPopup.querySelector('.tp-relevance');
-  if (data.relevance) {
-    relEl.textContent = data.relevance;
-    relEl.style.display = 'block';
-  } else {
-    relEl.style.display = 'none';
-  }
-
-  // Position: anchored to the app container, not full window
-  const rect = btn.getBoundingClientRect();
-  const appEl = document.getElementById('app');
-  const appRect = appEl ? appEl.getBoundingClientRect() : {left:0, right:window.innerWidth};
-
-  // Width fits within app container
-  const maxW = Math.min(340, appRect.right - appRect.left - 24);
-  tipPopup.style.maxWidth = maxW + 'px';
-  tipPopup.style.width = maxW + 'px';
-
-  // Left: center within app, clamped to viewport
-  let left = appRect.left + (appRect.right - appRect.left - maxW) / 2;
-  left = Math.max(appRect.left + 12, Math.min(left, appRect.right - maxW - 12));
-  tipPopup.style.left = left + 'px';
-
-  // Top: below button if space, else above
-  const spaceBelow = window.innerHeight - rect.bottom;
-  if (spaceBelow > 250) {
-    tipPopup.style.top = (rect.bottom + 10) + 'px'; // rect is already viewport-relative for fixed
-  } else {
-    tipPopup.style.top = Math.max(70, rect.top - 250) + 'px';
-  }
-
-  tipPopup.classList.add('show');
-  tipOverlay.classList.add('show');
-}
-
-function closeTooltip() {
-  if (tipPopup) tipPopup.classList.remove('show');
-  if (tipOverlay) tipOverlay.classList.remove('show');
-}
-
-// Init on load
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initTooltips);
-} else {
-  initTooltips();
-}
 
 </script>
 </body>
