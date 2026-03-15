@@ -2956,6 +2956,150 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 100);
 });
 
+
+// ══════════════════════════════════════════════════════
+//  TOOLTIP SYSTEM — Definições de termos clínicos
+// ══════════════════════════════════════════════════════
+
+const TIPS = {
+  'nipt': {
+    term: 'NIPT',
+    full: 'Non-Invasive Prenatal Testing — Teste Pré-Natal Não Invasivo',
+    desc: 'Exame de sangue materno que analisa fragmentos de DNA fetal livre (cfDNA) circulante. Detecta trissomias (T21, T18, T13), aneuploidias dos cromossomos sexuais e microdeleções como 22q11. Sensibilidade >99% para Trissomia 21. Disponível a partir de 10 semanas.',
+    relevance: '⚠️ Resultado alterado é indicação formal de ecocardiograma fetal — Trissomia 21, 18, 13 e deleção 22q11 têm alta prevalência de cardiopatias congênitas.'
+  },
+  'tn': {
+    term: 'TN — Translucência Nucal',
+    full: 'Medida do acúmulo de líquido na nuca do feto',
+    desc: 'Medida por ultrassom entre 11–14 semanas (CRL 45–84mm). Valor normal varia com a IG, geralmente <3,0mm. Deve ser realizada por profissionais certificados pela Fetal Medicine Foundation (FMF).',
+    relevance: '⚠️ TN ≥3,5mm aumenta risco de cromossomopatias e cardiopatias congênitas. É indicação de ecocardiograma fetal especializado.'
+  },
+  'dum': {
+    term: 'DUM / DPP',
+    full: 'Data da Última Menstruação / Data Provável do Parto',
+    desc: 'DUM: primeiro dia da última menstruação. DPP: data estimada do parto, calculada adicionando 280 dias (40 semanas) à DUM. A datação por USG do 1º trimestre (medida do CRL — comprimento cabeça-nádega) é mais precisa quando disponível.',
+    relevance: 'A datação precisa é essencial para calcular a IG e interpretar corretamente todos os marcadores ecográficos e do rastreio.'
+  },
+  'ig': {
+    term: 'IG — Idade Gestacional',
+    full: 'Tempo de gravidez em semanas e dias',
+    desc: 'Calculada a partir do primeiro dia da DUM. Preferencialmente corrigida pelo USG do 1º trimestre (medida do CRL). Expressa em semanas + dias (ex: 22sem 4d). Determina os valores de referência de todos os marcadores ecográficos.',
+    relevance: 'Todos os parâmetros do rastreio e do ecocardiograma fetal dependem da IG correta para interpretação adequada.'
+  },
+  'ip': {
+    term: 'IP — Índice de Pulsatilidade',
+    full: 'Parâmetro do exame de Doppler que avalia a resistência vascular',
+    desc: 'Calculado pela fórmula: (velocidade sistólica máxima − velocidade diastólica mínima) / velocidade média. Usado nas artérias uterina, umbilical, cerebral média (ACM) e ductus venoso para monitorar a circulação fetal e placentária.',
+    relevance: 'IP uterinas elevado no 1º trim indica risco de pré-eclâmpsia. IP umbilical alterado sugere insuficiência placentária. IP cerebral reduzido indica centralização fetal — situação de risco.'
+  },
+  'ciur': {
+    term: 'CIUR / PIG',
+    full: 'Crescimento Intrauterino Restrito / Pequeno para Idade Gestacional',
+    desc: 'CIUR: feto com biometria abaixo do percentil 10 para a IG, associado a alterações do Doppler que indicam insuficiência placentária. PIG: feto constitucionalmente pequeno, sem alterações do Doppler. A distinção é clinicamente muito importante.',
+    relevance: 'CIUR grave requer seguimento intensivo com Doppler seriado e pode antecipar o parto. Encaminhar ao ambulatório de medicina fetal para protocolo de vigilância fetal.'
+  },
+  'dsav': {
+    term: 'DSAV',
+    full: 'Defeito do Septo Atrioventricular',
+    desc: 'Cardiopatia congênita com ausência parcial ou total dos septos atrial inferior e ventricular superior, associada a malformação das valvas atrioventriculares. A forma completa (DSAV total) é fortemente associada à Trissomia 21.',
+    relevance: '60–70% dos casos de DSAV fetal estão associados à Síndrome de Down (T21). Encaminhamento urgente para cardiologia fetal para planejamento cirúrgico perinatal.'
+  },
+  'tapvr': {
+    term: 'TAPVR',
+    full: 'Total Anomalous Pulmonary Venous Return — Retorno Venoso Pulmonar Anômalo Total',
+    desc: 'Cardiopatia congênita em que as quatro veias pulmonares drenam para o lado direito do coração em vez do átrio esquerdo. Pode ser supracardíaca, cardíaca, infracardíaca ou mista. É cirúrgica e frequentemente urgente no período neonatal.',
+    relevance: 'O diagnóstico pré-natal permite planejar o parto em centro com cirurgia cardíaca neonatal disponível. Parto deve ocorrer em hospital terciário.'
+  },
+  'shve': {
+    term: 'SHVE',
+    full: 'Síndrome de Hipoplasia do Ventrículo Esquerdo',
+    desc: 'Espectro de cardiopatias com hipoplasia grave do ventrículo esquerdo, valva mitral e/ou aorta. Uma das cardiopatias congênitas mais complexas, requerendo cirurgia em três etapas (Norwood, Glenn, Fontan) ou transplante cardíaco neonatal.',
+    relevance: 'O diagnóstico fetal é essencial para aconselhamento familiar sobre opções terapêuticas: cirurgia paliativa seriada, transplante ou cuidados paliativos. Parto deve ocorrer em centro de referência.'
+  },
+  'cariotipo': {
+    term: 'Cariótipo Fetal',
+    full: 'Análise do número e estrutura dos cromossomos do bebê',
+    desc: 'Obtido por amniocentese (a partir de 16 semanas) ou biópsia de vilo corial — BVC (10–14 semanas). Detecta trissomias, monossomias, deleções e rearranjos cromossômicos. É o exame de confirmação diagnóstica para cromossomopatias.',
+    relevance: 'Indicado quando o rastreio (TN + NIPT) aponta alto risco de cromossomopatia, ou quando é necessário diagnóstico preciso para definir conduta clínica e cirúrgica fetal.'
+  },
+  'amnio': {
+    term: 'Amniocentese',
+    full: 'Coleta de líquido amniótico para análise genética',
+    desc: 'Punção guiada por ultrassom do saco amniótico para obter células fetais. Realizada habitualmente a partir de 16 semanas. Permite cariótipo, FISH, array-CGH ou exoma. Risco de perda gestacional: ~0,1–0,3% em centros especializados.',
+    relevance: 'Padrão-ouro para confirmação de cromossomopatias após rastreio alterado. Resultado disponível em 10–14 dias (cariótipo convencional) ou 48–72h (FISH de urgência).'
+  }
+};
+
+// ── Tooltip DOM ────────────────────────────────────────
+let tipPopup, tipOverlay;
+
+function initTooltips() {
+  if (tipPopup) return; // já inicializado
+
+  tipOverlay = document.createElement('div');
+  tipOverlay.className = 'tooltip-overlay';
+  tipOverlay.onclick = closeTooltip;
+  document.body.appendChild(tipOverlay);
+
+  tipPopup = document.createElement('div');
+  tipPopup.className = 'tooltip-popup';
+  tipPopup.innerHTML =
+    '<button class="tp-close" onclick="closeTooltip()">✕ fechar</button>' +
+    '<div class="tp-term"></div>' +
+    '<div class="tp-full"></div>' +
+    '<div class="tp-desc"></div>' +
+    '<div class="tp-relevance"></div>';
+  document.body.appendChild(tipPopup);
+}
+
+function showTip(key, btn) {
+  // Ensure initialized
+  if (!tipPopup) initTooltips();
+
+  const data = TIPS[key];
+  if (!data) { console.warn('Tip not found:', key); return; }
+
+  tipPopup.querySelector('.tp-term').textContent = data.term;
+  tipPopup.querySelector('.tp-full').textContent = data.full;
+  tipPopup.querySelector('.tp-desc').textContent = data.desc;
+  const relEl = tipPopup.querySelector('.tp-relevance');
+  if (data.relevance) {
+    relEl.textContent = data.relevance;
+    relEl.style.display = 'block';
+  } else {
+    relEl.style.display = 'none';
+  }
+
+  // Position: centered horizontally, smart vertical
+  const rect = btn.getBoundingClientRect();
+  const pw = Math.min(340, window.innerWidth - 32);
+  tipPopup.style.maxWidth = pw + 'px';
+  tipPopup.style.width = pw + 'px';
+  const left = Math.max(16, (window.innerWidth - pw) / 2);
+  tipPopup.style.left = left + 'px';
+  const spaceBelow = window.innerHeight - rect.bottom;
+  if (spaceBelow > 240) {
+    tipPopup.style.top = (rect.bottom + window.scrollY + 8) + 'px';
+  } else {
+    tipPopup.style.top = Math.max(60, rect.top + window.scrollY - 240) + 'px';
+  }
+
+  tipPopup.classList.add('show');
+  tipOverlay.classList.add('show');
+}
+
+function closeTooltip() {
+  if (tipPopup) tipPopup.classList.remove('show');
+  if (tipOverlay) tipOverlay.classList.remove('show');
+}
+
+// Init on load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initTooltips);
+} else {
+  initTooltips();
+}
+
 </script>
 </body>
 </html>
