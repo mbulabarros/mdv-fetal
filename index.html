@@ -1007,6 +1007,60 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
   /* Criteria bold terms */
   .approach-card strong{color:var(--violet-dark);font-weight:700}
   .fcard strong{color:var(--violet-dark)}
+
+  /* ── IG Calculator ── */
+  .ig-calc-result{display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--purple-bg),var(--rose-bg));border:1px solid rgba(107,63,160,.18);border-radius:var(--r-sm);padding:8px 12px;font-size:.78rem;font-weight:700;color:var(--purple);margin-top:6px;animation:screenIn .3s ease}
+  .ig-calc-result .ig-val{font-size:1.05rem;font-weight:900;color:var(--violet-dark)}
+  .ig-calc-result .dpp-val{color:var(--rose);font-weight:700}
+
+  /* ── Real-time validation ── */
+  input.field-error{border-color:#e74c3c !important;background:rgba(231,76,60,.04) !important}
+  input.field-warn{border-color:#f39c12 !important;background:rgba(243,156,18,.04) !important}
+  .field-validation{font-size:.72rem;margin-top:4px;padding:4px 8px;border-radius:6px;animation:screenIn .2s ease;line-height:1.4}
+  .fv-error{background:rgba(231,76,60,.08);color:#c0392b;border-left:3px solid #e74c3c}
+  .fv-warn{background:rgba(243,156,18,.08);color:#8b6914;border-left:3px solid #f39c12}
+
+  /* ── Reference tables ── */
+  .ref-panel{background:var(--white);border:1px solid var(--border-soft);border-radius:var(--r-sm);margin-top:6px;overflow:hidden}
+  .ref-toggle{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;cursor:pointer;font-size:.72rem;font-weight:700;color:var(--purple);background:var(--purple-bg);-webkit-tap-highlight-color:transparent;user-select:none}
+  .ref-toggle svg{transition:transform .25s}
+  .ref-toggle.open svg{transform:rotate(180deg)}
+  .ref-content{padding:10px 12px;display:none}
+  .ref-content.show{display:block}
+  .ref-table{width:100%;border-collapse:collapse;font-size:.72rem}
+  .ref-table th{background:var(--purple-bg);color:var(--purple);font-weight:700;padding:5px 8px;text-align:left}
+  .ref-table td{padding:4px 8px;border-bottom:1px solid var(--border-soft);color:var(--text)}
+  .ref-table tr:last-child td{border-bottom:none}
+  .ref-table .ok{color:#27ae60;font-weight:700}
+  .ref-table .al{color:#e74c3c;font-weight:700}
+  .ref-table .wn{color:#f39c12;font-weight:700}
+
+  /* ── Print ── */
+  .btn-print{display:flex;align-items:center;gap:6px;justify-content:center;background:#fff;border:1.5px solid var(--purple);color:var(--purple);border-radius:var(--r-md);padding:11px 20px;font-weight:700;font-size:.85rem;cursor:pointer;width:100%;transition:background .15s;margin-top:8px}
+  .btn-print:hover{background:var(--purple-bg)}
+  @media print{
+    body{background:#fff !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .sidebar,.bottom-nav,.back-btn,.btn-whatsapp,.btn-outline,.btn-print,
+    .sendingOverlay,.splash,.tooltip-popup,.tooltip-overlay,
+    .ref-toggle,.spec-indicator,.field-validation,
+    .progress-bar-wrap,.step-label-wrap{display:none !important}
+    .app{box-shadow:none !important;max-width:100% !important;height:auto !important;overflow:visible !important}
+    #outerWrap{display:block !important}
+    .result-hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .preview-section{break-inside:avoid}
+    @page{margin:15mm;size:A4}
+  }
+
+  /* ── About page ── */
+  .team-card{display:flex;align-items:flex-start;gap:12px;padding:10px;background:var(--cream);border-radius:var(--r-sm);border:1px solid var(--border-soft);margin-bottom:8px}
+  .team-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem}
+  .hours-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border-soft)}
+  .hours-row:last-child{border-bottom:none}
+  .hours-badge{font-size:.78rem;font-weight:700;padding:3px 10px;border-radius:12px}
+
+  /* WA Config */
+  .wa-config-card{background:var(--cream);border:1px dashed var(--border);border-radius:var(--r-md);padding:14px 16px;margin-top:10px}
+
 </style>
 </head>
 <body>
@@ -1016,7 +1070,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
   <div class="splash-orb"></div>
   <div class="splash-logo-ring"><span class="splash-mdv-text">MDV</span></div>
   <div class="splash-title">Maternidade Darcy Vargas</div>
-  <div class="splash-sub">Ambulatório de Medicina Fetal<br>& Cardiologia Fetal · Joinville–SC</div>
+  <div class="splash-sub">Ambulatório de Medicina Fetal e Cardiologia Fetal<br><span style="font-size:.6rem;opacity:.55;letter-spacing:1.5px">REFERÊNCIA ESTADUAL SES/SC · JOINVILLE–SC · FUNDADA 1947</span></div>
   <div class="splash-heartbeat">
   <svg viewBox="0 0 180 48">
     <!-- background flat line -->
@@ -1707,15 +1761,56 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 </div>
 
 <!-- ==================== ABOUT ==================== -->
-<div id="about" class="screen">
-  <button class="btn-back" onclick="navTo('home')"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></span> Início</button>
-  <div class="section-hdr"><h2>Sobre o Ambulatório 🏥</h2><p>Referência estadual em medicina materno-fetal para o Norte de Santa Catarina.</p></div>
-  <div class="approach-card"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.11 12.45 14 10.24l-3.11 6.21-2-4H7v-2h3.11l2 4 3.11-6.21 2.11 4.21H20v2h-2.22zM20 3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg></span><div><h3>Cardiologia Fetal</h3><p>Diagnóstico e acompanhamento de cardiopatias congênitas fetais. Ecocardiografia fetal morfológica e funcional com equipe especializada.</p></div></div>
-  <div class="approach-card"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 19c-1.1 0-2 .9-2 2h14c0-1.1-.9-2-2-2h-4v-2h3c1.1 0 2-.9 2-2h-8c-1.66 0-3-1.34-3-3 0-1.25.77-2.33 1.87-2.79L9.07 7H7.06L7 7c-2.21 0-4 1.79-4 4s1.79 4 4 4v2H7zm11.95-12.39l-1.41-1.41-1.42 1.41 1.41 1.42zm-3.64 1.45L13.9 6.65l-6.07 6.07 1.41 1.41zm1.45 3.64 1.41-1.41-1.41-1.42-1.41 1.42z"/></svg></span><div><h3>Medicina Fetal</h3><p>Avaliação de anomalias estruturais, rastreio de cromossomopatias, manejo de gestações de alto risco e procedimentos invasivos diagnósticos.</p></div></div>
-  <div class="approach-card"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.8 18.4 14 10.67V6.5l1.35-1.69c.26-.33.03-.81-.39-.81H9.04c-.42 0-.65.48-.39.81L10 6.5v4.17L4.2 18.4c-.49.66-.02 1.6.8 1.6h14c.82 0 1.29-.94.8-1.6z"/></svg></span><div><h3>Genética Fetal</h3><p>Aconselhamento genético, interpretação de NIPT, cariótipo fetal por amniocentese ou biópsia de vilo corial.</p></div></div>
-  <div class="approach-card"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12.75c1.63 0 3.07.39 4.24.9 1.08.48 1.76 1.56 1.76 2.73V18H6v-1.61c0-1.18.68-2.26 1.76-2.73 1.17-.52 2.61-.91 4.24-.91zM4 13c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm1.13 1.1c-.37-.06-.74-.1-1.13-.1-.99 0-1.93.21-2.78.58C.48 14.9 0 15.62 0 16.43V18h4.5v-1.61c0-.83.23-1.61.63-2.29zM20 13c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm1.87 1.1c.4.68.63 1.46.63 2.29V18H24v-1.57c0-.81-.48-1.53-1.22-1.85-.85-.37-1.79-.58-2.78-.58-.39 0-.76.04-1.13.1zM12 6c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z"/></svg></span><div><h3>Equipe Multidisciplinar</h3><p>Obstetras, cardiologistas pediátricos, geneticistas e equipe de neonatologia para planejamento perinatal integrado.</p></div></div>
-  <div class="approach-card"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg></span><div><h3>Referência Regional</h3><p>Atende o Planalto Norte e Nordeste de SC. 26 municípios de referência. Vinculada à SES/SC — 100% SUS.</p></div></div>
-  <button class="btn btn-whatsapp" onclick="openWhatsApp()"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></span> Falar com o Ambulatório</button>
+<div id="about" class="screen" style="display:none">
+  <div style="padding:22px 20px 32px">
+    <div class="back-btn" onclick="navTo('home')">← Início</div>
+    <div class="section-hdr"><h2>Sobre o Ambulatório 🏥</h2><p>Ambulatório de Medicina Fetal e Cardiologia Fetal da Maternidade Darcy Vargas — referência estadual SES/SC.</p></div>
+    <div class="fcard" style="margin-bottom:12px;background:linear-gradient(135deg,var(--purple-bg),var(--rose-bg));border:1px solid rgba(107,63,160,.15)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:1.4rem">🎯</span><h3 style="color:var(--violet-dark);font-size:1rem;margin:0">Nossa Missão</h3></div>
+      <p style="font-size:.82rem;color:var(--text-soft);line-height:1.55;margin:0">Oferecer diagnóstico fetal de alta resolução e cardiologia fetal especializada pelo SUS, com acesso equitativo para gestantes de Joinville e toda a região Sul de Santa Catarina.</p>
+    </div>
+    <div class="fcard" style="margin-bottom:12px">
+      <div class="fcard-hdr"><span style="font-size:1.1rem">👨‍⚕️</span><span class="title">Equipe Médica</span></div>
+      <div style="margin-top:10px">
+        <!-- Cardiologia Fetal -->
+        <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:var(--rose);margin-bottom:6px">❤️ Cardiologia Fetal</div>
+        <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,var(--rose),#8B1A3A)">👨‍⚕️</div><div><div style="font-weight:800;font-size:.88rem;color:var(--violet-dark)">Dr. Francisco</div><div style="font-size:.73rem;color:var(--rose);font-weight:700;margin:2px 0">Cardiologia Fetal</div><div style="font-size:.73rem;color:var(--text-soft)">Ecocardiograma fetal · Cardiopatias congênitas · Arritmias fetais</div></div></div>
+        <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#C0266A,var(--rose))">👩‍⚕️</div><div><div style="font-weight:800;font-size:.88rem;color:var(--violet-dark)">Dra. Letícia</div><div style="font-size:.73rem;color:var(--rose);font-weight:700;margin:2px 0">Cardiologia Fetal</div><div style="font-size:.73rem;color:var(--text-soft)">Ecocardiograma fetal · Cardiopatias congênitas · Doppler cardíaco</div></div></div>
+        <!-- Medicina Fetal -->
+        <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:var(--purple);margin:10px 0 6px">🔬 Medicina Fetal</div>
+        <div class="team-card" style="margin-bottom:0"><div class="team-avatar" style="background:linear-gradient(135deg,var(--purple),var(--violet))">👩‍⚕️</div><div><div style="font-weight:800;font-size:.88rem;color:var(--violet-dark)">Dra. Andreia</div><div style="font-size:.73rem;color:var(--purple);font-weight:700;margin:2px 0">Medicina Fetal</div><div style="font-size:.73rem;color:var(--text-soft)">Ultrassom morfológico · Rastreio 1º trimestre · Genética fetal · CIUR · Gestação gemelar</div></div></div>
+      </div>
+    </div>
+    <div class="fcard" style="margin-bottom:12px">
+      <div class="fcard-hdr"><span style="font-size:1.1rem">🔬</span><span class="title">Especialidades</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+        <div style="padding:10px;background:var(--purple-bg);border-radius:var(--r-sm)"><div style="font-size:.75rem;font-weight:800;color:var(--purple);margin-bottom:4px">🔬 Medicina Fetal</div><div style="font-size:.7rem;color:var(--text-soft);line-height:1.4">Morfológico · Rastreio 1º trim · Genética · CIUR · Gemelar</div></div>
+        <div style="padding:10px;background:var(--rose-bg);border-radius:var(--r-sm)"><div style="font-size:.75rem;font-weight:800;color:var(--rose);margin-bottom:4px">❤️ Cardiologia Fetal</div><div style="font-size:.7rem;color:var(--text-soft);line-height:1.4">Ecocardiograma · Arritmias · Cardiopatias congênitas · Doppler</div></div>
+        <div style="padding:10px;background:var(--cream);border-radius:var(--r-sm);border:1px solid var(--border-soft)"><div style="font-size:.75rem;font-weight:800;color:var(--violet-dark);margin-bottom:4px">🧬 Genética</div><div style="font-size:.7rem;color:var(--text-soft);line-height:1.4">NIPT · Amniocentese · BVC · Aconselhamento</div></div>
+        <div style="padding:10px;background:var(--cream);border-radius:var(--r-sm);border:1px solid var(--border-soft)"><div style="font-size:.75rem;font-weight:800;color:var(--violet-dark);margin-bottom:4px">👶 Gemelar</div><div style="font-size:.7rem;color:var(--text-soft);line-height:1.4">MCDA · MCMA · STFF · Tratamento a laser</div></div>
+      </div>
+    </div>
+    <div class="fcard" style="margin-bottom:12px">
+      <div class="fcard-hdr"><span style="font-size:1.1rem">🕐</span><span class="title">Horários de Atendimento</span></div>
+      <div style="margin-top:8px">
+        <div class="hours-row"><span style="font-size:.8rem;font-weight:700">Segunda e Quarta</span><span class="hours-badge" style="background:var(--purple-bg);color:var(--purple)">08h – 12h</span></div>
+        <div class="hours-row"><span style="font-size:.8rem;font-weight:700">Terça e Quinta</span><span class="hours-badge" style="background:var(--purple-bg);color:var(--purple)">13h – 17h</span></div>
+        <div class="hours-row"><span style="font-size:.8rem;font-weight:700">Sexta</span><span class="hours-badge" style="background:var(--rose-bg);color:var(--rose)">Urgências apenas</span></div>
+      </div>
+      <p style="font-size:.7rem;color:var(--text-muted);margin-top:8px;line-height:1.4">⚠️ Casos urgentes (hidropsia fetal, arritmia grave, BAVT) têm prioridade máxima — encaminhe diretamente ao plantão.</p>
+    </div>
+    <div class="fcard" style="margin-bottom:16px">
+      <div class="fcard-hdr"><span style="font-size:1.1rem">✅</span><span class="title">Infraestrutura</span></div>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px">
+        <div style="font-size:.78rem;color:var(--text-soft)">✅ Ultrassom de alta resolução com Doppler colorido</div>
+        <div style="font-size:.78rem;color:var(--text-soft)">✅ Ecocardiograma fetal especializado</div>
+        <div style="font-size:.78rem;color:var(--text-soft)">✅ Integração com UTI Neonatal e Centro Cirúrgico</div>
+        <div style="font-size:.78rem;color:var(--text-soft)">✅ 100% pelo SUS — sem custo para a gestante</div>
+        <div style="font-size:.78rem;color:var(--text-soft)">✅ Referência estadual credenciada pela SES/SC</div>
+      </div>
+    </div>
+    <div style="text-align:center"><button class="btn btn-primary" onclick="navTo('form')" style="max-width:280px;margin:0 auto"><svg viewBox="0 0 24 24" fill="currentColor" style="width:17px;height:17px"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg> Fazer Encaminhamento</button></div>
+  </div>
 </div>
 
 <!-- ==================== CRITERIA ==================== -->
@@ -1766,6 +1861,41 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     </div>
   </div>
   <button class="btn btn-whatsapp" onclick="openWhatsApp()"><span class="mdi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg></span> Agendar pelo WhatsApp</button>
+      <!-- Mapa -->
+      <div style="margin-top:14px;border-radius:var(--r-md);overflow:hidden;border:1px solid var(--border-soft)">
+        <div style="padding:10px 14px;background:var(--purple-bg);display:flex;align-items:center;gap:6px">
+          <span style="font-size:.9rem">📍</span>
+          <span style="font-size:.78rem;font-weight:700;color:var(--purple)">Maternidade Darcy Vargas — Rua Miguel Couto, 44, Joinville–SC</span>
+        </div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3567.1!2d-48.8457!3d-26.3022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94deb081a4bde19f%3A0x29b3a3e5e58c8b7a!2sMaternidade+Darcy+Vargas!5e0!3m2!1spt!2sbr!4v1"
+          width="100%" height="200" style="border:0;display:block" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" title="Localização MDV"></iframe>
+        <div style="padding:8px 14px;background:var(--cream)">
+          <a href="https://maps.google.com/?q=Maternidade+Darcy+Vargas+Joinville+SC" target="_blank" rel="noopener"
+             style="font-size:.72rem;font-weight:700;color:var(--purple);text-decoration:none">
+            🗺️ Abrir no Google Maps →
+          </a>
+        </div>
+      </div>
+
+      <!-- Telefone -->
+      <div style="margin-top:12px;padding:12px 14px;background:var(--cream);border-radius:var(--r-md);border:1px solid var(--border-soft);display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.2rem">☎️</span>
+        <div>
+          <a href="tel:+554733019200" style="font-size:.92rem;font-weight:800;color:var(--violet-dark);text-decoration:none;display:block">(47) 3301-9200</a>
+          <div style="font-size:.7rem;color:var(--text-muted)">Maternidade Darcy Vargas · Recepção Geral</div>
+        </div>
+      </div>
+
+      <!-- Configurar WA -->
+      <div class="wa-config-card" style="margin-top:12px">
+        <div style="font-size:.75rem;font-weight:800;color:var(--text);margin-bottom:6px">⚙️ Configurar número do WhatsApp <span class="badge-opt" style="vertical-align:middle;margin-left:4px">Admin</span></div>
+        <p style="font-size:.72rem;color:var(--text-muted);margin:0 0 8px;line-height:1.4">Configure o número para onde os encaminhamentos serão enviados (DDI + DDD + número).</p>
+        <div style="display:flex;gap:8px;align-items:flex-end">
+          <div style="flex:1"><input type="tel" id="waConfigInput" placeholder="5547XXXXXXXXX" maxlength="15" value="5547XXXXXXXX" style="font-family:monospace;font-size:.82rem;width:100%"></div>
+          <button class="btn btn-primary" onclick="saveWAConfig()" style="flex-shrink:0;padding:10px 14px">Salvar</button>
+        </div>
+      </div>
 </div>
 
 </div><!-- /app -->
@@ -2108,8 +2238,27 @@ function showResult() {
   <div class="result-actions">
     <button class="btn btn-whatsapp" onclick="enviarWhatsApp()"><span class="mdi-icon">${svgSend}</span> Enviar pelo WhatsApp</button>
     <p style="text-align:center;font-size:.76rem;color:var(--text-muted);margin-top:8px;line-height:1.45">Abre o WhatsApp com todos os dados formatados.<br>Lembre-se de <strong>anexar os documentos</strong> marcados acima.</p>
-    <button class="btn btn-outline" onclick="resetForm()"><span class="mdi-icon">${svgReset}</span> Novo Encaminhamento</button>
-    <div class="footer">Encaminhamento gerado via Ambulatório MDV · MDV · Maternidade Darcy Vargas</div>
+    <button class="btn-print" onclick="window.print()"><svg viewBox="0 0 24 24" fill="currentColor" style="width:17px;height:17px"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg> Imprimir / Salvar PDF</button>
+      <button class="btn btn-outline" onclick="resetForm()"><span class="mdi-icon">${svgReset}</span> Novo Encaminhamento</button>
+    
+      <div style="margin-top:16px;border-radius:var(--r-md);overflow:hidden;border:1px solid var(--border-soft)">
+        <div style="padding:10px 14px;background:var(--purple-bg);display:flex;align-items:center;gap:6px"><span>📍</span><span style="font-size:.78rem;font-weight:700;color:var(--purple)">Rua Miguel Couto, 44 — Anita Garibaldi, Joinville–SC</span></div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d906.2!2d-48.846!3d-26.303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94deb1e1a7498ec7%3A0xa278caa2be2f0c21!2sMaternidade%20Darcy%20Vargas!5e0!3m2!1spt-BR!2sbr!4v1"
+          width="100%" height="220" style="border:0;display:block" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div style="padding:8px 14px;background:var(--cream);display:flex;justify-content:space-between">
+          <a href="https://maps.google.com/?q=Maternidade+Darcy+Vargas+Joinville" target="_blank" rel="noopener" style="font-size:.72rem;font-weight:700;color:var(--purple);text-decoration:none">🗺️ Ver no Google Maps</a>
+          <a href="tel:+554733019200" style="font-size:.72rem;font-weight:700;color:var(--violet-dark);text-decoration:none">☎️ (47) 3301-9200</a>
+        </div>
+      </div>
+      <div class="wa-config-card" style="margin-top:12px">
+        <div style="font-size:.75rem;font-weight:800;color:var(--text);margin-bottom:6px">⚙️ Configurar número WhatsApp <span class="badge-opt" style="vertical-align:middle;margin-left:4px">Admin</span></div>
+        <p style="font-size:.72rem;color:var(--text-muted);margin:0 0 8px;line-height:1.4">Número para onde os encaminhamentos serão enviados (DDI+DDD+número, sem espaços).</p>
+        <div style="display:flex;gap:8px">
+          <input type="tel" id="waConfigInput" placeholder="5547XXXXXXXXX" maxlength="15" value="5547XXXXXXXX" style="flex:1;font-family:monospace;font-size:.82rem">
+          <button class="btn btn-primary" onclick="saveWAConfig()" style="flex-shrink:0;padding:10px 14px">Salvar</button>
+        </div>
+      </div>
+<div class="footer">Encaminhamento gerado via Ambulatório MDV · MDV · Maternidade Darcy Vargas</div>
   </div>`;
 
   document.getElementById('step6').style.display = 'none';
@@ -2840,6 +2989,77 @@ nextStep=function(to){
   }
   _nextStepOrig2(to);
 };
+
+
+// ── IG Calculator ────────────────────────────────────────────
+function calcIG() {
+  const dumEl = document.getElementById('gestDUM');
+  if (!dumEl || !dumEl.value) return;
+  const dum = new Date(dumEl.value + 'T00:00:00');
+  if (isNaN(dum)) return;
+  const hoje = new Date(); hoje.setHours(0,0,0,0);
+  const diffMs = hoje - dum;
+  if (diffMs < 0) return;
+  const totalDias = Math.floor(diffMs / 86400000);
+  const sem = Math.floor(totalDias / 7);
+  const dias = totalDias % 7;
+  const igSemEl = document.getElementById('igSem');
+  const igDiasEl = document.getElementById('igDias');
+  if (igSemEl) igSemEl.value = sem;
+  if (igDiasEl) igDiasEl.value = dias;
+  const dpp = new Date(dum); dpp.setDate(dpp.getDate() + 280);
+  const dppEl = document.getElementById('gestDPP');
+  if (dppEl) dppEl.value = dpp.toISOString().split('T')[0];
+  let res = document.getElementById('igCalcResult');
+  if (!res) {
+    res = document.createElement('div'); res.id = 'igCalcResult'; res.className = 'ig-calc-result';
+    if (dumEl.parentNode) dumEl.parentNode.appendChild(res);
+  }
+  const label = sem >= 42 ? ' · ⚠️ Pós-termo' : sem >= 37 ? ' · ✅ Termo' : sem >= 28 ? ' · 🟡 Pré-termo tardio' : sem >= 24 ? ' · 🟠 Limite de viabilidade' : sem < 4 ? ' · ⚠️ IG muito precoce' : '';
+  res.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" style="width:15px;height:15px;flex-shrink:0"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>'
+    + '<span><span class="ig-val">' + sem + 'sem ' + dias + 'd</span> · DPP: <span class="dpp-val">' + dpp.toLocaleDateString('pt-BR') + '</span>' + label + '</span>';
+}
+document.addEventListener('change', e => { if (e.target.id === 'gestDUM') calcIG(); });
+
+// ── Real-time field validation ───────────────────────────────
+const FV = {
+  'igSem':    {min:4, max:42, msg:'IG fora do intervalo válido (4–42 semanas)'},
+  'igDias':   {min:0, max:6,  msg:'Dias deve ser entre 0 e 6'},
+  'gestIdade':{min:12,max:55, msg:'Idade deve estar entre 12 e 55 anos'},
+  'tn':       {min:0.5,max:10,msg:'TN deve estar entre 0,5 e 10 mm', warn:3.5, warnMsg:'⚠️ TN ≥ 3,5mm — indicação de ecocardiograma fetal'},
+  'cFC':      {min:60,max:300,msg:'FC fetal deve estar entre 60 e 300 bpm', warn:100, warnMsg:'⚠️ Bradicardia fetal — considere encaminhamento urgente'},
+  'ipUterinas':{min:0.3,max:4,msg:'IP uterinas deve estar entre 0,3 e 4,0'},
+};
+function validateFV(el) {
+  const r = FV[el.id]; if (!r || !el.value) { clearFV(el); return; }
+  const v = parseFloat(el.value);
+  if ((r.min !== undefined && v < r.min) || (r.max !== undefined && v > r.max)) { showFV(el, r.msg, 'error'); return; }
+  if (r.warn !== undefined && v >= r.warn) { showFV(el, r.warnMsg, 'warn'); return; }
+  clearFV(el);
+}
+function showFV(el, msg, type) {
+  el.classList.toggle('field-error', type==='error'); el.classList.toggle('field-warn', type==='warn');
+  let tip = document.getElementById('fv_'+el.id);
+  if (!tip) { tip=document.createElement('div'); tip.id='fv_'+el.id; tip.className='field-validation'; el.parentNode.appendChild(tip); }
+  tip.className = 'field-validation fv-'+type; tip.textContent = msg;
+}
+function clearFV(el) {
+  el.classList.remove('field-error','field-warn');
+  const t = document.getElementById('fv_'+el.id); if (t) t.remove();
+}
+document.addEventListener('input', e => { if (FV[e.target.id]) validateFV(e.target); });
+
+// ── WA contact ───────────────────────────────────────────────
+function openWhatsAppContact() { window.open('https://wa.me/'+CONFIG.whatsapp, '_blank'); }
+function saveWAConfig() {
+  const inp = document.getElementById('waConfigInput');
+  const num = inp.value.replace(/\D/g,'');
+  if (num.length < 10) { showToast('⚠️ Número inválido'); return; }
+  CONFIG.whatsapp = num;
+  try { localStorage.setItem('mdv_wa', num); } catch(e) {}
+  showToast('✅ WhatsApp configurado!');
+}
+try { const s=localStorage.getItem('mdv_wa'); if(s){CONFIG.whatsapp=s;} } catch(e) {}
 
 </script>
 </body>
